@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SiteComponent } from './site/site.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MapComponent } from './map/map.component';
 
 const appRoutes: Routes = [
   { path: 'site', component: SiteComponent },
@@ -21,13 +22,13 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SiteComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true })
+      appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
