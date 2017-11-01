@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
+  title: String = 'Ewaste Arcades!';
+
   constructor() { }
 
   ngOnInit() {

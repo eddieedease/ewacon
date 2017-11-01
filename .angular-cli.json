@@ -19,7 +19,8 @@
         "prefix": "app",
         "styles": [
             "styles.css",
-            "../node_modules/materialize-css/dist/css/materialize.css"
+            "../node_modules/materialize-css/dist/css/materialize.css",
+            "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
