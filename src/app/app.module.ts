@@ -13,6 +13,9 @@ import { AdminComponent } from './admin/admin.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
+// Datatable
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 
 const appRoutes: Routes = [
   { path: 'site', component: SiteComponent },
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
       AgmCoreModule.forRoot({
         apiKey: 'AIzaSyANc3EJit-ICD0ua4rwoFb1FfBBQfGYNrQ'
       }),
-      AgmSnazzyInfoWindowModule
+      AgmSnazzyInfoWindowModule,
+      NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

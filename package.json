@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@swimlane/ngx-datatable": "^11.0.3",
     "@types/jquery": "^3.2.16",
     "@types/materialize-css": "^0.100.2",
     "core-js": "^2.5.1",
