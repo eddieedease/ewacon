@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import {EwasteServiceService} from '././ewaste-service.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

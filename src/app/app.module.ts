@@ -2,12 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
+// Service
+import {EwasteServiceService} from './ewaste-service.service';
 import { AppComponent } from './app.component';
 import { SiteComponent } from './site/site.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
 import { AdminComponent } from './admin/admin.component';
+
+
+
 
 // Angular Google Maps
 import { AgmCoreModule } from '@agm/core';
@@ -38,6 +44,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpModule,
+    JsonpModule,
     RouterModule.forRoot(
       appRoutes),
       AgmCoreModule.forRoot({
@@ -46,7 +55,7 @@ const appRoutes: Routes = [
       AgmSnazzyInfoWindowModule,
       NgxDatatableModule
   ],
-  providers: [],
+  providers: [EwasteServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
