@@ -26,6 +26,8 @@ import {
   styleUrls: ['./site.component.css']
 })
 
+
+
 export class SiteComponent implements OnInit {
 
   activeArcades;
