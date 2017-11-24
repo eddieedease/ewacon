@@ -40,8 +40,12 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
 
+      // check if loggedin is active
     if (this.serser.loggedin === true) {
       this.loggedin = true;
+      $(document).ready(function () {
+        $('ul.tabs').tabs();
+      });
     }
 
     // dummy data for tables

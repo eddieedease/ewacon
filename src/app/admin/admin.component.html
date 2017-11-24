@@ -41,18 +41,22 @@
         <li class="tab col s3 red">
           <a href="#test2" class="white-text">Offline</a>
         </li>
-        <li class="tab col s3 purple ">
-          <a href="#test3" class="white-text">Archief</a>
+        <li class="tab col s3 blue">
+          <a href="#test3" class="white-text">Acties</a>
         </li>
+        <li class="tab col s3 purple ">
+          <a href="#test4" class="white-text">Archief</a>
+        </li>
+       
       </ul>
     </div>
     <div id="test1">
       <div class="col s12 m6">
         <h3>Actieve kasten</h3>
-
-
         <ngx-datatable class="material" [rows]="rows" [columns]="columns">
         </ngx-datatable>
+        <br>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg kast toe</a>
       </div>
 
       <div class="col s12 m6">
@@ -61,7 +65,6 @@
             <span class="card-title">Info</span>
             <p>Informatie over de kast blabla</p>
           </div>
-
         </div>
       </div>
     </div>
@@ -82,6 +85,24 @@
       </div>
     </div>
     <div id="test3">
+            <div class="col s12 m6">
+              <h3>Acties</h3>
+              <ngx-datatable class="material" [rows]="rows" [columns]="columns">
+              </ngx-datatable>
+              <br>
+              <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg actie toe</a>
+            </div>
+            <div class="col s12 m6">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">Info</span>
+                  <p>Informatie over de kast blabla</p>
+                </div>
+      
+              </div>
+            </div>
+          </div>
+    <div id="test4">
 
       <div class="col s12 m6">
         <h3>Archief</h3>

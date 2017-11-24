@@ -72,4 +72,12 @@ export class SiteComponent implements OnInit {
     this.serser.debugLog(_value);
   }
 
+
+
+  // filter the arcades
+  // TODO: implement
+  filterAracdes() {
+
+  }
+
 }

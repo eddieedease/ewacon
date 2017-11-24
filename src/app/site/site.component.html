@@ -27,9 +27,10 @@
       <div class="col s12 m8">
         <h6>Actieve races:</h6>
         <ul class="collection">
+          
           <li class="collection-item avatar">
-            <img src="images/yuna.jpg" alt="" class="circle">
-            <span class="title">Totaal</span>
+            <a style="cursor:pointer"><img src="images/yuna.jpg" alt="" class="circle">
+            <span class="title">Totaal</span></a>
             <p>First Line <br>
                Second Line
             </p>
@@ -82,7 +83,7 @@
               </div>
             </nav>
 
-            <div class="col s6 m4 l3" *ngFor="let arcade of activeArcades">
+            <div class="col s6 m6 l4" *ngFor="let arcade of activeArcades">
               <div class="card small">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="assets/kast_actief.png">
