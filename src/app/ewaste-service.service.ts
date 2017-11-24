@@ -28,6 +28,7 @@ import {
 export class EwasteServiceService {
 
   apiUrl: string;
+  loggedin = false;
 
   constructor(private http_: Http, private router: Router) {
     // Make use of http & router modules

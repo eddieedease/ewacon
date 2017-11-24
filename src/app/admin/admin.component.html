@@ -1,103 +1,103 @@
 <div class="section"></div>
 
-      <div class="section"></div>
 
-      <div class="container center">
-        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-          <form class="col s12" method="post">
-            <div class='row'>
-              <div class='col s12'>
-              </div>
-            </div>
+<div *ngIf="!loggedin" class="container center">
+  <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-   
-
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input class='validate' type='password' name='password' id='password' />
-                <label for='password'>Wachtwoord</label>
-              </div>
-          
-            </div>
-
-            <br />
-           
-              <div class='row'>
-                <button type='submit' name='btn_login' class='center col s12 btn btn-large waves-effect indigo'>Login</button>
-              </div>
-            
-          </form>
+    <form class="col s12" method="post">
+      <div class='row'>
+        <div class='col s12'>
         </div>
       </div>
 
-<div class="container">
-<div class="row">
-  <div class="col s12">
-    <ul class="tabs tabs-fixed-width">
-      <li class="tab col s3 green ">
-        <a href="#test1" class="white-text">Online</a>
-      </li>
-      <li class="tab col s3 red">
-        <a  href="#test2" class="white-text">Offline</a>
-      </li>
-      <li class="tab col s3 purple ">
-        <a href="#test3" class="white-text">Archief</a>
-      </li>
-    </ul>
-  </div>
-  <div id="test1">
-    <div class="col s12 m6">
-      <h3>Actieve kasten</h3>
 
-      
-      <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-      </ngx-datatable>
-    </div>
 
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Info</span>
-            <p>Informatie over de kast blabla</p>
-          </div>
-          
+      <div class='row'>
+        <div class='input-field col s12'>
+          <input [(ngModel)]="passw" type='password' name='password' id='password' />
+          <label for='password'>Wachtwoord</label>
         </div>
-      </div>
-  </div>
-  <div id="test2" >
-      <div class="col s12 m6">
-      <h3>Offline kasten</h3>
-      <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-      </ngx-datatable>
-    </div>
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Info</span>
-            <p>Informatie over de kast blabla</p>
-          </div>
-         
-        </div>
-      </div>
-  </div>
-  <div id="test3" >
-    
-      <div class="col s12 m6">
-      <h3>Archief</h3>
-      <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-      </ngx-datatable>
-    </div>
 
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Info</span>
-            <p>Informatie over de kast blabla</p>
-          </div>
-        
-        </div>
       </div>
+
+      <br />
+
+      <div class='row'>
+        <button (click)="logIn()" type='submit' name='btn_login' class='center col s12 btn btn-large waves-effect indigo'>Login</button>
+      </div>
+
+    </form>
   </div>
 </div>
+
+<div *ngIf="loggedin" class="container">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab col s3 green ">
+          <a href="#test1" class="white-text">Online</a>
+        </li>
+        <li class="tab col s3 red">
+          <a href="#test2" class="white-text">Offline</a>
+        </li>
+        <li class="tab col s3 purple ">
+          <a href="#test3" class="white-text">Archief</a>
+        </li>
+      </ul>
+    </div>
+    <div id="test1">
+      <div class="col s12 m6">
+        <h3>Actieve kasten</h3>
+
+
+        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
+        </ngx-datatable>
+      </div>
+
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Info</span>
+            <p>Informatie over de kast blabla</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="test2">
+      <div class="col s12 m6">
+        <h3>Offline kasten</h3>
+        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
+        </ngx-datatable>
+      </div>
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Info</span>
+            <p>Informatie over de kast blabla</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="test3">
+
+      <div class="col s12 m6">
+        <h3>Archief</h3>
+        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
+        </ngx-datatable>
+      </div>
+
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Info</span>
+            <p>Informatie over de kast blabla</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

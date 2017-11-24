@@ -23,6 +23,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
+
 const appRoutes: Routes = [
   { path: 'site', component: SiteComponent },
   { path: 'admin', component: AdminComponent },

@@ -20,6 +20,9 @@ import {
   EwasteServiceService
 } from '../ewaste-service.service';
 
+
+declare var $: any;
+
 @Component({
   selector: 'app-site',
   templateUrl: './site.component.html',
@@ -52,6 +55,11 @@ export class SiteComponent implements OnInit {
       const item: String = 'blabla';
       this.notActiveArcades.push('hasda');
     }
+
+    // jquery init
+    $(document).ready(function() {
+      $('select').material_select();
+    });
 
 
 
