@@ -57,30 +57,16 @@ export class SiteComponent implements OnInit {
     this.notActiveArcades = [];
 
     // dummy data for tables
-    this.rows = [{
-      id: '1',
-      locatie: 'TU Einhoven',
-      aantal: '100'
-    },
-    {
-      id: '2',
-      locatie: 'Pakistan',
-      aantal: '50'
-    },
-    {
-      id: '3',
-      locatie: 'Klokhuis',
-      aantal: '70'
-    },
-  ];
-  this.columns = [
-    {
-      name: 'Locatie'
-    },
-    {
-      name: 'Aantal'
-    }
-  ];
+    this.rows = [
+    ];
+
+    this.columns = [{
+        name: 'Locatie'
+      },
+      {
+        name: 'Aantal'
+      }
+    ];
   }
 
 
@@ -97,7 +83,7 @@ export class SiteComponent implements OnInit {
     }
 
     // jquery init
-    $(document).ready(function() {
+    $(document).ready(function () {
       $('select').material_select();
     });
 
@@ -105,11 +91,13 @@ export class SiteComponent implements OnInit {
 
 
     // example call
-    this.serser.testCall().subscribe(value => this.gotTestCall(value));
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
-  gotTestCall(_value) {
-    this.serser.debugLog(_value);
+  gotgetAllCall(_value) {
+    this.serser.debugLog(_value[1]);
+    this.rows = _value[1];
+
   }
 
 
@@ -135,16 +123,13 @@ export class SiteComponent implements OnInit {
 
     switch (event.column.name) {
       case 'Titel':
-        magicw = 'Title';
+        magicw = 'name';
         break;
-      case 'Bibliotheek':
-        magicw = 'Library';
+      case 'Aantal':
+        magicw = 'phonetot';
         break;
-      case 'Code':
-        magicw = 'Code';
-        break;
-      case 'Actief':
-        magicw = 'Published';
+      case 'Locatie':
+        magicw = 'location';
         break;
     }
 
@@ -189,7 +174,7 @@ export class SiteComponent implements OnInit {
 
 
   // The updating of the libs
-   /**
+  /**
    * the Own items Searching in name, looks at the model
    */
   updateFilter(_value) {
@@ -210,7 +195,7 @@ export class SiteComponent implements OnInit {
     this.table.offset = 0;
   }
 
-    /**
+  /**
    * the Own items Searching in library, looks at the model
    */
   updateFilterLib(_value) {

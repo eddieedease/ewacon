@@ -55,8 +55,69 @@
     <div id="test1">
       <div class="col s12 m6">
         <h3>Actieve kasten</h3>
-        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-        </ngx-datatable>
+        <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+
+
+
+        <ngx-datatable-column name="Titel" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div [innerHTML]="row['name']"></div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Aantal" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.phonetot}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+
+        <ngx-datatable-column name="Locatie" >
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.location}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+        <!-- <ngx-datatable-column name="Verwijder">
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
+              <i class="material-icons">delete</i>
+            </a>
+
+
+          </ng-template>
+
+        </ngx-datatable-column> -->
+
+
+      </ngx-datatable>
         <br>
         <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg kast toe</a>
       </div>
@@ -73,8 +134,69 @@
     <div id="test2">
       <div class="col s12 m6">
         <h3>Offline kasten</h3>
-        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-        </ngx-datatable>
+        <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+
+
+
+        <ngx-datatable-column name="Titel" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div [innerHTML]="row['name']"></div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Aantal" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.phonetot}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+
+        <ngx-datatable-column name="Locatie" >
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.location}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+        <!-- <ngx-datatable-column name="Verwijder">
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
+              <i class="material-icons">delete</i>
+            </a>
+
+
+          </ng-template>
+
+        </ngx-datatable-column> -->
+
+
+      </ngx-datatable>
       </div>
       <div class="col s12 m6">
         <div class="card blue-grey darken-1">
@@ -89,8 +211,69 @@
     <div id="test3">
             <div class="col s12 m6">
               <h3>Acties</h3>
-              <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-              </ngx-datatable>
+              <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+              [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+
+
+
+              <ngx-datatable-column name="Titel" [sortable]="true">
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div [innerHTML]="row['name']"></div>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Aantal" [sortable]="true">
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  {{row.phonetot}}
+                </ng-template>
+
+              </ngx-datatable-column>
+
+
+
+              <ngx-datatable-column name="Locatie" >
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  {{row.location}}
+                </ng-template>
+
+              </ngx-datatable-column>
+
+
+              <!-- <ngx-datatable-column name="Verwijder">
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
+                    <i class="material-icons">delete</i>
+                  </a>
+
+
+                </ng-template>
+
+              </ngx-datatable-column> -->
+
+
+            </ngx-datatable>
               <br>
               <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg actie toe</a>
             </div>
@@ -108,8 +291,69 @@
 
       <div class="col s12 m6">
         <h3>Archief</h3>
-        <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-        </ngx-datatable>
+        <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+
+
+
+        <ngx-datatable-column name="Titel" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div [innerHTML]="row['name']"></div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Aantal" [sortable]="true">
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.phonetot}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+
+        <ngx-datatable-column name="Locatie" >
+
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span (click)="sort()" style="cursor:pointer">
+              {{column.name}}
+            </span>
+          </ng-template>
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.location}}
+          </ng-template>
+
+        </ngx-datatable-column>
+
+
+        <!-- <ngx-datatable-column name="Verwijder">
+
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
+              <i class="material-icons">delete</i>
+            </a>
+
+
+          </ng-template>
+
+        </ngx-datatable-column> -->
+
+
+      </ngx-datatable>
       </div>
 
       <div class="col s12 m6">

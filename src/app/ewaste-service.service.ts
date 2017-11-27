@@ -44,11 +44,10 @@ export class EwasteServiceService {
 
 
   /**
-   * GET CALL- Example
+   * GET CALL- Get al Tables & Rows
    */
-
-  testCall(): Observable < any > {
-    const url = this.apiUrl + 'api/joe?rnd='+ new Date().getTime() ;
+  getAllCall(): Observable < any > {
+    const url = this.apiUrl + 'api/getall?rnd=' + new Date().getTime() ;
     // tslint:disable-next-line:prefer-const
     const headers = new Headers({
       'Content-Type': 'application/json'
@@ -65,9 +64,6 @@ export class EwasteServiceService {
   }
 
 
-
-
-
   /**
    * API CALL- Example
    */
@@ -77,7 +73,7 @@ export class EwasteServiceService {
 
 
     const upt = {
-      'JsonBlob': JSON.stringify('jsonobect*'),
+      'JsonBlob': JSON.stringify('jsonobject*'),
       'Title': _title
     };
     console.log(_title);

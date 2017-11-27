@@ -1,13 +1,13 @@
-
 <div class="row">
-    
+
 
   <div class="col s12 m8 l8 teal lighten-5">
     <div class="row" style="padding-top: 20px">
       <div class="col s12 m4">
-        <div class="card blue-grey darken-1" style="border-radius: 15px 50px !important">  
+        <div class="card blue-grey darken-1" style="border-radius: 15px 50px !important">
           <div class="card-content white-text">
-              <span class="card-title">Totaal:</span><i class="right material-icons small">smartphone</i>
+            <span class="card-title">Totaal:</span>
+            <i class="right material-icons small">smartphone</i>
             <h6>5000</h6>
             <p>Telefoons ingezameld</p>
             <br>
@@ -27,45 +27,51 @@
       <div class="col s12 m8">
         <h6>Actieve races:</h6>
         <ul class="collection">
-          
+
           <li class="collection-item avatar">
-            <a style="cursor:pointer"><img src="images/yuna.jpg" alt="" class="circle">
-            <span class="title">Totaal</span></a>
-            <p>First Line <br>
-               Second Line
+            <i class="material-icons circle blue">star</i>
+            <span class="title">Totaal</span>
+            <p>First Line
+              <br> Second Line
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-          <li class="collection-item avatar">
-            <i class="material-icons circle">folder</i>
-            <span class="title">Race 1</span>
-            <p>First Line <br>
-               Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle green">insert_chart</i>
-            <span class="title">Race 2</span>
-            <p>First Line <br>
-               Second Line
+            <span class="title">Race 1</span>
+            <p>First Line
+              <br> Second Line
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
           </li>
-        
+          <li class="collection-item avatar">
+            <i class="material-icons circle orange">insert_chart</i>
+            <span class="title">Race 2</span>
+            <p>First Line
+              <br> Second Line
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
         </ul>
       </div>
-     
 
-      
+
+
     </div>
-    
+
     <div class="col s12 m12">
-        
-      <div class="card teal"  >
+
+      <div class="card teal">
         <div class="card-content">
           <span class="card-title center white-text">Kasten</span>
-          
+
 
 
           <div class="row">
@@ -84,110 +90,87 @@
               </div>
             </nav>
 
-            <ngx-datatable class="material" [rows]="rows" [columns]="columns">
-              </ngx-datatable>
-
-              
-
-
-
-
-
-              <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
-                  
-                  
-                  
-                                      <ngx-datatable-column name="Titel" [sortable]="true">
-                  
-                                          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                                              <span (click)="sort()" style="cursor:pointer">
-                                                     {{column.name}}
-                                             </span>
-                                          </ng-template>
-                  
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              <div [innerHTML]="row['Title']"></div>
-                                          </ng-template>
-                                      </ngx-datatable-column>
-                  
-                                      <ngx-datatable-column name="Code" [sortable]="true">
-                  
-                                          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                                              <span (click)="sort()" style="cursor:pointer">
-                                                     {{column.name}}
-                                             </span>
-                                          </ng-template>
-                  
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              <b [innerHTML]="row['Code']"></b>
-                                          </ng-template>
-                  
-                                      </ngx-datatable-column>
-                  
-                                      <ngx-datatable-column name="Bibliotheek" [sortable]="true">
-                  
-                                          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                                              <span (click)="sort()" style="cursor:pointer">
-                                                     {{column.name}}
-                                             </span>
-                                          </ng-template>
-                  
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              {{row.Library}}
-                                          </ng-template>
-                  
-                                      </ngx-datatable-column>
-                                      <ngx-datatable-column name="Acties">
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              <a (click)="gotoEpss(row.Code)" class="btn-floating waves-effect waves-light blue"><i class="material-icons">visibility</i></a>
-                                              <a (click)="gotoEditEpss(row.Code)" class="btn-floating waves-effect waves-light orange"><i class="material-icons">edit</i></a>
-                                              <a (click)="editSettingsEpss(row.Code, row.Title)" class="btn-floating  waves-effect waves-light"><i class="material-icons">settings_applications</i></a>
-                  
-                                          </ng-template>
-                  
-                                      </ngx-datatable-column>
-                  
-                                      <ngx-datatable-column name="Actief" [sortable]="true">
-                  
-                                          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                                              <span (click)="sort()" style="cursor:pointer">
-                                                     {{column.name}}
-                                             </span>
-                                          </ng-template>
-                  
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              <p>
-                                                  <input type="checkbox" id="{{row.Title}}" [(ngModel)]="row.Published" (change)="publishToggle(row.Code)" />
-                                                  <label for="{{row.Title}}"></label>
-                                              </p>
-                  
-                  
-                                          </ng-template>
-                  
-                                      </ngx-datatable-column>
-                  
-                                      <ngx-datatable-column name="Verwijder">
-                  
-                                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                                              <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                  
-                  
-                                          </ng-template>
-                  
-                                      </ngx-datatable-column>
-                  
-                  
-                                  </ngx-datatable>
 
 
 
 
 
 
-              
 
-           
-            
+
+            <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+              [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+
+
+
+              <ngx-datatable-column name="Titel" [sortable]="true">
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div [innerHTML]="row['name']"></div>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Aantal" [sortable]="true">
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  {{row.phonetot}}
+                </ng-template>
+
+              </ngx-datatable-column>
+
+
+
+              <ngx-datatable-column name="Locatie">
+
+                <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                  <span (click)="sort()" style="cursor:pointer">
+                    {{column.name}}
+                  </span>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  {{row.location}}
+                </ng-template>
+
+              </ngx-datatable-column>
+
+
+              <!-- <ngx-datatable-column name="Verwijder">
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
+                    <i class="material-icons">delete</i>
+                  </a>
+
+
+                </ng-template>
+
+              </ngx-datatable-column> -->
+
+
+            </ngx-datatable>
+
+
+
+
+
+
+
+
+
+
 
           </div>
 
@@ -196,11 +179,11 @@
 
       </div>
     </div>
-    
-    
+
+
 
     <div class="col s12 m12">
-            
+
       <div class="card  teal accent-4">
         <div class="card-content">
           <span class="card-title center white-text">Archief</span>
@@ -223,7 +206,7 @@
 
 
             <div class="col s6 m4 l3" *ngFor="let arcade of notActiveArcades">
-              <div class="card small"  >
+              <div class="card small">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="assets/kast_inactief.png">
                 </div>
@@ -243,7 +226,7 @@
                 </div>
               </div>
             </div>
-            
+
 
           </div>
         </div>
@@ -255,21 +238,21 @@
 
   </div>
   <div class="col s12 m4 l4">
-      <img class="responsive-img" src="assets/fillimg.png">  
-      <h6>Op de kaart</h6>
-      <div class="input-field">
-          <select>
-            <option value="1" selected>Actieve kasten</option>
-            <option value="2">Archief kasten</option>
-            <option value="3">Alle kasten</option>
-          </select>
-          <label>Toon:</label>
-        </div>
-      
-      <app-map></app-map>
-        <!--<img class="responsive-img" src="assets/kast.png">-->
-              
-    
+    <img class="responsive-img" src="assets/fillimg.png">
+    <h6>Op de kaart</h6>
+    <div class="input-field">
+      <select>
+        <option value="1" selected>Actieve kasten</option>
+        <option value="2">Archief kasten</option>
+        <option value="3">Alle kasten</option>
+      </select>
+      <label>Toon:</label>
+    </div>
+
+    <app-map></app-map>
+    <!--<img class="responsive-img" src="assets/kast.png">-->
+
+
 
   </div>
 </div>
