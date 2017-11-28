@@ -40,6 +40,16 @@ export class AdminComponent implements OnInit {
   columns = [];
   temp = [];
   selected = [];
+
+  // vars for editing view
+  
+  arcadeName;
+  arcadeStatus;
+  arcadeLocation;
+  arcadeLongLat;
+  arcadeTeamsTot;
+  arcadeDatePlaced;
+  arcadeDateEnd;
   
 
   // boolean view
@@ -81,6 +91,18 @@ export class AdminComponent implements OnInit {
 
   openModal(){
     $('#modal1').modal('open');
+  }
+
+
+  addArcade(){
+    
+    // tslint:disable-next-line:max-line-length
+    this.serser.insertNew( this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd ).subscribe(value => this.arcadeCreated(value));
+    
+  }
+
+  arcadeCreated(event) {
+    console.log(event);
   }
 
 

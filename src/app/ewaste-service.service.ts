@@ -64,6 +64,25 @@ export class EwasteServiceService {
   }
 
 
+  insertNew( _name, _status, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'api/insert?rnd=' + new Date().getTime() + '&name=' + _name + '&_status=' + _status +  '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
+
   /**
    * API CALL- Example
    */

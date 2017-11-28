@@ -74,8 +74,10 @@ $app->get('/api/getall', function (Request $request, Response $response) {
     return $response;
 });
 
-
-$app->get('/insert/{name}', function (Request $request, Response $response) { 
+/**
+ * Insert New Arcade 
+ */
+$app->get('/insert', function (Request $request, Response $response) { 
 
     
     
@@ -108,7 +110,7 @@ $app->get('/insert/{name}', function (Request $request, Response $response) {
 
     $data = array('Jsonresponse' => 'item1', 'type' => $param1);
     // $response = json_encode($data);
-    $response = 'Added!!!?';
+    $response = 'Added!!!';
     return $response;
     //return $newResponse;
 });
