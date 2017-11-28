@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 
 import {
@@ -32,11 +33,14 @@ declare var $: any;
 
 export class AdminComponent implements OnInit {
 
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+
   // datatable vars
   rows = [];
   columns = [];
   temp = [];
   selected = [];
+  
 
   // boolean view
   loggedin = false;
@@ -47,13 +51,21 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
 
-      // check if loggedin is active
+      // check if loggedin is active for tabs
     if (this.serser.loggedin === true) {
       this.loggedin = true;
       $(document).ready(function () {
         $('ul.tabs').tabs();
+        $('.modal').modal();
       });
     }
+
+      // modal
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+
+    
 
 
     // example call
@@ -64,6 +76,11 @@ export class AdminComponent implements OnInit {
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
 
+  }
+
+
+  openModal(){
+    $('#modal1').modal('open');
   }
 
 
