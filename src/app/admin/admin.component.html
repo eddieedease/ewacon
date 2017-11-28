@@ -3,11 +3,73 @@
    
    <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Voeg arcade toe</h4>
+        <p>Vul hier de gegevens in voor de nieuwe kast:</p>
+        <div class="row">
+            <form class="col s12 l12 ">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input placeholder="Naam" id="title" type="text" class="validate">
+                  <label for="title">Arcade naam</label>
+                </div>
+                <div class="input-field col s12">
+                  <input placeholder="Locatie" id="location" type="text" class="validate">
+                  <label for="location">Locatie</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <label>Industry</label>
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="Price" id="price" type="text" class="validate">
+                  <label for="location">Price</label>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="input-field col s6">
+                  
+                  <input id="beginDate" type="date" class="datepicker">
+                  
+                </div>
+                <div class="input-field col s6">
+                  
+                  <input id="endDate" type="date" class="datepicker">
+                  
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Time" id="time" type="text" class="validate">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Who is organizing the event?" id="organizer" type="text" class="validate">
+                </div>
+          
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="http://www.mywebsite.com" id="website" type="text" class="validate">
+                  <label for="website">Website</label>
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="contact@myweb.com" id="email" type="text" class="validate">
+                  <label for="email">Contact email</label>
+                </div>
+              </div>
+          
+              <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="description" class="materialize-textarea" length="140"></textarea>
+                      <label for="description">Describe the event in a tweet!</label>
+                    </div>
+                  </div>
+            </form>
+          </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
       </div>
     </div>
 
@@ -16,7 +78,7 @@
 
 
 <div *ngIf="!loggedin" class="container center">
-  <a class="btn-flat" (click)="openModal()">OPENMODAL</a>
+  
 
   
   <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
@@ -50,7 +112,9 @@
 </div>
 
 <div *ngIf="loggedin" class="container">
+
   <div class="row">
+      <a class="btn-flat" (click)="openModal()">OPENMODAL</a>
     <div class="col s12">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3 green ">
