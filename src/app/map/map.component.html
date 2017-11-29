@@ -1,14 +1,21 @@
-
-
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-
-<agm-map [zoom]="7" [latitude]="52.200191" [longitude]="5.598922">
+<div>
+  <agm-map [zoom]="7" [latitude]="52.200191" [longitude]="5.598922">
     <agm-marker [iconUrl]="'assets/marker.png'" [latitude]="51.443520" [longitude]="5.472968">
-        <agm-snazzy-info-window  [closeWhenOthersOpen]="true">
-            <ng-template>
-                Eindhovuhh!
-            </ng-template>
-        </agm-snazzy-info-window>
+      <agm-snazzy-info-window [closeWhenOthersOpen]="true">
+        <ng-template>
+          Eindhovuhh!
+        </ng-template>
+      </agm-snazzy-info-window>
     </agm-marker>
-</agm-map>
+
+    <agm-marker [iconUrl]="'assets/marker.png'" [latitude]="50.443520" [longitude]="5.472968">
+      <agm-snazzy-info-window [closeWhenOthersOpen]="true">
+        <ng-template>
+          Eindhovuhh2!
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-map>
+</div>

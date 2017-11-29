@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 27, 2017 at 05:24 PM
+-- Generation Time: Nov 29, 2017 at 09:32 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -60,7 +60,7 @@ CREATE TABLE `arcades` (
   `dateplaced` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `lastused` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `arcades`
@@ -68,7 +68,9 @@ CREATE TABLE `arcades` (
 
 INSERT INTO `arcades` (`id`, `name`, `status`, `location`, `longlat`, `phonetot`, `phonefailed`, `teamstot`, `dateplaced`, `dateend`, `lastused`) VALUES
 (1, 'test1', 1, 'Eindhoven', '0,0', 15, 1, 4, '090909', '090909', '090909'),
-(2, 'test2', 1, 'Roosendaal', '100,500', 20, 4, 5, '090909', '090909', '090909');
+(2, 'test2', 1, 'Roosendaal', '100,500', 20, 4, 5, '090909', '090909', '090909'),
+(3, '', 0, '', '', 0, 0, 0, '', '', ''),
+(4, 'bahbla', 0, 'Somewhere', '', 0, 0, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,7 @@ MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `arcades`
 --
 ALTER TABLE `arcades`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

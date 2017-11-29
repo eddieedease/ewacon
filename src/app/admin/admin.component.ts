@@ -97,12 +97,13 @@ export class AdminComponent implements OnInit {
   addArcade(){
     
     // tslint:disable-next-line:max-line-length
-    this.serser.insertNew( this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd ).subscribe(value => this.arcadeCreated(value));
+    this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd ).subscribe(value => this.arcadeCreated(value));
     
   }
 
   arcadeCreated(event) {
     console.log(event);
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
 

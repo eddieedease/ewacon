@@ -50,6 +50,8 @@ export class SiteComponent implements OnInit {
   temp = [];
   selected = [];
 
+  check= 'whut';
+
 
   // tslint:disable-next-line:max-line-length
   constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer) {

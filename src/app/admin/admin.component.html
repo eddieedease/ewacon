@@ -95,17 +95,13 @@
   </div>
 </div>
 
-<div *ngIf="loggedin" class="container">
+<div *ngIf="loggedin" class="container-fluid">
 
   <div class="row">
-      <a class="btn-flat" (click)="openModal()">OPENMODAL</a>
     <div class="col s12">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3 green ">
-          <a href="#test1" class="white-text">Online</a>
-        </li>
-        <li class="tab col s3 red">
-          <a href="#test2" class="white-text">Offline</a>
+          <a href="#test1" class="white-text">Arcades</a>
         </li>
         <li class="tab col s3 blue">
           <a href="#test3" class="white-text">Acties</a>
@@ -117,12 +113,24 @@
       </ul>
     </div>
     <div id="test1">
-      <div class="col s12 m6">
-        <h3>Actieve kasten</h3>
+      <div class="col s12 m12">
+        <h3>Arcades</h3>
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
 
-
+        <ngx-datatable-column name="Aantal" [sortable]="true">
+          
+                    <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                      <span (click)="sort()" style="cursor:pointer">
+                        {{column.name}}
+                      </span>
+                    </ng-template>
+          
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                      {{row.phonetot}}
+                    </ng-template>
+          
+                  </ngx-datatable-column>
 
         <ngx-datatable-column name="Titel" [sortable]="true">
 
@@ -137,35 +145,116 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column name="Aantal" [sortable]="true">
-
-          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-            <span (click)="sort()" style="cursor:pointer">
-              {{column.name}}
-            </span>
-          </ng-template>
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.phonetot}}
-          </ng-template>
-
-        </ngx-datatable-column>
-
-
-
         <ngx-datatable-column name="Locatie" >
+          
+                    <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                      <span (click)="sort()" style="cursor:pointer">
+                        {{column.name}}
+                      </span>
+                    </ng-template>
+          
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                      {{row.location}}
+                    </ng-template>
+          
+                  </ngx-datatable-column>
 
-          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-            <span (click)="sort()" style="cursor:pointer">
-              {{column.name}}
-            </span>
-          </ng-template>
+                  <ngx-datatable-column name="Status" >
+                    
+                              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                                <span (click)="sort()" style="cursor:pointer">
+                                  {{column.name}}
+                                </span>
+                              </ng-template>
+                    
+                              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{row.status}}
+                              </ng-template>
+                    
+                            </ngx-datatable-column>
 
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.location}}
-          </ng-template>
+                  <ngx-datatable-column name="Begindatum" >
+                    
+                              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                                <span (click)="sort()" style="cursor:pointer">
+                                  {{column.name}}
+                                </span>
+                              </ng-template>
+                    
+                              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{row.dateplaced}}
+                              </ng-template>
+                    
+                            </ngx-datatable-column>
 
-        </ngx-datatable-column>
+                            <ngx-datatable-column name="Einddatum" >
+                              
+                                        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                                          <span (click)="sort()" style="cursor:pointer">
+                                            {{column.name}}
+                                          </span>
+                                        </ng-template>
+                              
+                                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                          {{row.dateend}}
+                                        </ng-template>
+                              
+                                      </ngx-datatable-column>
+                            
+
+       
+
+
+
+
+        <ngx-datatable-column name="Foutsignaal" [sortable]="true">
+          
+                    <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                      <span (click)="sort()" style="cursor:pointer">
+                        {{column.name}}
+                      </span>
+                    </ng-template>
+          
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                      {{row.phonefailed}}
+                    </ng-template>
+          
+                  </ngx-datatable-column>
+
+
+
+
+                  <ngx-datatable-column name="Teams" [sortable]="true">
+                    
+                              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                                <span (click)="sort()" style="cursor:pointer">
+                                  {{column.name}}
+                                </span>
+                              </ng-template>
+                    
+                              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{row.teamstot}}
+                              </ng-template>
+                    
+                            </ngx-datatable-column>
+
+                            <ngx-datatable-column name="Laatst actief" [sortable]="true">
+                              
+                                        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                                          <span (click)="sort()" style="cursor:pointer">
+                                            {{column.name}}
+                                          </span>
+                                        </ng-template>
+                              
+                                        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                          {{row.lastused}}
+                                        </ng-template>
+                              
+                                      </ngx-datatable-column>
+
+
+
+        
 
 
         <!-- <ngx-datatable-column name="Verwijder">
@@ -183,10 +272,10 @@
 
       </ngx-datatable>
         <br>
-        <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg kast toe</a>
+        <a (click)="openModal()" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg kast toe</a>
       </div>
 
-      <div class="col s12 m6">
+      <div class="col s12 m12">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Info</span>
@@ -195,85 +284,9 @@
         </div>
       </div>
     </div>
-    <div id="test2">
-      <div class="col s12 m6">
-        <h3>Offline kasten</h3>
-        <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
-
-
-
-        <ngx-datatable-column name="Titel" [sortable]="true">
-
-          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-            <span (click)="sort()" style="cursor:pointer">
-              {{column.name}}
-            </span>
-          </ng-template>
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <div [innerHTML]="row['name']"></div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="Aantal" [sortable]="true">
-
-          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-            <span (click)="sort()" style="cursor:pointer">
-              {{column.name}}
-            </span>
-          </ng-template>
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.phonetot}}
-          </ng-template>
-
-        </ngx-datatable-column>
-
-
-
-        <ngx-datatable-column name="Locatie" >
-
-          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-            <span (click)="sort()" style="cursor:pointer">
-              {{column.name}}
-            </span>
-          </ng-template>
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{row.location}}
-          </ng-template>
-
-        </ngx-datatable-column>
-
-
-        <!-- <ngx-datatable-column name="Verwijder">
-
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
-              <i class="material-icons">delete</i>
-            </a>
-
-
-          </ng-template>
-
-        </ngx-datatable-column> -->
-
-
-      </ngx-datatable>
-      </div>
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Info</span>
-            <p>Informatie over de kast blabla</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    
     <div id="test3">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
               <h3>Acties</h3>
               <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
               [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
@@ -341,7 +354,7 @@
               <br>
               <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Voeg actie toe</a>
             </div>
-            <div class="col s12 m6">
+            <div class="col s12 m12">
               <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
                   <span class="card-title">Info</span>
@@ -353,7 +366,7 @@
           </div>
     <div id="test4">
 
-      <div class="col s12 m6">
+      <div class="col s12 m12">
         <h3>Archief</h3>
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
@@ -420,7 +433,7 @@
       </ngx-datatable>
       </div>
 
-      <div class="col s12 m6">
+      <div class="col s12 m12">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <span class="card-title">Info</span>
