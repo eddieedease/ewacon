@@ -41,8 +41,14 @@ export class AdminComponent implements OnInit {
   temp = [];
   selected = [];
 
+  modalTitle = 'someTitle';
+  modalInfo = 'someInfo';
+
+  // modalstatus for keeping in check what to do
+  modalstatus;
+
   // vars for editing view
-  
+
   arcadeName;
   arcadeStatus;
   arcadeLocation;
@@ -50,7 +56,7 @@ export class AdminComponent implements OnInit {
   arcadeTeamsTot;
   arcadeDatePlaced;
   arcadeDateEnd;
-  
+
 
   // boolean view
   loggedin = false;
@@ -61,7 +67,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
 
-      // check if loggedin is active for tabs
+    // check if loggedin is active for tabs
     if (this.serser.loggedin === true) {
       this.loggedin = true;
       $(document).ready(function () {
@@ -70,12 +76,12 @@ export class AdminComponent implements OnInit {
       });
     }
 
-      // modal
+    // modal
     $(document).ready(function () {
       $('.modal').modal();
     });
 
-    
+
 
 
     // example call
@@ -89,19 +95,55 @@ export class AdminComponent implements OnInit {
   }
 
 
-  openModal(){
+  openAddModal() {
+    // modalstatus = 1 add new
+    this.modalstatus = 1;
+    this.modalTitle = 'Maak een nieuwe arcade aan';
+    this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
+    $('#modal1').modal('open');
+  }
+
+  openEditModal(_whichId) {
+    // modalstatus = 2 edit existing
+    this.modalstatus = 2;
+    this.serser.debugLog(_whichId + '  clicked');
+    this.modalTitle = 'Bewerk deze arcade';
+    this.modalInfo = 'Wijzig hier de info van de arcade:';
+
+    for (let i = 0; i < this.rows.length; i++) { 
+      if (this.rows[i].id === _whichId ) {
+        console.log('hittit!');
+        this.arcadeName = this.rows[i].name;
+        this.arcadeStatus = this.rows[i].status;
+        this.arcadeLocation = this.rows[i].location;
+        this.arcadeLongLat = this.rows[i].longlat;
+        this.arcadeTeamsTot = this.rows[i].teamstot;
+        this.arcadeDatePlaced = this.rows[i].dateplaced;
+        this.arcadeDateEnd = this.rows[i].dateend;
+      }
+    }
+  
+    // load vars
+    
     $('#modal1').modal('open');
   }
 
 
-  addArcade(){
-    
+  addArcade() {
+
     // tslint:disable-next-line:max-line-length
-    this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd ).subscribe(value => this.arcadeCreated(value));
-    
+    this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+
   }
 
   arcadeCreated(event) {
+    this.arcadeName = '';
+    this.arcadeStatus = '';
+    this.arcadeLocation = '';
+    this.arcadeLongLat = '';
+    this.arcadeTeamsTot = '';
+    this.arcadeDatePlaced = '';
+    this.arcadeDateEnd = '';
     console.log(event);
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
