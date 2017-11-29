@@ -44,6 +44,8 @@ export class SiteComponent implements OnInit {
   activeArcades;
   notActiveArcades;
 
+  allPhones = 0;
+
   // datatable vars
   rows = [];
   columns = [];
@@ -99,6 +101,13 @@ export class SiteComponent implements OnInit {
   gotgetAllCall(_value) {
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
+
+    // Calculate all the phones collected
+    for (let index = 0; index < this.rows.length; index++) {
+      const x = this.rows[index].phonetot;
+      const y = +x; // y: number
+      this.allPhones = this.allPhones + y;
+    }
 
   }
 

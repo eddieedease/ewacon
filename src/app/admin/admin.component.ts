@@ -47,6 +47,9 @@ export class AdminComponent implements OnInit {
   // modalstatus for keeping in check what to do
   modalstatus;
 
+  // options for active 0) Disabled 1) Offline 2) Online
+  activeOptions: any = ['0', '1', '2'];
+
   // vars for editing view
 
   arcadeName;
@@ -94,6 +97,11 @@ export class AdminComponent implements OnInit {
 
   }
 
+  onChange(_event){
+    console.log(_event);
+
+  }
+
 
   openAddModal() {
     // modalstatus = 1 add new
@@ -101,6 +109,12 @@ export class AdminComponent implements OnInit {
     this.modalTitle = 'Maak een nieuwe arcade aan';
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
     $('#modal1').modal('open');
+
+      // jquery needies
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+        
   }
 
   openEditModal(_whichId) {
@@ -122,6 +136,11 @@ export class AdminComponent implements OnInit {
         this.arcadeDateEnd = this.rows[i].dateend;
       }
     }
+
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+        
   
     // load vars
     
@@ -130,7 +149,7 @@ export class AdminComponent implements OnInit {
 
 
   addArcade() {
-
+    console.log(this.arcadeStatus);
     // tslint:disable-next-line:max-line-length
     this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
 

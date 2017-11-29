@@ -9,24 +9,30 @@
       <form class="col s12 l12 ">
         <div class="row">
           <div class="input-field col s12">
-              <p>Arcade naam</p>
+            <p>Arcade naam</p>
             <input [(ngModel)]="arcadeName" [ngModelOptions]="{standalone: true}" id="title" type="text" class="validate">
             <label for="title"></label>
           </div>
           <div class="input-field col s12">
-              <p>Locatie</p>
+            <p>Locatie</p>
             <input [(ngModel)]="arcadeLocation" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
             <label for="location"></label>
           </div>
         </div>
         <div class="row">
+          
+
+            <div class="input-field col s12" class="browser-default">
+
+                <select  [ngModel]="arcadeStatus" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
+                    <option *ngFor="let c of activeOptions" [ngValue]="c"> {{c}} </option>
+                  </select>
+
+
+            </div>
+          
           <div class="input-field col s6">
-              <p>Status</p>
-            <input [(ngModel)]="arcadeStatus" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
-            <label for="location"></label>
-          </div>
-          <div class="input-field col s6">
-              <p>Aantal teams</p>
+            <p>Aantal teams</p>
             <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
             <label for="location"></label>
           </div>
