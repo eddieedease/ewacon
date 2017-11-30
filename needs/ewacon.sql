@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 29, 2017 at 09:32 AM
+-- Generation Time: Nov 30, 2017 at 10:02 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -59,18 +59,8 @@ CREATE TABLE `arcades` (
   `teamstot` int(100) NOT NULL,
   `dateplaced` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
-  `lastused` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `arcades`
---
-
-INSERT INTO `arcades` (`id`, `name`, `status`, `location`, `longlat`, `phonetot`, `phonefailed`, `teamstot`, `dateplaced`, `dateend`, `lastused`) VALUES
-(1, 'test1', 1, 'Eindhoven', '0,0', 15, 1, 4, '090909', '090909', '090909'),
-(2, 'test2', 1, 'Roosendaal', '100,500', 20, 4, 5, '090909', '090909', '090909'),
-(3, '', 0, '', '', 0, 0, 0, '', '', ''),
-(4, 'bahbla', 0, 'Somewhere', '', 0, 0, 0, '', '', '');
+  `lastused` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -103,7 +93,7 @@ INSERT INTO `archive` (`id`, `arcadeid`, `location`, `longlat`, `phonetot`, `pho
 --
 
 CREATE TABLE `highscores` (
-  `arcadename` varchar(100) NOT NULL,
+  `linkid` varchar(100) NOT NULL,
   `game1` varchar(500) NOT NULL,
   `game2` varchar(500) NOT NULL,
   `game3` varchar(500) NOT NULL,
@@ -112,13 +102,6 @@ CREATE TABLE `highscores` (
   `game6` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `highscores`
---
-
-INSERT INTO `highscores` (`arcadename`, `game1`, `game2`, `game3`, `game4`, `game5`, `game6`) VALUES
-('test1', '{ "name":"John" }', '{ "name":"John" }', '{ "name":"John" }', '{ "name":"John" }', '{ "name":"John" }', '{ "name":"John" }');
-
 -- --------------------------------------------------------
 
 --
@@ -126,11 +109,11 @@ INSERT INTO `highscores` (`arcadename`, `game1`, `game2`, `game3`, `game4`, `gam
 --
 
 CREATE TABLE `teams` (
-  `id` int(100) NOT NULL,
+  `linkid` varchar(100) NOT NULL,
   `team1name` varchar(100) NOT NULL,
   `team1tot` int(100) NOT NULL,
   `team2name` varchar(100) NOT NULL,
-  `team2ot` int(100) NOT NULL,
+  `team2tot` int(100) NOT NULL,
   `team3name` varchar(100) NOT NULL,
   `team3tot` int(100) NOT NULL,
   `team4name` varchar(100) NOT NULL,
@@ -148,13 +131,6 @@ CREATE TABLE `teams` (
   `team10name` varchar(100) NOT NULL,
   `team10tot` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `teams`
---
-
-INSERT INTO `teams` (`id`, `team1name`, `team1tot`, `team2name`, `team2ot`, `team3name`, `team3tot`, `team4name`, `team4tot`, `team5name`, `team5tot`, `team6name`, `team6tot`, `team7name`, `team7tot`, `team8name`, `team8tot`, `team9name`, `team9tot`, `team10name`, `team10tot`) VALUES
-(1, 'team1', 34, 'team2', 23, 'team3', 12, 'team4', 6, 'team5', 22, 'team6', 34, 'team7', 32, 'team8', 23, 'team9', 43, 'team10', 56);
 
 --
 -- Indexes for dumped tables
@@ -176,13 +152,13 @@ ALTER TABLE `arcades`
 -- Indexes for table `highscores`
 --
 ALTER TABLE `highscores`
- ADD PRIMARY KEY (`arcadename`);
+ ADD PRIMARY KEY (`linkid`);
 
 --
 -- Indexes for table `teams`
 --
 ALTER TABLE `teams`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`linkid`), ADD UNIQUE KEY `linkid` (`linkid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -197,7 +173,7 @@ MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `arcades`
 --
 ALTER TABLE `arcades`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

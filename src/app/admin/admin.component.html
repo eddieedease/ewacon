@@ -20,26 +20,26 @@
           </div>
         </div>
         <div class="row">
-          
-
-            <div class="col s6">
-
-               <p>Status</p>
-                <select #selectElem (change)="setNewUser(selectElem.value)" class="browser-default">
-                    
-                  <option [value]="'1'">
-                        Offline
-                    </option>
-                    <option [value]="2">
-                        Online
-                    </option>
-                </select>
-
-               
 
 
-            </div>
-          
+          <div class="col s6">
+
+            <p>Status</p>
+            <select #selectElem (change)="setNewUser(selectElem.value)" class="browser-default">
+
+              <option [value]="'1'">
+                Offline
+              </option>
+              <option [value]="2">
+                Online
+              </option>
+            </select>
+
+
+
+
+          </div>
+
           <div class="input-field col s6">
             <p>Aantal teams</p>
             <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
@@ -59,15 +59,21 @@
 
           </div>
         </div>
+        
       </form>
     </div>
   </div>
   <div class="modal-footer">
     <a *ngIf="modalstatus == 1" (click)="addArcade()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
     <a *ngIf="modalstatus == 2" (click)="saveEditArcade()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
-    
-    <div class="left" *ngIf="modalstatus == 2"><br><br><a class="btn left waves-effect orange">Verplaats naar Archief</a>&nbsp;&nbsp;<a class="btn left waves-effect red">Verwijder arcade</a></div>
-    
+
+    <div class="left" *ngIf="modalstatus == 2">
+      <br>
+      <br>
+      <a class="btn left waves-effect orange">Verplaats naar Archief</a>&nbsp;&nbsp;
+      <a class="btn left waves-effect red">Verwijder arcade</a>
+    </div>
+
   </div>
 </div>
 

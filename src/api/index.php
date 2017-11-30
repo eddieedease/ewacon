@@ -91,6 +91,7 @@ $app->get('/api/getall', function (Request $request, Response $response) {
 
 /**
  * Insert New Arcade 
+ * NOTE: Tested and works
  */
 $app->get('/insert', function (Request $request, Response $response) { 
 
@@ -106,9 +107,6 @@ $app->get('/insert', function (Request $request, Response $response) {
     $paramteamstot= $request->getQueryParam('teamstot', $default = null);
     $paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
     $paramdateend = $request->getQueryParam('dateend', $default = null);
-    
-    
- 
     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
 
      // use prepared statements, even if not strictly required is good practice
@@ -116,6 +114,34 @@ $app->get('/insert', function (Request $request, Response $response) {
     // execute the query
     $dbh = null;
     $stmt->execute();
+
+    // another call for making the teams database row
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    $sql2 = "INSERT INTO teams (linkid) VALUES ('$paramname')";
+
+    $stmt2 = $dbh->prepare($sql2);
+    $dbh = null;
+    $stmt2->execute();
+
+    // another call for making the teams database row
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    $sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
+
+    $stmt3 = $dbh->prepare($sql3);
+    $dbh = null;
+    $stmt3->execute();
+
+
+    /* $sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
+    
+        $stmt3 = $dbh->prepare($sql3);
+        //$dbh = null;
+        $stmt3->execute(); */
+
+
+
+
+
 
     $data = array('Jsonresponse' => 'addnew', 'success' => true);
      $response = json_encode($data);
@@ -125,8 +151,10 @@ $app->get('/insert', function (Request $request, Response $response) {
 });
 
 
-
-// EXAMPLE EDIT FUNCTION
+/** 
+ * Edit existing Arcade 
+ * NOTE: Not tested
+*/
 $app->get('/edit/{id}', function (Request $request, Response $response) {
     $id = $request->getAttribute('id');
     // $data = array('Jsonresponse' => 'item1', 'type' => '40X');
@@ -137,29 +165,27 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
     $paramteamstot= $request->getQueryParam('teamstot', $default = null);
     $paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
     $paramdateend = $request->getQueryParam('dateend', $default = null);
-
-
     // TODO: implement the right EDIT query
     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
-    
-         // use prepared statements, even if not strictly required is good practice
-        $stmt = $dbh->prepare($sql);
-        // execute the query
-        $dbh = null;
-        $stmt->execute();
-
-
+    // use prepared statements, even if not strictly required is good practice
+    $stmt = $dbh->prepare($sql);
+    // execute the query
+    $dbh = null;
+    $stmt->execute();
     $data = array('Jsonresponse' => 'Edit', 'success' => true);
     $response = json_encode($data);
     return $response;
     //return $newResponse;
 });
 
+/** 
+ * Delete  Arcade with ID
+ * NOTE: Not tested
+*/
 $app->get('/delete/{id}', function (Request $request, Response $response) {
     $id = $request->getAttribute('id');
-
-     // TODO: implement the right DELETE query
-     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+    // TODO: implement the right DELETE query
+    $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
     // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare($sql);
     // execute the query
