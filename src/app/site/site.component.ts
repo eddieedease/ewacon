@@ -54,6 +54,8 @@ export class SiteComponent implements OnInit {
 
   check= 'whut';
 
+  dataLoaded = false;
+
 
   // tslint:disable-next-line:max-line-length
   constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer) {
@@ -101,6 +103,7 @@ export class SiteComponent implements OnInit {
   gotgetAllCall(_value) {
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
+    this.dataLoaded = true;
 
     // Calculate all the phones collected
     for (let index = 0; index < this.rows.length; index++) {

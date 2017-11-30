@@ -10,6 +10,21 @@ require 'vendor/autoload.php';
 header("Content-Type: application/json");
 header('Access-Control-Allow-Origin: *');
 
+// Allow from any origin
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    // header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
+// Access-Control headers are received during OPTIONS requests
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");         
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+}
+
 
 $app = new \Slim\App;
 $app->get('/hello/{name}', function (Request $request, Response $response) {
@@ -87,20 +102,13 @@ $app->get('/insert', function (Request $request, Response $response) {
     $paramname= $request->getQueryParam('name', $default = null);
     $paramstatus= $request->getQueryParam('status', $default = null);
     $paramlocation= $request->getQueryParam('location', $default = null);
-    
     $paramlonglat= $request->getQueryParam('longlat', $default = null);
-   
     $paramteamstot= $request->getQueryParam('teamstot', $default = null);
-
     $paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
     $paramdateend = $request->getQueryParam('dateend', $default = null);
     
     
-    // $name = $request->getAttribute('name');
-
-    $t=time();
-    
-   
+ 
     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
 
      // use prepared statements, even if not strictly required is good practice
@@ -118,9 +126,56 @@ $app->get('/insert', function (Request $request, Response $response) {
 
 
 
+// EXAMPLE EDIT FUNCTION
+$app->get('/edit/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    // $data = array('Jsonresponse' => 'item1', 'type' => '40X');
+    $paramname= $request->getQueryParam('name', $default = null);
+    $paramstatus= $request->getQueryParam('status', $default = null);
+    $paramlocation= $request->getQueryParam('location', $default = null);
+    $paramlonglat= $request->getQueryParam('longlat', $default = null);
+    $paramteamstot= $request->getQueryParam('teamstot', $default = null);
+    $paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
+    $paramdateend = $request->getQueryParam('dateend', $default = null);
 
 
-// EXAMPLE
+    // TODO: implement the right EDIT query
+    $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+    
+         // use prepared statements, even if not strictly required is good practice
+        $stmt = $dbh->prepare($sql);
+        // execute the query
+        $dbh = null;
+        $stmt->execute();
+
+
+    $data = array('Jsonresponse' => 'Edit', 'success' => true);
+    $response = json_encode($data);
+    return $response;
+    //return $newResponse;
+});
+
+$app->get('/delete/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+
+     // TODO: implement the right DELETE query
+     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+    // use prepared statements, even if not strictly required is good practice
+    $stmt = $dbh->prepare($sql);
+    // execute the query
+    $dbh = null;
+    $stmt->execute();
+    $data = array('Jsonresponse' => 'Delete', 'success' => true);
+    $response = json_encode($data);
+    return $response;
+    //return $newResponse;
+});
+
+
+
+
+
+// EXAMPLE for copying
 $app->get('/api/{name}', function (Request $request, Response $response) {
     $name = $request->getAttribute('name');
     $data = array('Jsonresponse' => 'item1', 'type' => '40X');

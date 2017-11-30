@@ -48,7 +48,11 @@ export class AdminComponent implements OnInit {
   modalstatus;
 
   // options for active 0) Disabled 1) Offline 2) Online
-  activeOptions: any = ['0', '1', '2'];
+  lOptions: any[] = [
+    { id: 1, Name: 'Billy Williams', Gender: 'male' },
+    { id: 2, Name: 'Sally Ride', Gender: 'female'}
+  ];
+  curUser: any = this.lOptions[0]; //
 
   // vars for editing view
 
@@ -97,10 +101,10 @@ export class AdminComponent implements OnInit {
 
   }
 
-  onChange(_event){
-    console.log(_event);
-
-  }
+  setNewUser(id: any): void {
+    console.log(id);
+    this.arcadeStatus = id;
+}
 
 
   openAddModal() {
@@ -114,7 +118,6 @@ export class AdminComponent implements OnInit {
     $(document).ready(function() {
       $('select').material_select();
     });
-        
   }
 
   openEditModal(_whichId) {

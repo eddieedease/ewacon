@@ -22,11 +22,20 @@
         <div class="row">
           
 
-            <div class="input-field col s12" class="browser-default">
+            <div class="col s6">
 
-                <select  [ngModel]="arcadeStatus" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
-                    <option *ngFor="let c of activeOptions" [ngValue]="c"> {{c}} </option>
-                  </select>
+               <p>Status</p>
+                <select #selectElem (change)="setNewUser(selectElem.value)" class="browser-default">
+                    
+                  <option [value]="'1'">
+                        Offline
+                    </option>
+                    <option [value]="2">
+                        Online
+                    </option>
+                </select>
+
+               
 
 
             </div>
@@ -56,6 +65,9 @@
   <div class="modal-footer">
     <a *ngIf="modalstatus == 1" (click)="addArcade()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
     <a *ngIf="modalstatus == 2" (click)="saveEditArcade()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
+    
+    <div class="left" *ngIf="modalstatus == 2"><br><br><a class="btn left waves-effect orange">Verplaats naar Archief</a>&nbsp;&nbsp;<a class="btn left waves-effect red">Verwijder arcade</a></div>
+    
   </div>
 </div>
 
@@ -229,7 +241,7 @@
 
 
 
-          <ngx-datatable-column name="Teams" [sortable]="true">
+          <!-- <ngx-datatable-column name="Teams" [sortable]="true">
 
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
               <span (click)="sort()" style="cursor:pointer">
@@ -241,7 +253,7 @@
               {{row.teamstot}}
             </ng-template>
 
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
 
           <ngx-datatable-column name="Laatst actief" [sortable]="true">
 

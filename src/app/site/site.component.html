@@ -15,9 +15,9 @@
             <h6>45000</h6>
             <p>Gram CO-2 bespaard</p>
             <br>
-            <i class="right material-icons small">games</i>
+           <!--  <i class="right material-icons small">games</i>
             <h6>205</h6>
-            <p>Spellen gespeeld</p>
+            <p>Spellen gespeeld</p> -->
           </div>
 
         </div>
@@ -248,8 +248,10 @@
       </select>
       <label>Toon:</label>
     </div>
-
-    <app-map [(arcadeMarkers)]="check"></app-map>
+    <div *ngIf="dataLoaded">
+        <app-map [(arcadeMarkers)]="rows"></app-map>
+    </div>
+  
     <!--<img class="responsive-img" src="assets/kast.png">-->
 
 
