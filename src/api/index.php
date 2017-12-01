@@ -94,12 +94,10 @@ $app->get('/api/getall', function (Request $request, Response $response) {
  * NOTE: Tested and works
  */
 $app->get('/insert', function (Request $request, Response $response) { 
-
      // set up the connection variables
      include 'db.php';
      // connect to the database
      $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-    
     $paramname= $request->getQueryParam('name', $default = null);
     $paramstatus= $request->getQueryParam('status', $default = null);
     $paramlocation= $request->getQueryParam('location', $default = null);
@@ -111,38 +109,27 @@ $app->get('/insert', function (Request $request, Response $response) {
 
      // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare($sql);
-    // execute the query
     $dbh = null;
     $stmt->execute();
 
     // another call for making the teams database row
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
     $sql2 = "INSERT INTO teams (linkid) VALUES ('$paramname')";
-
     $stmt2 = $dbh->prepare($sql2);
     $dbh = null;
     $stmt2->execute();
 
-    // another call for making the teams database row
+    // another call for making the highscores database row
     $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
     $sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
-
     $stmt3 = $dbh->prepare($sql3);
     $dbh = null;
     $stmt3->execute();
-
-
     /* $sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
     
         $stmt3 = $dbh->prepare($sql3);
         //$dbh = null;
         $stmt3->execute(); */
-
-
-
-
-
-
     $data = array('Jsonresponse' => 'addnew', 'success' => true);
      $response = json_encode($data);
     // $response = 'Added!!!';
@@ -156,6 +143,11 @@ $app->get('/insert', function (Request $request, Response $response) {
  * NOTE: Not tested
 */
 $app->get('/edit/{id}', function (Request $request, Response $response) {
+
+    include 'db.php';
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+
+
     $id = $request->getAttribute('id');
     // $data = array('Jsonresponse' => 'item1', 'type' => '40X');
     $paramname= $request->getQueryParam('name', $default = null);
@@ -165,6 +157,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
     $paramteamstot= $request->getQueryParam('teamstot', $default = null);
     $paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
     $paramdateend = $request->getQueryParam('dateend', $default = null);
+    
     // TODO: implement the right EDIT query
     $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
     // use prepared statements, even if not strictly required is good practice
@@ -172,6 +165,11 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
     // execute the query
     $dbh = null;
     $stmt->execute();
+
+
+
+
+
     $data = array('Jsonresponse' => 'Edit', 'success' => true);
     $response = json_encode($data);
     return $response;
@@ -182,15 +180,37 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
  * Delete  Arcade with ID
  * NOTE: Not tested
 */
-$app->get('/delete/{id}', function (Request $request, Response $response) {
+$app->get('/delete/{id}/{name}', function (Request $request, Response $response) {
+    // set up the connection variables
+    include 'db.php';
+
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
     $id = $request->getAttribute('id');
+    $name = $request->getAttribute('name');
     // TODO: implement the right DELETE query
-    $sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+    $sql = "DELETE FROM arcades WHERE id = '$id'";
     // use prepared statements, even if not strictly required is good practice
     $stmt = $dbh->prepare($sql);
     // execute the query
     $dbh = null;
     $stmt->execute();
+
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    $sql2 = "DELETE FROM teams WHERE linkid = '$name'";
+    // use prepared statements, even if not strictly required is good practice
+    $stmt2 = $dbh->prepare($sql2);
+    // execute the query
+    $dbh = null;
+    $stmt2->execute();
+
+    $dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    $sql3 = "DELETE FROM highscores WHERE linkid = '$name'";
+    // use prepared statements, even if not strictly required is good practice
+    $stmt3 = $dbh->prepare($sql3);
+    // execute the query
+    $dbh = null;
+    $stmt3 -> execute();
+
     $data = array('Jsonresponse' => 'Delete', 'success' => true);
     $response = json_encode($data);
     return $response;

@@ -96,6 +96,7 @@ export class AdminComponent implements OnInit {
   }
 
   gotgetAllCall(_value) {
+    // [0] Actions [1] Arcades  [2] Archive   [3]Highscores   [4]teams
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
 
@@ -139,22 +140,27 @@ export class AdminComponent implements OnInit {
         this.arcadeDateEnd = this.rows[i].dateend;
       }
     }
-
     $(document).ready(function() {
       $('select').material_select();
     });
-        
-  
-    // load vars
-    
+
     $('#modal1').modal('open');
   }
 
+  openTeamModal() {
+    $('#modal2').modal('open');
+  }
 
   addArcade() {
     console.log(this.arcadeStatus);
-    // tslint:disable-next-line:max-line-length
-    this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+   
+    // name must not be empty
+    if (this.arcadeName !== ''){
+       // tslint:disable-next-line:max-line-length
+      this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+    } else {
+      // TOAST: NAME MAY NOT BE EMPTY!
+    }
 
   }
 
@@ -170,18 +176,18 @@ export class AdminComponent implements OnInit {
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
+  /**
+   *  Arcades datatable
+   *
+  */
 
-  // NOTE: Datatables functions
   onSort(event) {
     // event was triggered, start sort sequence
     this.serser.debugLog('Sort Event' + event);
-
     this.serser.debugLog(event.column.name);
-
     const whichDir = event.newValue;
     this.serser.debugLog('dir is' + whichDir);
     let magicw;
-
     switch (event.column.name) {
       case 'Titel':
         magicw = 'name';
@@ -193,7 +199,6 @@ export class AdminComponent implements OnInit {
         magicw = 'location';
         break;
     }
-
     const rows = [...this.rows];
     // this is only for demo purposes, normally
     // your server would return the result for
@@ -276,6 +281,13 @@ export class AdminComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
+
+
+
+
+
+
+
 
   logIn() {
     // dirty hacking
