@@ -13,7 +13,10 @@ import { MapComponent } from './map/map.component';
 import { AdminComponent } from './admin/admin.component';
 
 
+// Toaster import
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 
 // Angular Google Maps
 import { AgmCoreModule } from '@agm/core';
@@ -54,7 +57,8 @@ const appRoutes: Routes = [
         apiKey: 'AIzaSyANc3EJit-ICD0ua4rwoFb1FfBBQfGYNrQ'
       }),
       AgmSnazzyInfoWindowModule,
-      NgxDatatableModule
+      NgxDatatableModule,
+      ToastrModule.forRoot()
   ],
   providers: [EwasteServiceService],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@
             <p>Telefoons ingezameld</p>
             <br>
             <i class="right material-icons small">thumb_up</i>
-            <h6>45000</h6>
+            <h6>...</h6>
             <p>Gram CO-2 bespaard</p>
             <br>
            <!--  <i class="right material-icons small">games</i>
@@ -28,36 +28,18 @@
         <h6>Actieve races:</h6>
         <ul class="collection">
 
-          <li class="collection-item avatar">
-            <i class="material-icons circle blue">star</i>
-            <span class="title">Totaal</span>
-            <p>First Line
-              <br> Second Line
+          <li *ngFor="let action of actions"  class="collection-item avatar">
+            <a>
+            <i class="small material-icons circle  green">insert_chart</i>
+            <b><span class="title">{{action.actionname}}</span></b></a>
+            <p>Aantal telefoons: {{moetnog}}
+              <br> <a>Filter dit</a>
             </p>
-            <a href="#!" class="secondary-content">
+            <a  class="secondary-content">
               <i class="material-icons">grade</i>
             </a>
           </li>
-          <li class="collection-item avatar">
-            <i class="material-icons circle green">insert_chart</i>
-            <span class="title">Race 1</span>
-            <p>First Line
-              <br> Second Line
-            </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
-          </li>
-          <li class="collection-item avatar">
-            <i class="material-icons circle orange">insert_chart</i>
-            <span class="title">Race 2</span>
-            <p>First Line
-              <br> Second Line
-            </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
-          </li>
+         
 
         </ul>
       </div>

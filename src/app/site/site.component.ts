@@ -55,6 +55,8 @@ export class SiteComponent implements OnInit {
   temp = [];
   selected = [];
 
+  actions = [];
+
   check= 'whut';
 
   dataLoaded = false;
@@ -107,6 +109,9 @@ export class SiteComponent implements OnInit {
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
     this.dataLoaded = true;
+
+    this.actions = _value[0];
+    console.log(this.actions);
 
     // Calculate all the phones collected
     for (let index = 0; index < this.rows.length; index++) {

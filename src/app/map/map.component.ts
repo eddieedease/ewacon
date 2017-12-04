@@ -16,7 +16,6 @@ export class MapComponent implements OnInit {
   arcades = [];
 
    // current mode [0] = Archive,  [1] Offline  , [2]  Online
-
   title: String = 'Ewaste Arcades!';
 
   constructor() { }
@@ -36,15 +35,12 @@ export class MapComponent implements OnInit {
         this.arcadeMarkers[index].lat = Number(arrayLongLat[0]);
         this.arcadeMarkers[index].long = Number(arrayLongLat[1]);
         console.log(typeof this.arcadeMarkers[index].lat);
-        
-
         // transform the longlat values
-
         this.arcades.push(thisMarker);
       }
     }
     
-    //this.arcades = this.arcadeMarkers;
+
     console.log(this.arcades)
     // alright strip down the longlat values in for loop
     // let array = string.split(',');

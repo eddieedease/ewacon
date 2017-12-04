@@ -21,6 +21,10 @@ import {
   DatatableComponent
 } from '@swimlane/ngx-datatable';
 
+
+// toaster thing
+import { ToastrService } from 'ngx-toastr';
+
 declare var $: any;
 
 @Component({
@@ -73,7 +77,7 @@ export class AdminComponent implements OnInit {
 
   passw = '';
   // tslint:disable-next-line:max-line-length
-  constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer) {}
+  constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
 
   ngOnInit() {
 
@@ -162,7 +166,7 @@ export class AdminComponent implements OnInit {
   addArcade() {
     console.log(this.arcadeStatus);
     // name must not be empty
-    if (this.arcadeName !== ''){
+    if (this.arcadeName !== '') {
        // tslint:disable-next-line:max-line-length
       this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
@@ -181,6 +185,7 @@ export class AdminComponent implements OnInit {
     this.arcadeDateEnd = '';
     console.log(event);
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+    this.toastr.success(' :) ', 'Aangemaakt');
   }
 
   /**

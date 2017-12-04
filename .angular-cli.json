@@ -20,6 +20,7 @@
         "prefix": "app",
         "styles": [
             "styles.css",
+            "../node_modules/ngx-toastr/toastr.css",
             "../node_modules/materialize-css/dist/css/materialize.css",
             "../node_modules/snazzy-info-window/dist/snazzy-info-window.css",
             "../node_modules/@swimlane/ngx-datatable/release/index.css",
