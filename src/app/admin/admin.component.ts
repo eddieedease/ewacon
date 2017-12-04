@@ -23,7 +23,9 @@ import {
 
 
 // toaster thing
-import { ToastrService } from 'ngx-toastr';
+import {
+  ToastrService
+} from 'ngx-toastr';
 
 declare var $: any;
 
@@ -49,13 +51,24 @@ export class AdminComponent implements OnInit {
   modalTitle = 'someTitle';
   modalInfo = 'someInfo';
 
+    // Keeping track of curent selected/editted object Id & Name
+  currentId;
+  currentName;
+
   // modalstatus for keeping in check what to do
   modalstatus;
 
   // options for active 0) Disabled 1) Offline 2) Online
-  lOptions: any[] = [
-    { id: 1, Name: 'Billy Williams', Gender: 'male' },
-    { id: 2, Name: 'Sally Ride', Gender: 'female'}
+  lOptions: any[] = [{
+      id: 1,
+      Name: 'Billy Williams',
+      Gender: 'male'
+    },
+    {
+      id: 2,
+      Name: 'Sally Ride',
+      Gender: 'female'
+    }
   ];
   curUser: any = this.lOptions[0]; //
 
@@ -113,7 +126,7 @@ export class AdminComponent implements OnInit {
   setOnOff(id: any): void {
     console.log(id);
     this.arcadeStatus = id;
-}
+  }
 
 
   openAddModal() {
@@ -124,21 +137,24 @@ export class AdminComponent implements OnInit {
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
     $('#modal1').modal('open');
 
-      // jquery needies
-    $(document).ready(function() {
+    // jquery needies
+    $(document).ready(function () {
       $('select').material_select();
     });
   }
 
-  openEditModal(_whichId) {
+  openEditModal(_whichId, _whichName) {
+
+    this.currentId = _whichId;
+    this.currentName = _whichName;
     // modalstatus = 2 edit existing
     this.modalstatus = 2;
     this.serser.debugLog(_whichId + '  clicked');
     this.modalTitle = 'Bewerk deze arcade';
     this.modalInfo = 'Wijzig hier de info van de arcade:';
 
-    for (let i = 0; i < this.rows.length; i++) { 
-      if (this.rows[i].id === _whichId ) {
+    for (let i = 0; i < this.rows.length; i++) {
+      if (this.rows[i].id === _whichId) {
         console.log('hittit!');
         this.arcadeName = this.rows[i].name;
         this.arcadeStatus = this.rows[i].status;
@@ -150,7 +166,7 @@ export class AdminComponent implements OnInit {
         this.arcadeDateEnd = this.rows[i].dateend;
       }
     }
-    $(document).ready(function() {
+    $(document).ready(function () {
       $('select').material_select();
     });
 
@@ -167,7 +183,7 @@ export class AdminComponent implements OnInit {
     console.log(this.arcadeStatus);
     // name must not be empty
     if (this.arcadeName !== '') {
-       // tslint:disable-next-line:max-line-length
+      // tslint:disable-next-line:max-line-length
       this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
@@ -188,10 +204,30 @@ export class AdminComponent implements OnInit {
     this.toastr.success(' :) ', 'Aangemaakt');
   }
 
+
+
+
+  /**
+   *  Deletion
+   *
+   */
+  removeArcade() {
+    this.serser.debugLog('deletion of : ' + this.currentId + ' with name ' + this.currentName);
+    this.serser.deleteArcade(this.currentId, this.currentName).subscribe(value => this.gotDeleteCall(value));
+  }
+
+  gotDeleteCall(_event) {
+   this.serser.debugLog(_event);
+   this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+   this.toastr.success(' :) ', 'Arcade is verwijderd');
+  }
+
+
+
   /**
    *  Arcades datatable
    *
-  */
+   */
 
   onSort(event) {
     // event was triggered, start sort sequence

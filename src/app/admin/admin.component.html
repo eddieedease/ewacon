@@ -83,7 +83,7 @@
       <br>
       <a class="btn left waves-effect orange">Verplaats naar Archief</a>
       <br>
-      <a class="btn left waves-effect red">Verwijder arcade</a>
+      <a (click)="removeArcade()" class="btn left waves-effect red">Verwijder arcade</a>
     </div>
 
   </div>
@@ -410,7 +410,7 @@
             </ng-template>
 
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-              <a (click)="openEditModal(row.id)" class="btn-floating btn-large waves-effect waves-light blue">
+              <a (click)="openEditModal(row.id, row.name)" class="btn-floating btn-large waves-effect waves-light blue">
                 <i class="material-icons">edit</i>
               </a>
             </ng-template>

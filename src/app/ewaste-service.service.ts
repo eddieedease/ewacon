@@ -82,6 +82,33 @@ export class EwasteServiceService {
       .map(res => res.json());
   }
 
+  deleteArcade( _id, _name ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'delete/'  + _id + '/' + _name + '?rnd=' + new Date().getTime() ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
+
+
+
+
+
+
+
+
+
 
   /**
    * API CALL- Example
