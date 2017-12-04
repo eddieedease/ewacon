@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
 
   // datatable vars
   rows = [];
+  rowsActions = [];
   columns = [];
   temp = [];
   selected = [];
@@ -57,12 +58,14 @@ export class AdminComponent implements OnInit {
   // vars for editing view
 
   arcadeName;
-  arcadeStatus;
+  arcadeStatus = 1;
   arcadeLocation;
   arcadeLongLat;
   arcadeTeamsTot;
   arcadeDatePlaced;
   arcadeDateEnd;
+
+
 
 
   // boolean view
@@ -99,16 +102,18 @@ export class AdminComponent implements OnInit {
     // [0] Actions [1] Arcades  [2] Archive   [3]Highscores   [4]teams
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
+    this.rowsActions = _value[0];
 
   }
 
-  setNewUser(id: any): void {
+  setOnOff(id: any): void {
     console.log(id);
     this.arcadeStatus = id;
 }
 
 
   openAddModal() {
+    this.arcadeStatus = 1;
     // modalstatus = 1 add new
     this.modalstatus = 1;
     this.modalTitle = 'Maak een nieuwe arcade aan';
@@ -135,6 +140,7 @@ export class AdminComponent implements OnInit {
         this.arcadeStatus = this.rows[i].status;
         this.arcadeLocation = this.rows[i].location;
         this.arcadeLongLat = this.rows[i].longlat;
+        console.log(this.arcadeStatus);
         this.arcadeTeamsTot = this.rows[i].teamstot;
         this.arcadeDatePlaced = this.rows[i].dateplaced;
         this.arcadeDateEnd = this.rows[i].dateend;
@@ -147,13 +153,14 @@ export class AdminComponent implements OnInit {
     $('#modal1').modal('open');
   }
 
+
+
   openTeamModal() {
     $('#modal2').modal('open');
   }
 
   addArcade() {
     console.log(this.arcadeStatus);
-   
     // name must not be empty
     if (this.arcadeName !== ''){
        // tslint:disable-next-line:max-line-length
@@ -161,12 +168,12 @@ export class AdminComponent implements OnInit {
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
     }
-
   }
 
   arcadeCreated(event) {
+    // set defaults
     this.arcadeName = '';
-    this.arcadeStatus = '';
+    this.arcadeStatus = 1;
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
@@ -244,17 +251,11 @@ export class AdminComponent implements OnInit {
    * the Own items Searching in name, looks at the model
    */
   updateFilter(_value) {
-    // this.serser.debugLog("event zoek updatoz hier");
-    // this.serser.debugLog(event);
-    // this.serser.debugLog(event.target.value);
-
     const val = _value.toLowerCase();
-
     // filter our data
     const temp = this.temp.filter(function (d) {
       return d.Title.toLowerCase().indexOf(val) !== -1 || !val;
     });
-
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
@@ -265,17 +266,11 @@ export class AdminComponent implements OnInit {
    * the Own items Searching in library, looks at the model
    */
   updateFilterLib(_value) {
-    // this.serser.debugLog("event zoek updatoz hier");
-    // this.serser.debugLog(event);
-    // this.serser.debugLog(event.target.value);
-
     const val = _value.toLowerCase();
-
     // filter our data
     const temp = this.temp.filter(function (d) {
       return d.Library.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-
+    })
     // update the rows
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page

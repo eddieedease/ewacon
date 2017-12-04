@@ -249,7 +249,7 @@
       <label>Toon:</label>
     </div>
     <div *ngIf="dataLoaded">
-        <app-map [(arcadeMarkers)]="rows"></app-map>
+        <app-map [(arcadeMarkers)]="rows" [(currentMode)]="mapMode" ></app-map>
     </div>
   
     <!--<img class="responsive-img" src="assets/kast.png">-->

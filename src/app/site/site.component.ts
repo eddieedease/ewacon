@@ -46,6 +46,9 @@ export class SiteComponent implements OnInit {
 
   allPhones = 0;
 
+  mapMode = 2;
+  // TODO: mapMode selection from component still has to be configured
+
   // datatable vars
   rows = [];
   columns = [];
