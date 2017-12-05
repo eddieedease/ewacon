@@ -101,7 +101,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 1: </p>
-          <input placeholder="Teamnaam" id="team1" type="text" class="validate">
+          <input [(ngModel)]="team1Name" placeholder="Teamnaam" id="team1" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -110,7 +110,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 2: </p>
-          <input placeholder="Teamnaam" id="team2" type="text" class="validate">
+          <input [(ngModel)]="team2Name" placeholder="Teamnaam" id="team2" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 3: </p>
-          <input placeholder="Teamnaam" id="team3" type="text" class="validate">
+          <input [(ngModel)]="team3Name" placeholder="Teamnaam" id="team3" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 4: </p>
-          <input placeholder="Teamnaam" id="team4" type="text" class="validate">
+          <input [(ngModel)]="team4Name" placeholder="Teamnaam" id="team4" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -137,7 +137,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 5: </p>
-          <input placeholder="Teamnaam" id="team5" type="text" class="validate">
+          <input [(ngModel)]="team5Name" placeholder="Teamnaam" id="team5" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 6: </p>
-          <input placeholder="Teamnaam" id="team6" type="text" class="validate">
+          <input [(ngModel)]="team6Name" placeholder="Teamnaam" id="team6" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 7: </p>
-          <input placeholder="Teamnaam" id="team7" type="text" class="validate">
+          <input [(ngModel)]="team7Name" placeholder="Teamnaam" id="team7" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 8: </p>
-          <input placeholder="Teamnaam" id="team8" type="text" class="validate">
+          <input [(ngModel)]="team8Name" placeholder="Teamnaam" id="team8" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -173,7 +173,7 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 9: </p>
-          <input placeholder="Teamnaam" id="team9" type="text" class="validate">
+          <input [(ngModel)]="team9Name" placeholder="Teamnaam" id="team9" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -182,7 +182,16 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 10: </p>
-          <input placeholder="Teamnaam" id="team10" type="text" class="validate">
+          <input [(ngModel)]="team10Name" placeholder="Teamnaam" id="team10" type="text" class="validate">
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <p>Team 11: </p>
+          <input [(ngModel)]="team11Name" placeholder="Teamnaam" id="team11" type="text" class="validate">
         </div>
       </div>
     </div>
@@ -192,6 +201,67 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <h4>Actie</h4>
+    <br>
+    <h5>Gekoppelde Arcades:</h5>
+    <p>- Komt nog...</p>
+
+    <br>
+    <div class="row">
+      <div class="input-field col s6">
+        <p>Actie naam</p>
+        <input [(ngModel)]="actionName" [ngModelOptions]="{standalone: true}" id="title" type="text" class="validate">
+        <label for="title"></label>
+      </div>
+
+      <div class="col s6">
+        <p>Status</p>
+        <select [(ngModel)]="actionStatus" [ngModelOptions]="{standalone: true}" class="browser-default">
+          <option [value]="1">
+            Niet actief
+          </option>
+          <option [value]="2">
+            Actief
+          </option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <p>Begindatum</p>
+        <input [(ngModel)]="actionStart" [ngModelOptions]="{standalone: true}" id="beginDate" type="date" class="datepicker">
+
+      </div>
+      <div class="input-field col s6">
+        <p>Einddatum</p>
+        <input [(ngModel)]="actionEnd" [ngModelOptions]="{standalone: true}" id="endDate" type="date" class="datepicker">
+      </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <a *ngIf="modalstatus == 1" (click)="addAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
+        <a *ngIf="modalstatus == 2" (click)="editAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 <div class="section"></div>
 
@@ -254,7 +324,7 @@
       <div class="col s12 m12">
         <div class="card green darken-1">
           <div class="card-content center white-text">
-              <i class="large material-icons">place</i>
+            <i class="large material-icons">place</i>
             <span class="card-title ">Arcades</span>
             <p>Informatie over de arcades en blabla...</p>
           </div>
@@ -447,12 +517,12 @@
     <div id="test3">
       <div class="col s12 m12">
         <div class="card blue darken-1">
-            
+
           <div class="card-content white-text center">
-              <i class="large material-icons">local_play</i>
+            <i class="large material-icons">local_play</i>
             <span class="card-title">Acties</span>
             <p>Informatie over blabla</p>
-            
+
           </div>
         </div>
       </div>
@@ -479,20 +549,6 @@
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Arcade-aantal" [sortable]="true">
-            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-              <span (click)="sort()" style="cursor:pointer">
-                {{column.name}}
-              </span>
-            </ng-template>
-
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{row.arcades}}
-            </ng-template>
-
-          </ngx-datatable-column>
-
-
           <ngx-datatable-column name="Status">
 
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
@@ -503,8 +559,8 @@
 
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
 
-              <div *ngIf="row.status == 2" class='white-text' style="background-color: green">Online</div>
-              <div *ngIf="row.status == 1" class='white-text' style="background-color: red">Offline</div>
+              <div *ngIf="row.inuse == 2" class='white-text' style="background-color: green">Online</div>
+              <div *ngIf="row.inuse == 1" class='white-text' style="background-color: red">Offline</div>
             </ng-template>
 
           </ngx-datatable-column>
@@ -570,7 +626,7 @@
             </ng-template>
 
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-              <a (click)="openEditModal(row.id)" class="btn-floating btn-large waves-effect waves-light blue">
+              <a (click)="openEditActionModal(row.id, row.actionname)" class="btn-floating btn-large waves-effect waves-light blue">
                 <i class="material-icons">edit</i>
               </a>
             </ng-template>
@@ -601,7 +657,7 @@
 
 
         <br>
-        <a class="waves-effect waves-light btn">
+        <a (click)="openActionModal()" class="waves-effect waves-light btn">
           <i class="material-icons left">add</i>Voeg actie toe</a>
       </div>
 

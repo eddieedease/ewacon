@@ -51,28 +51,18 @@ export class AdminComponent implements OnInit {
   modalTitle = 'someTitle';
   modalInfo = 'someInfo';
 
-    // Keeping track of curent selected/editted object Id & Name
-  currentId;
-  currentName;
+  
 
-  // modalstatus for keeping in check what to do
+  // modalstatus for keeping in check what to do with modals
+  // [1] = new item  [2] = edit
+  // does account for the arcades modal + the action
   modalstatus;
 
-  // options for active 0) Disabled 1) Offline 2) Online
-  lOptions: any[] = [{
-      id: 1,
-      Name: 'Billy Williams',
-      Gender: 'male'
-    },
-    {
-      id: 2,
-      Name: 'Sally Ride',
-      Gender: 'female'
-    }
-  ];
-  curUser: any = this.lOptions[0]; //
-
   // vars for editing view
+
+    // Keeping track of curent selected/editted object Id & Name
+    currentId;
+    currentName;
 
   arcadeName;
   arcadeStatus = 1;
@@ -81,6 +71,26 @@ export class AdminComponent implements OnInit {
   arcadeTeamsTot;
   arcadeDatePlaced;
   arcadeDateEnd;
+
+  currentActionId;
+  currentcurrentActionName;
+  actionName;
+  actionStart;
+  actionEnd;
+  actionStatus = 1;
+
+
+  team1Name;
+  team2Name;
+  team3Name;
+  team4Name;
+  team5Name;
+  team6Name;
+  team7Name;
+  team8Name;
+  team9Name;
+  team10Name;
+  team11Name;
 
 
 
@@ -123,16 +133,33 @@ export class AdminComponent implements OnInit {
 
   }
 
+    // below not more nessy
+/*     // toggle for arcade Online OffLine
   setOnOff(id: any): void {
     console.log(id);
     this.arcadeStatus = id;
   }
 
+    // toggle for actions Active/Notactive
+  setActiveNotActive(id: any): void {
+    console.log(id);
+    this.actionStatus = id;
+  } */
+
 
   openAddModal() {
-    this.arcadeStatus = 1;
-    // modalstatus = 1 add new
+    // modalstatus = 1 add new  (2 = edit existing)
     this.modalstatus = 1;
+
+    this.arcadeName = '';
+    this.arcadeStatus = 1;
+    this.arcadeLocation = '';
+    this.arcadeLongLat = '';
+    this.arcadeTeamsTot = '';
+    
+    this.arcadeDatePlaced = '';
+    this.arcadeDateEnd = '';
+    
     this.modalTitle = 'Maak een nieuwe arcade aan';
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
     $('#modal1').modal('open');
@@ -155,28 +182,91 @@ export class AdminComponent implements OnInit {
 
     for (let i = 0; i < this.rows.length; i++) {
       if (this.rows[i].id === _whichId) {
-        console.log('hittit!');
         this.arcadeName = this.rows[i].name;
         this.arcadeStatus = this.rows[i].status;
         this.arcadeLocation = this.rows[i].location;
         this.arcadeLongLat = this.rows[i].longlat;
-        console.log(this.arcadeStatus);
         this.arcadeTeamsTot = this.rows[i].teamstot;
         this.arcadeDatePlaced = this.rows[i].dateplaced;
         this.arcadeDateEnd = this.rows[i].dateend;
       }
     }
-    $(document).ready(function () {
-      $('select').material_select();
-    });
+  
 
     $('#modal1').modal('open');
   }
 
 
 
+
+  // Edit an existing arcade
+  saveEditArcade() {
+    if (this.arcadeName !== '') {
+      // tslint:disable-next-line:max-line-length
+      this.serser.editExisting(this.currentId, this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+    } else {
+      // TOAST: NAME MAY NOT BE EMPTY!
+    }
+  }
+
+
   openTeamModal() {
     $('#modal2').modal('open');
+  }
+
+  openActionModal() {
+    this.modalstatus = 1;
+    this.actionName = '';
+    this.actionStatus = 1
+    this.actionStart = '';
+    this.actionEnd = '';
+    $('#modal3').modal('open');
+  }
+
+  openEditActionModal(_whichId, _whichname) {
+    this.modalstatus = 2;
+    this.currentActionId = _whichId;
+    this.currentcurrentActionName = _whichname;
+    this.serser.debugLog('Edit  ' + _whichId  + '  ' +_whichname);
+    for (let i = 0; i < this.rowsActions.length; i++) {
+      if (this.rowsActions[i].id === _whichId) {
+        this.actionName = this.rowsActions[i].actionname;
+        this.actionStatus = this.rowsActions[i].inuse;
+        this.actionStart = this.rowsActions[i].datestart;
+        this.actionEnd = this.rowsActions[i].dateend;
+      }
+    }
+
+    $('#modal3').modal('open');
+  }
+
+  addAction() {
+    if (this.actionName !== '') {
+      // tslint:disable-next-line:max-line-length
+      this.serser.insertNewAction(this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
+    } else {
+
+    }
+  }
+
+  editAction() {
+    console.log('checksome');
+    if (this.actionName !== '') {
+      console.log('yeass');
+      // tslint:disable-next-line:max-line-length
+      this.serser.editAction(this.currentActionId, this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
+    } else {
+      
+    }
+  }
+
+
+
+  actionCreated(_event) {
+    // call is success, get everything from API
+    console.log(_event);
+    this.toastr.success(' :) ', ' Actie aangemaakt');
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
   addArcade() {
@@ -201,7 +291,7 @@ export class AdminComponent implements OnInit {
     this.arcadeDateEnd = '';
     console.log(event);
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
-    this.toastr.success(' :) ', 'Aangemaakt');
+    this.toastr.success(' :) ', 'Arcade aangemaakt');
   }
 
 

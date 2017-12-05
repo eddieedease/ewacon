@@ -64,7 +64,7 @@ export class EwasteServiceService {
   }
 
 
-  insertNew( _name, _status, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+  insertNew(_name, _status, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
     // tslint:disable-next-line:max-line-length
     const url = this.apiUrl + 'insert?rnd=' + new Date().getTime() + '&name=' + _name + '&status=' + _status +  '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
     // tslint:disable-next-line:prefer-const
@@ -81,6 +81,27 @@ export class EwasteServiceService {
       .throttleTime(5000)
       .map(res => res.json());
   }
+
+
+
+  editExisting(_id, _name, _status, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'edit/' + _id + '?rnd=' + new Date().getTime() + '&name=' + _name + '&status=' + _status +  '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
 
   deleteArcade( _id, _name ): Observable < any > {
     // tslint:disable-next-line:max-line-length
@@ -104,7 +125,42 @@ export class EwasteServiceService {
 
 
 
+  insertNewAction(_name, _status, _dateplaced, _dateend ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'insertaction?rnd=' + new Date().getTime() + '&name=' + _name + '&inuse=' + _status  + '&datestart=' + _dateplaced + '&dateend=' + _dateend ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
 
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
+
+  editAction(_id, _name, _status, _dateplaced, _dateend ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'editaction/'  + _id + '?rnd=' + new Date().getTime() + '&name=' + _name + '&inuse=' + _status  + '&datestart=' + _dateplaced + '&dateend=' + _dateend ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
 
 
 
