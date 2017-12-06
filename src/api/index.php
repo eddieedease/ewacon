@@ -231,6 +231,34 @@ $app->get('/delete/{id}/{name}', function (Request $request, Response $response)
 );
 
 
+/** 
+* Delete  Arcade with ID
+ * NOTE: Not tested
+*/
+$app->get('/deleteaction/{id}', function (Request $request, Response $response) {
+	// 	set up the connection variables
+	    include 'db.php';
+	
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$id = $request->getAttribute('id');
+	$name = $request->getAttribute('name');
+	    $sql = "DELETE FROM actions WHERE id = '$id'";
+	// 	use prepared statements, even if not strictly required is good practice
+	    $stmt = $dbh->prepare($sql);
+	// 	execute the query
+	    $dbh = null;
+	$stmt->execute();
+	
+	
+	
+	$data = array('Jsonresponse' => 'Delete', 'success' => true);
+	$response = json_encode($data);
+	return $response;
+	//r	eturn $newResponse;
+}
+);
+
+
 
 
 

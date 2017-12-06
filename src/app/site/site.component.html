@@ -1,3 +1,127 @@
+<!-- Modal for Arcade -->
+<div id="modal1" style="width:90% !important" class="modal">
+  <div class="modal-content">
+    <p>Arcade</p>
+    <h4>Arcadenaam</h4>
+
+    <div class="row" >
+      <div class="divider"></div>
+      <div class="section">
+        <p>Totaal ingezamelde telefoons:</p>
+      </div>
+      <div class="divider"></div>
+
+
+      <div class="col s12 l4"></div>
+      <div class="col s12 l4"><ul class="collection">
+          <li class="collection-item avatar">
+              <i class="material-icons circle amber">looks_one</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle grey">looks_two</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+              <i class="material-icons circle brown lighten-3">looks_3</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+        </ul></div>
+      <div class="col s12 l4"></div>
+      </div>
+      
+
+        <div class="divider"></div>
+
+        <div class="row" >
+
+      <div class="col s12 l3">
+        <div class="divider"></div>
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h4>Spel 1</h4>
+          </li>
+          <li class="collection-item">
+            <b># 1:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 2:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 3:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 4:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 5:</b> Eddie</li>
+        </ul>
+      </div>
+      <div class="col s12 l3">
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h4>Spel 2</h4>
+          </li>
+          <li class="collection-item">
+            <b># 1:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 2:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 3:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 4:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 5:</b> Eddie</li>
+        </ul>
+      </div>
+      <div class="col s12 l3">
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h4>Spel 3</h4>
+          </li>
+          <li class="collection-item">
+            <b># 1:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 2:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 3:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 4:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 5:</b> Eddie</li>
+        </ul>
+      </div>
+      <div class="col s12 l3">
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h4>Spel 4</h4>
+          </li>
+          <li class="collection-item">
+            <b># 1:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 2:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 3:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 4:</b> Eddie</li>
+          <li class="collection-item">
+            <b># 5:</b> Eddie</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Terug</a>
+  </div>
+</div>
+
 <div class="row">
 
 
@@ -15,7 +139,7 @@
             <h6>...</h6>
             <p>Gram CO-2 bespaard</p>
             <br>
-           <!--  <i class="right material-icons small">games</i>
+            <!--  <i class="right material-icons small">games</i>
             <h6>205</h6>
             <p>Spellen gespeeld</p> -->
           </div>
@@ -28,18 +152,22 @@
         <h6>Actieve races:</h6>
         <ul class="collection">
 
-          <li *ngFor="let action of actions"  class="collection-item avatar">
-            <a>
-            <i class="small material-icons circle  green">insert_chart</i>
-            <b><span class="title">{{action.actionname}}</span></b></a>
+          <li *ngFor="let action of actions" class="collection-item avatar">
+            <a style="cursor:pointer">
+              <i class="small material-icons circle  green">insert_chart</i>
+              <b>
+                <span class="title">{{action.actionname}}</span>
+              </b>
+            </a>
             <p>Aantal telefoons: {{moetnog}}
-              <br> <a>Filter dit</a>
+              <br>
+              <a>Filter dit</a>
             </p>
-            <a  class="secondary-content">
+            <a class="secondary-content">
               <i class="material-icons">grade</i>
             </a>
           </li>
-         
+
 
         </ul>
       </div>
@@ -80,8 +208,8 @@
 
 
 
-            <ngx-datatable #table class='material striped'  [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+            <ngx-datatable #table class='material striped' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+              [limit]="10" [rows]='rows' [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)">
 
 
 
@@ -231,9 +359,9 @@
       <label>Toon:</label>
     </div>
     <div *ngIf="dataLoaded">
-        <app-map [(arcadeMarkers)]="rows" [(currentMode)]="mapMode" ></app-map>
+      <app-map [(arcadeMarkers)]="rows" [(currentMode)]="mapMode"></app-map>
     </div>
-  
+
     <!--<img class="responsive-img" src="assets/kast.png">-->
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 05, 2017 at 01:04 PM
+-- Generation Time: Dec 06, 2017 at 09:46 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -32,14 +32,16 @@ CREATE TABLE `actions` (
   `datestart` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `inuse` int(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `actions`
 --
 
 INSERT INTO `actions` (`id`, `actionname`, `datestart`, `dateend`, `inuse`) VALUES
-(1, 'actie naam tes 1', '080808', '080808', 1);
+(2, 'Actieee ', '', '', 1),
+(3, 'Actieee 2', '', '', 1),
+(4, 'asdfasw', '2017-12-29', '', 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,7 @@ CREATE TABLE `arcades` (
   `dateplaced` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `lastused` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `arcades`
@@ -71,7 +73,8 @@ INSERT INTO `arcades` (`id`, `name`, `status`, `location`, `longlat`, `phonetot`
 (15, 'sdfsdfsdfsdfsdfsfsdf', 2, 'sdfs', '', 0, 0, 0, '', '', '2017-12-05 09:36:38'),
 (17, 'Tanne', 2, 'test', 'undefined', 0, 0, 3, '2017-12-09', '2017-12-16', '2017-12-04 20:31:08'),
 (18, 'Kast Timmy', 2, 'Eindhovuhhh', '51.433100, 5.432181', 0, 0, 4, '2017-12-16', '2017-12-29', '2017-12-05 08:49:26'),
-(19, 'Afgebouwd 20-12 112', 1, 'sdfds', '3', 0, 0, 2, '2017-12-08', '2017-12-04', '2017-12-05 10:03:17');
+(19, 'Afgebouwd 20-12 112', 1, 'sdfds', '3', 0, 0, 2, '2017-12-08', '2017-12-04', '2017-12-05 10:03:17'),
+(20, 'saf', 1, '', '', 0, 0, 0, '', '', '2017-12-06 08:36:59');
 
 -- --------------------------------------------------------
 
@@ -123,6 +126,7 @@ INSERT INTO `highscores` (`linkid`, `game1`, `game2`, `game3`, `game4`, `game5`,
 ('Kast Timmy', '', '', '', '', '', ''),
 ('Kast Yeihais', '', '', '', '', '', ''),
 ('Klokgebouw', '', '', '', '', '', ''),
+('saf', '', '', '', '', '', ''),
 ('sdfs', '', '', '', '', '', ''),
 ('Tanne', '', '', '', '', '', ''),
 ('yoo', '', '', '', '', '', '');
@@ -167,6 +171,7 @@ INSERT INTO `teams` (`linkid`, `team1name`, `team1tot`, `team2name`, `team2tot`,
 ('Kast Timmy', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
 ('Kast Yeihais', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
 ('Klokgebouw', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
+('saf', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
 ('sdfs', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
 ('Tanne', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
 ('yoo', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0);
@@ -207,12 +212,12 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `arcades`
 --
 ALTER TABLE `arcades`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -79,6 +79,8 @@ export class AdminComponent implements OnInit {
   actionEnd;
   actionStatus = 1;
 
+  actionOptions = 'asdadas';
+
 
   team1Name;
   team2Name;
@@ -194,6 +196,10 @@ export class AdminComponent implements OnInit {
   
 
     $('#modal1').modal('open');
+
+    $(document).ready(function () {
+      $('select').material_select();
+    });
   }
 
 
@@ -265,7 +271,7 @@ export class AdminComponent implements OnInit {
   actionCreated(_event) {
     // call is success, get everything from API
     console.log(_event);
-    this.toastr.success(' :) ', ' Actie aangemaakt');
+    this.toastr.success(' :) ', ' Actie verwerkt');
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
@@ -312,6 +318,15 @@ export class AdminComponent implements OnInit {
    this.toastr.success(' :) ', 'Arcade is verwijderd');
   }
 
+  removeAction() {
+    this.serser.debugLog('deletion of : ' + this.currentId + ' with name ' + this.currentName);
+    this.serser.deleteAction(this.currentActionId).subscribe(value => this.gotDeleteActionCall(value));
+  }
+
+  gotDeleteActionCall(_event) {
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+    this.toastr.success(' ', 'Actie is verwijderd');
+  }
 
 
   /**
@@ -424,6 +439,8 @@ export class AdminComponent implements OnInit {
       $(document).ready(function () {
         $('ul.tabs').tabs();
       });
+    } else {
+      this.toastr.warning('', 'Verkeerd wachtwoord', );
     }
   }
 

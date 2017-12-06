@@ -22,10 +22,7 @@
           </div>
         </div>
         <div class="row">
-
-
           <div class="col s6">
-
             <p>Status</p>
             <select [(ngModel)]="arcadeStatus" [ngModelOptions]="{standalone: true}" class="browser-default">
               <option [value]="1">
@@ -40,7 +37,6 @@
 
 
           </div>
-
           <div class="input-field col s6">
             <p>Aantal teams</p>
             <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
@@ -53,6 +49,13 @@
             <input [(ngModel)]="arcadeLongLat" [ngModelOptions]="{standalone: true}">
 
           </div>
+          <div class="col s6">
+          <select multiple [(ngModel)]="actionOptions" [ngModelOptions]="{standalone: true}">
+            
+            <option *ngFor="let action of rowsActions" [value]="action.id">{{action.actionname}}</option>
+            
+            
+          </select></div> 
         </div>
 
 
@@ -251,7 +254,15 @@
     <div class="modal-footer">
         <a *ngIf="modalstatus == 1" (click)="addAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
         <a *ngIf="modalstatus == 2" (click)="editAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
-    </div>
+    
+
+        <div class="left" *ngIf="modalstatus == 2">
+            <br>
+            <a class="btn left waves-effect orange">Verplaats naar Archief</a>
+            <br>
+            <a (click)="removeAction()" class="btn left waves-effect red">Verwijder actie</a>
+          </div>
+      </div>
   </div>
 </div>
 

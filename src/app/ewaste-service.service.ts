@@ -122,6 +122,25 @@ export class EwasteServiceService {
   }
 
 
+  deleteAction( _id ): Observable < any > {
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'deleteaction/'  + _id + '?rnd=' + new Date().getTime() ;
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
+
 
 
 

@@ -55,6 +55,8 @@ export class SiteComponent implements OnInit {
   temp = [];
   selected = [];
 
+  // first is all actions, seconf is only available actions
+  actionss = [];
   actions = [];
 
   check= 'whut';
@@ -96,9 +98,9 @@ export class SiteComponent implements OnInit {
     // jquery init
     $(document).ready(function () {
       $('select').material_select();
+      $('.modal').modal();
     });
-
-
+    
 
 
     // example call
@@ -110,8 +112,17 @@ export class SiteComponent implements OnInit {
     this.rows = _value[1];
     this.dataLoaded = true;
 
-    this.actions = _value[0];
-    console.log(this.actions);
+    this.actionss = _value[0];
+  
+
+    // get the runnings actions
+    for (let i = 0; i < this.actionss.length; i++) {
+      if (this.actionss[i].inuse === '2') {
+        const actionobject = this.actionss[i];
+        this.actions.push(actionobject);
+      }
+    }
+
 
     // Calculate all the phones collected
     for (let index = 0; index < this.rows.length; index++) {
@@ -126,9 +137,12 @@ export class SiteComponent implements OnInit {
 
   // filter the arcades
   // TODO: implement
-  filterAracdes() {
-
+  onSelect(_event) {
+    this.serser.debugLog(_event.selected[0]);
+    $('#modal1').modal('open');
   }
+
+
 
 
 

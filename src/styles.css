@@ -5,3 +5,7 @@
 body {
     background-color: #80cbc4 !important
 }
+
+.tabs {
+    overflow-x: hidden !important;
+    }
