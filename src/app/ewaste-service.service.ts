@@ -182,6 +182,28 @@ export class EwasteServiceService {
   }
 
 
+  // tslint:disable-next-line:max-line-length
+  editTeamNames(_idname, _teamnames ): Observable < any > {
+
+    // teamnames is array of strings
+    // tslint:disable-next-line:max-line-length
+    const url = this.apiUrl + 'editteamnames/'  + _idname + '?rnd=' + new Date().getTime() + '&team1=' + _teamnames[0] + '&team2=' + _teamnames[1] +'&team3=' + _teamnames[2] +'&team4=' + _teamnames[3] + '&team5=' + _teamnames[4] + '&team6=' + _teamnames[5] +'&team7=' + _teamnames[6] +'&team8=' + _teamnames[7] + '&team9=' + _teamnames[8] + '&team10=' + _teamnames[9] + '&team11=' + _teamnames[10];
+    // tslint:disable-next-line:prefer-const
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    const options = new RequestOptions({
+      headers: headers
+    });
+
+    // tslint:disable-next-line:max-line-length
+    return this.http_.get(url, options)
+      .throttleTime(5000)
+      .map(res => res.json());
+  }
+
+
 
 
 

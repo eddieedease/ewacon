@@ -104,12 +104,13 @@
       <div class="row">
         <div class="input-field col s12">
           <p>Team 1: </p>
+          <span>Standaard team</span>
           <input [(ngModel)]="team1Name" placeholder="Teamnaam" id="team1" type="text" class="validate">
         </div>
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 1" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 2: </p>
@@ -118,7 +119,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 2" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 3: </p>
@@ -127,7 +128,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 3" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 4: </p>
@@ -136,7 +137,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 4" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 5: </p>
@@ -145,7 +146,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 5" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 6: </p>
@@ -154,7 +155,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 6" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 7: </p>
@@ -163,7 +164,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 7" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 8: </p>
@@ -172,7 +173,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 8" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 9: </p>
@@ -181,7 +182,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 9" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 10: </p>
@@ -190,7 +191,7 @@
       </div>
     </div>
 
-    <div class="col s12">
+    <div *ngIf="arcadeTeamsTot > 10" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <p>Team 11: </p>
@@ -200,7 +201,7 @@
     </div>
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat">Annuleren</a>
-      <a class="modal-action modal-close waves-effect waves-green btn-flat">Opslaan</a>
+      <a (click)="changeTeamNames()" class="modal-action modal-close waves-effect waves-green btn-flat">Opslaan</a>
     </div>
   </div>
 </div>

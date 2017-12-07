@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 // Start SLim API
 $app = new \Slim\App;
-$app->run();
+
 
 // Basic call
 $app->get('/hello/{name}', function (Request $request, Response $response) {
@@ -276,6 +276,38 @@ $app->get('/editaction/{id}', function (Request $request, Response $response) {
 
 
 
+$app->get('/editteamnames/{idname}', function (Request $request, Response $response) {
+	// 	set up the connection variables
+	include 'db.php';
+	// 	connect to the database
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	
+	$id = $request->getAttribute('idname');
+	$team1 = $request->getQueryParam('team1', $default = null);
+	$team2 = $request->getQueryParam('team2', $default = null);
+	$team3 = $request->getQueryParam('team3', $default = null);
+	$team4 = $request->getQueryParam('team4', $default = null);
+	$team5 = $request->getQueryParam('team5', $default = null);
+	$team6 = $request->getQueryParam('team6', $default = null);
+	$team7 = $request->getQueryParam('team7', $default = null);
+	$team8 = $request->getQueryParam('team8', $default = null);
+	$team9 = $request->getQueryParam('team9', $default = null);
+	$team10 = $request->getQueryParam('team10', $default = null);
+	$team11 = $request->getQueryParam('team11', $default = null);
+
+	
+	$sql = "UPDATE teams SET team1name = '$team1', team2name = '$team2',team3name ='$team3', team4name ='$team4', team5name ='$team5' , team6name ='$team6' , team7name ='$team7' , team8name ='$team8' , team9name ='$team9' , team10name = '$team10' , team11name = '$team11' WHERE linkid = '$id'";
+
+	$stmt = $dbh->prepare($sql);
+	$dbh = null;
+	$stmt->execute();
+
+	$data = array('Jsonresponse' => 'Edit the action', 'success' => true);
+	$response = json_encode($data);
+	return $response;
+}
+);
+
 
 // EXAMPLE for copying
 $app->get('/api/{name}', function (Request $request, Response $response) {
@@ -286,3 +318,4 @@ $app->get('/api/{name}', function (Request $request, Response $response) {
 }
 );
 
+$app->run();

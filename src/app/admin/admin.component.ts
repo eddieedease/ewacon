@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
   modalTitle = 'someTitle';
   modalInfo = 'someInfo';
 
-  
+  teams = [];
 
   // modalstatus for keeping in check what to do with modals
   // [1] = new item  [2] = edit
@@ -133,6 +133,8 @@ export class AdminComponent implements OnInit {
     this.rows = _value[1];
     this.rowsActions = _value[0];
 
+    this.teams = _value[4];
+
   }
 
     // below not more nessy
@@ -158,10 +160,10 @@ export class AdminComponent implements OnInit {
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
-    
+
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
-    
+
     this.modalTitle = 'Maak een nieuwe arcade aan';
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
     $('#modal1').modal('open');
@@ -182,6 +184,25 @@ export class AdminComponent implements OnInit {
     this.modalTitle = 'Bewerk deze arcade';
     this.modalInfo = 'Wijzig hier de info van de arcade:';
 
+    // asign teams
+    for (let index = 0; index < this.teams.length; index++) {
+      if (this.teams[index].linkid === this.currentName ) {
+        this.serser.debugLog('Found teamnames!');
+        this.team1Name = this.teams[index].team1name;
+        this.team2Name = this.teams[index].team2name;
+        this.team3Name = this.teams[index].team3name;
+        this.team4Name = this.teams[index].team4name;
+        this.team5Name = this.teams[index].team5name;
+        this.team6Name = this.teams[index].team6name;
+        this.team7Name = this.teams[index].team7name;
+        this.team8Name = this.teams[index].team8name;
+        this.team9Name = this.teams[index].team9name;
+        this.team10Name = this.teams[index].team10name;
+        this.team11Name = this.teams[index].team11name;
+      }
+    }
+
+
     for (let i = 0; i < this.rows.length; i++) {
       if (this.rows[i].id === _whichId) {
         this.arcadeName = this.rows[i].name;
@@ -193,7 +214,7 @@ export class AdminComponent implements OnInit {
         this.arcadeDateEnd = this.rows[i].dateend;
       }
     }
-  
+
 
     $('#modal1').modal('open');
 
@@ -262,7 +283,7 @@ export class AdminComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       this.serser.editAction(this.currentActionId, this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
     } else {
-      
+
     }
   }
 
@@ -327,6 +348,19 @@ export class AdminComponent implements OnInit {
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     this.toastr.success(' ', 'Actie is verwijderd');
   }
+
+  changeTeamNames() {
+    // tslint:disable-next-line:max-line-length
+    const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name];
+    this.serser.editTeamNames(this.currentName, titleArray ).subscribe(value => this.teamNamesChanged(value));
+  }
+
+  teamNamesChanged(_event) {
+    this.serser.debugLog(_event);
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+    this.toastr.success(' :) ', ' Teams opgeslagen');
+  }
+
 
 
   /**
