@@ -88,6 +88,7 @@ export class EwasteServiceService {
 
 
   editExisting(_id, _name, _status, _actionlink, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+    console.log(_actionlink);
     // tslint:disable-next-line:max-line-length
     const url = this.apiUrl + 'edit/' + _id + '?rnd=' + new Date().getTime() + '&name=' + _name + '&status=' + _status + '&actionlink=' + _actionlink + '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
     // tslint:disable-next-line:prefer-const

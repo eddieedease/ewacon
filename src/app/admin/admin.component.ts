@@ -79,7 +79,7 @@ export class AdminComponent implements OnInit {
   actionEnd;
   actionStatus = 1;
 
-  arcadeLinkedAction: any;
+  arcadeLinkedAction ;
 
 
   team1Name;
@@ -160,7 +160,7 @@ export class AdminComponent implements OnInit {
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
-    this.arcadeLinkedAction = '';
+    this.arcadeLinkedAction = 'select';
 
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
@@ -213,7 +213,8 @@ export class AdminComponent implements OnInit {
         this.arcadeTeamsTot = this.rows[i].teamstot;
         this.arcadeDatePlaced = this.rows[i].dateplaced;
         this.arcadeDateEnd = this.rows[i].dateend;
-        this.arcadeLinkedAction = this.rows[i].actionlink;
+        this.arcadeLinkedAction =  this.rows[i].actionlink;
+        this.serser.debugLog(this.arcadeLinkedAction);
       }
     }
 
@@ -300,7 +301,7 @@ export class AdminComponent implements OnInit {
   }
 
   addArcade() {
-    this.serser.debugLog(this.arcadeLinkedAction);
+    this.serser.debugLog('adding actionlink' + this.arcadeLinkedAction);
     // name must not be empty
     if (this.arcadeName !== '') {
       // tslint:disable-next-line:max-line-length

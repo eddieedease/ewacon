@@ -158,7 +158,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
 	// 	edit query
-	$sql = "UPDATE arcades SET name = '$paramname', status = '$paramstatus', actionlink = '$paramstatus',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
+	$sql = "UPDATE arcades SET name = '$paramname', status = '$paramstatus', actionlink = '$paramactionlink',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
 	$stmt = $dbh->prepare($sql);
 	// 	execute the query
 	$dbh = null;

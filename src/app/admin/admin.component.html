@@ -49,14 +49,18 @@
             <input [(ngModel)]="arcadeLongLat" [ngModelOptions]="{standalone: true}">
 
           </div>
-          <div class="input-field col s6">
-              <p><b>Gekoppeld aan actie: </b></p>
-          <select [(ngModel)]="arcadeLinkedAction" [ngModelOptions]="{standalone: true}">
-            
-            <option *ngFor="let action of rowsActions" [value]="action.id">{{action.actionname}}</option>
-            
-            
-          </select></div> 
+          <div class="col s6">
+            <p><b>Gekoppeld aan actie:</b></p>
+            <select [(ngModel)]="arcadeLinkedAction" [ngModelOptions]="{standalone: true}" class="browser-default">
+              <option *ngFor="let action of rowsActions" [value]="action.id">
+                {{action.actionname}}
+              </option>
+            </select>
+
+
+
+
+          </div>
         </div>
 
 
