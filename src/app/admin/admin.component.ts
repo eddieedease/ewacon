@@ -79,7 +79,7 @@ export class AdminComponent implements OnInit {
   actionEnd;
   actionStatus = 1;
 
-  actionOptions = 'asdadas';
+  arcadeLinkedAction: any;
 
 
   team1Name;
@@ -160,6 +160,7 @@ export class AdminComponent implements OnInit {
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
+    this.arcadeLinkedAction = '';
 
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
@@ -212,6 +213,7 @@ export class AdminComponent implements OnInit {
         this.arcadeTeamsTot = this.rows[i].teamstot;
         this.arcadeDatePlaced = this.rows[i].dateplaced;
         this.arcadeDateEnd = this.rows[i].dateend;
+        this.arcadeLinkedAction = this.rows[i].actionlink;
       }
     }
 
@@ -228,9 +230,10 @@ export class AdminComponent implements OnInit {
 
   // Edit an existing arcade
   saveEditArcade() {
+    this.serser.debugLog(this.arcadeLinkedAction);
     if (this.arcadeName !== '') {
       // tslint:disable-next-line:max-line-length
-      this.serser.editExisting(this.currentId, this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+      this.serser.editExisting(this.currentId, this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
     }
@@ -297,11 +300,11 @@ export class AdminComponent implements OnInit {
   }
 
   addArcade() {
-    console.log(this.arcadeStatus);
+    this.serser.debugLog(this.arcadeLinkedAction);
     // name must not be empty
     if (this.arcadeName !== '') {
       // tslint:disable-next-line:max-line-length
-      this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+      this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
     }
@@ -313,10 +316,10 @@ export class AdminComponent implements OnInit {
     this.arcadeStatus = 1;
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
+    this.arcadeLinkedAction = '';
     this.arcadeTeamsTot = '';
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
-    console.log(event);
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     this.toastr.success(' :) ', 'Arcade aangemaakt');
   }
@@ -359,6 +362,18 @@ export class AdminComponent implements OnInit {
     this.serser.debugLog(_event);
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     this.toastr.success(' :) ', ' Teams opgeslagen');
+  }
+
+
+
+  // Archiving functionality
+  moveToArchive(_movewhat) {
+    this.toastr.warning('', 'Archief werkt nog niet :(');
+  }
+  
+   // Archiving functionality
+   debugActionChange(_movewhat) {
+    this.serser.debugLog(_movewhat);
   }
 
 

@@ -96,13 +96,15 @@ $app->get('/insert', function (Request $request, Response $response) {
 
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
+	$paramactionlink= $request->getQueryParam('actionlink', $default = null);
+	
 	$paramlocation= $request->getQueryParam('location', $default = null);
 	$paramlonglat= $request->getQueryParam('longlat', $default = null);
 	$paramteamstot= $request->getQueryParam('teamstot', $default = null);
 	$paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
-	$sql = "INSERT INTO arcades (name,status,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+	$sql = "INSERT INTO arcades (name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramactionlink','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
 	
 	// 	use prepared statements, even if not strictly required is good practice
 	$stmt = $dbh->prepare($sql);
@@ -148,6 +150,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
+	$paramactionlink= $request->getQueryParam('actionlink', $default = null);
 	$paramlocation= $request->getQueryParam('location', $default = null);
 	$paramlonglat= $request->getQueryParam('longlat', $default = null);
 	$paramteamstot= $request->getQueryParam('teamstot', $default = null);
@@ -155,7 +158,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
 	// 	edit query
-	$sql = "UPDATE arcades SET name = '$paramname', status = '$paramstatus',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
+	$sql = "UPDATE arcades SET name = '$paramname', status = '$paramstatus', actionlink = '$paramstatus',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
 	$stmt = $dbh->prepare($sql);
 	// 	execute the query
 	$dbh = null;
@@ -307,6 +310,54 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 	return $response;
 }
 );
+
+
+/** 
+ * ARCADESSSS ACTION
+ * Addpphone, needs only id from the arcade cabinet + the chosen team id   Teamid = [0 - 10]
+*/
+$app->get('/arcade/addphone/{arcadeid}/{chosenteam}', function (Request $request, Response $response) {
+	$arcadeid = $request->getAttribute('arcadeid');
+	$chosenteam = $request->getAttribute('chosenteam');
+	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+	$response = json_encode($data);
+	return $response;
+}
+);
+
+/** 
+ * ARCADESSSS ACTION
+ * addFailure, needs only id from the arcade cabinet.
+*/
+$app->get('/arcade/addfailed/{arcadeid}', function (Request $request, Response $response) {
+	$arcadeid = $request->getAttribute('arcadeid');
+	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+	$response = json_encode($data);
+	return $response;
+}
+);
+
+
+/** 
+ * ARCADESSSS ACTION
+ * submitscore, need arcadeID + GameiD + teamnames + teamscores
+ * Note: There are 4 minigames build in [1] Breakout [2] Throw stuff [3] Racer [4] 
+*/
+$app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request, Response $response) {
+	$arcadeid = $request->getAttribute('arcadeid');
+	$gameid = $request->getAttribute('gameid');
+	
+	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+	$response = json_encode($data);
+	
+	return $response;
+}
+);
+
+
+
+
+
 
 
 // EXAMPLE for copying
