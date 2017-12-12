@@ -55,11 +55,20 @@ export class SiteComponent implements OnInit {
   temp = [];
   selected = [];
 
-  // first is all actions, seconf is only available actions
+  // the whole arcades list
+  arcadess = [];
+
+  // first is all actions, second is only available actions
   actionss = [];
   actions = [];
 
-  check= 'whut';
+  highScores = [];
+  teams = [];
+
+  check = 'whut';
+
+  currentArcadeId;
+  currentArcadeName;
 
   dataLoaded = false;
 
@@ -70,8 +79,7 @@ export class SiteComponent implements OnInit {
     this.notActiveArcades = [];
 
     // dummy data for tables
-    this.rows = [
-    ];
+    this.rows = [];
 
     this.columns = [{
         name: 'Locatie'
@@ -100,7 +108,7 @@ export class SiteComponent implements OnInit {
       $('select').material_select();
       $('.modal').modal();
     });
-    
+
 
 
     // example call
@@ -109,11 +117,25 @@ export class SiteComponent implements OnInit {
 
   gotgetAllCall(_value) {
     this.serser.debugLog(_value[1]);
-    this.rows = _value[1];
+
+    this.arcadess = _value[1];
+    //this.rows = _value[1];
+    for (let a = 0; a < this.arcadess.length; a++) {
+      if (this.arcadess[a].status === '2') {
+        const activeArcade = this.arcadess[a];
+        this.rows.push(activeArcade);
+      }
+
+    }
+
+
+
     this.dataLoaded = true;
 
     this.actionss = _value[0];
-  
+    this.highScores = _value[1];
+    this.teams = _value[4];
+
 
     // get the runnings actions
     for (let i = 0; i < this.actionss.length; i++) {
@@ -125,24 +147,36 @@ export class SiteComponent implements OnInit {
 
 
     // Calculate all the phones collected
-    for (let index = 0; index < this.rows.length; index++) {
-      const x = this.rows[index].phonetot;
+    for (let index = 0; index < this.arcadess.length; index++) {
+      const x = this.arcadess[index].phonetot;
       const y = +x; // y: number
       this.allPhones = this.allPhones + y;
     }
 
   }
 
+  /**
+   * 
+   */
+  filterOnRows(_filteraction) {
 
- 
+  }
+
 
 
   // filter the arcades
   // TODO: implement
   onSelect(_event) {
     this.serser.debugLog(_event.selected[0]);
+
+    // set current arcadeid + name
+    this.currentArcadeId = _event.selected[0].id;
+    this.currentArcadeName = _event.selected[0].name;
+
+    this.serser.debugLog('Selected Arcade is ' + this.currentArcadeName + '  with ID: ' + this.currentArcadeId);
     $('#modal1').modal('open');
   }
+
 
 
 

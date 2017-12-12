@@ -64,9 +64,10 @@ export class EwasteServiceService {
   }
 
 
-  insertNew(_name, _status, _actionlink,  _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+  insertNew(_arcadeid, _name, _status, _actionlink,  _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+    console.log('arcadeid = ' + _arcadeid);
     // tslint:disable-next-line:max-line-length
-    const url = this.apiUrl + 'insert?rnd=' + new Date().getTime() + '&name=' + _name + '&status=' + _status + '&actionlink=' + _actionlink + '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
+    const url = this.apiUrl + 'insert?rnd=' + new Date().getTime() + '&arcadeid=' + _arcadeid + '&name=' + _name + '&status=' + _status + '&actionlink=' + _actionlink + '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
     // tslint:disable-next-line:prefer-const
     const headers = new Headers({
       'Content-Type': 'application/json'
@@ -87,10 +88,10 @@ export class EwasteServiceService {
 
 
 
-  editExisting(_id, _name, _status, _actionlink, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
-    console.log(_actionlink);
+  editExisting(_id, _arcadeid, _name, _status, _actionlink, _location, _longlat, _teamstot, _dateplaced, _dateend ): Observable < any > {
+    console.log('arcadeid = ' + _arcadeid);
     // tslint:disable-next-line:max-line-length
-    const url = this.apiUrl + 'edit/' + _id + '?rnd=' + new Date().getTime() + '&name=' + _name + '&status=' + _status + '&actionlink=' + _actionlink + '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
+    const url = this.apiUrl + 'edit/' + _id + '?rnd=' + new Date().getTime() + '&arcadeid=' + _arcadeid + '&name=' + _name + '&status=' + _status + '&actionlink=' + _actionlink + '&location=' + _location +  '&longlat=' + _longlat + '&teamstot=' + _teamstot  + '&dateplaced=' + _dateplaced + '&dateend=' + _dateend ;
     // tslint:disable-next-line:prefer-const
     const headers = new Headers({
       'Content-Type': 'application/json'

@@ -94,6 +94,7 @@ $app->get('/insert', function (Request $request, Response $response) {
 	include 'db.php';
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 
+	$paramarcadeid= $request->getQueryParam('arcadeid', $default = null);
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
 	$paramactionlink= $request->getQueryParam('actionlink', $default = null);
@@ -104,7 +105,7 @@ $app->get('/insert', function (Request $request, Response $response) {
 	$paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
-	$sql = "INSERT INTO arcades (name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramname','$paramstatus','$paramactionlink','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+	$sql = "INSERT INTO arcades (arcadeid,name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramarcadeid','$paramname','$paramstatus','$paramactionlink','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
 	
 	// 	use prepared statements, even if not strictly required is good practice
 	$stmt = $dbh->prepare($sql);
@@ -148,6 +149,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	
 	$id = $request->getAttribute('id');
 
+	$paramarcadeid= $request->getQueryParam('arcadeid', $default = null);
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
 	$paramactionlink= $request->getQueryParam('actionlink', $default = null);
@@ -158,7 +160,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
 	// 	edit query
-	$sql = "UPDATE arcades SET name = '$paramname', status = '$paramstatus', actionlink = '$paramactionlink',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
+	$sql = "UPDATE arcades SET arcadeid = '$paramarcadeid', name = '$paramname', status = '$paramstatus', actionlink = '$paramactionlink',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
 	$stmt = $dbh->prepare($sql);
 	// 	execute the query
 	$dbh = null;

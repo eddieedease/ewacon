@@ -11,19 +11,25 @@
       <form class="col s12 l12 ">
         <div class="row">
           <div class="input-field col s12">
-            <p><b>Arcade naam</b></p>
+            <p>
+              <b>Arcade naam</b>
+            </p>
             <input [(ngModel)]="arcadeName" [ngModelOptions]="{standalone: true}" id="title" type="text" class="validate">
             <label for="title"></label>
           </div>
           <div class="input-field col s12">
-            <p><b>Locatie</b></p>
+            <p>
+              <b>Locatie</b>
+            </p>
             <input [(ngModel)]="arcadeLocation" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
             <label for="location"></label>
           </div>
         </div>
         <div class="row">
           <div class="col s6">
-            <p><b>Status</b></p>
+            <p>
+              <b>Status</b>
+            </p>
             <select [(ngModel)]="arcadeStatus" [ngModelOptions]="{standalone: true}" class="browser-default">
               <option [value]="1">
                 Offline
@@ -32,25 +38,46 @@
                 Online
               </option>
             </select>
+            <p>
+              <b>Welk arcadeID?</b>
+            </p>
+            <select [(ngModel)]="arcadeId" [ngModelOptions]="{standalone: true}" class="browser-default">
+              <option *ngFor="let arcadeid of arcadesIdPossible" [value]="arcadeid.idNumber">
+                {{arcadeid.idNumber}}
+              </option>
+            </select>
 
 
 
 
           </div>
+
+
+
+
+
+
+
           <div class="input-field col s6">
-            <p><b>Aantal teams</b></p>
+            <p>
+              <b>Aantal teams</b>
+            </p>
             <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
             <label for="location"></label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <p><b>LongLat</b></p>
+            <p>
+              <b>LongLat</b>
+            </p>
             <input [(ngModel)]="arcadeLongLat" [ngModelOptions]="{standalone: true}">
 
           </div>
           <div class="col s6">
-            <p><b>Gekoppeld aan actie:</b></p>
+            <p>
+              <b>Gekoppeld aan actie:</b>
+            </p>
             <select [(ngModel)]="arcadeLinkedAction" [ngModelOptions]="{standalone: true}" class="browser-default">
               <option *ngFor="let action of rowsActions" [value]="action.id">
                 {{action.actionname}}
@@ -66,12 +93,16 @@
 
         <div class="row">
           <div class="input-field col s6">
-            <p><b>Begindatum</b></p>
+            <p>
+              <b>Begindatum</b>
+            </p>
             <input [(ngModel)]="arcadeDatePlaced" [ngModelOptions]="{standalone: true}" id="beginDate" type="date" class="datepicker">
 
           </div>
           <div class="input-field col s6">
-            <p><b>Einddatum</b></p>
+            <p>
+              <b>Einddatum</b>
+            </p>
             <input [(ngModel)]="arcadeDateEnd" [ngModelOptions]="{standalone: true}" id="endDate" type="date" class="datepicker">
 
           </div>
@@ -108,7 +139,9 @@
     <div class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 1:</b> </p>
+          <p>
+            <b>Team 1:</b>
+          </p>
           <span>Standaard team</span>
           <input [(ngModel)]="team1Name" placeholder="Teamnaam" id="team1" type="text" class="validate">
         </div>
@@ -118,7 +151,9 @@
     <div *ngIf="arcadeTeamsTot > 1" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 2: </b></p>
+          <p>
+            <b>Team 2: </b>
+          </p>
           <input [(ngModel)]="team2Name" placeholder="Teamnaam" id="team2" type="text" class="validate">
         </div>
       </div>
@@ -127,7 +162,9 @@
     <div *ngIf="arcadeTeamsTot > 2" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 3:</b> </p>
+          <p>
+            <b>Team 3:</b>
+          </p>
           <input [(ngModel)]="team3Name" placeholder="Teamnaam" id="team3" type="text" class="validate">
         </div>
       </div>
@@ -136,7 +173,9 @@
     <div *ngIf="arcadeTeamsTot > 3" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 4:</b> </p>
+          <p>
+            <b>Team 4:</b>
+          </p>
           <input [(ngModel)]="team4Name" placeholder="Teamnaam" id="team4" type="text" class="validate">
         </div>
       </div>
@@ -145,7 +184,9 @@
     <div *ngIf="arcadeTeamsTot > 4" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 5:</b> </p>
+          <p>
+            <b>Team 5:</b>
+          </p>
           <input [(ngModel)]="team5Name" placeholder="Teamnaam" id="team5" type="text" class="validate">
         </div>
       </div>
@@ -154,7 +195,9 @@
     <div *ngIf="arcadeTeamsTot > 5" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 6:</b> </p>
+          <p>
+            <b>Team 6:</b>
+          </p>
           <input [(ngModel)]="team6Name" placeholder="Teamnaam" id="team6" type="text" class="validate">
         </div>
       </div>
@@ -163,7 +206,9 @@
     <div *ngIf="arcadeTeamsTot > 6" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 7:</b> </p>
+          <p>
+            <b>Team 7:</b>
+          </p>
           <input [(ngModel)]="team7Name" placeholder="Teamnaam" id="team7" type="text" class="validate">
         </div>
       </div>
@@ -172,7 +217,9 @@
     <div *ngIf="arcadeTeamsTot > 7" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 8: </b></p>
+          <p>
+            <b>Team 8: </b>
+          </p>
           <input [(ngModel)]="team8Name" placeholder="Teamnaam" id="team8" type="text" class="validate">
         </div>
       </div>
@@ -181,7 +228,9 @@
     <div *ngIf="arcadeTeamsTot > 8" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 9:</b> </p>
+          <p>
+            <b>Team 9:</b>
+          </p>
           <input [(ngModel)]="team9Name" placeholder="Teamnaam" id="team9" type="text" class="validate">
         </div>
       </div>
@@ -190,7 +239,9 @@
     <div *ngIf="arcadeTeamsTot > 9" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 10:</b> </p>
+          <p>
+            <b>Team 10:</b>
+          </p>
           <input [(ngModel)]="team10Name" placeholder="Teamnaam" id="team10" type="text" class="validate">
         </div>
       </div>
@@ -199,7 +250,9 @@
     <div *ngIf="arcadeTeamsTot > 10" class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <p><b>Team 11: </b></p>
+          <p>
+            <b>Team 11: </b>
+          </p>
           <input [(ngModel)]="team11Name" placeholder="Teamnaam" id="team11" type="text" class="validate">
         </div>
       </div>
@@ -216,21 +269,27 @@
 
 <div id="modal3" class="modal">
   <div class="modal-content">
-    <h4>Actie</h4>
+    <h4>Actie: {{currentActionName}}</h4>
     <br>
-    <h5>Gekoppelde Arcades:</h5>
-    <p>- Komt nog...</p>
+    <h5>Gekoppelde Arcades: </h5>
+    <ul>
+    <li *ngFor="let item of actionArcadeNamesArray">{{item}}</li>  
+    </ul>
 
     <br>
     <div class="row">
       <div class="input-field col s6">
-        <p><b>Actie naam</b></p>
+        <p>
+          <b>Actie naam</b>
+        </p>
         <input [(ngModel)]="actionName" [ngModelOptions]="{standalone: true}" id="title" type="text" class="validate">
         <label for="title"></label>
       </div>
 
       <div class="col s6">
-        <p><b>Status</b></p>
+        <p>
+          <b>Status</b>
+        </p>
         <select [(ngModel)]="actionStatus" [ngModelOptions]="{standalone: true}" class="browser-default">
           <option [value]="1">
             Niet actief
@@ -245,12 +304,16 @@
 
     <div class="row">
       <div class="input-field col s6">
-        <p><b>Begindatum</b></p>
+        <p>
+          <b>Begindatum</b>
+        </p>
         <input [(ngModel)]="actionStart" [ngModelOptions]="{standalone: true}" id="beginDate" type="date" class="datepicker">
 
       </div>
       <div class="input-field col s6">
-        <p><b>Einddatum</b></p>
+        <p>
+          <b>Einddatum</b>
+        </p>
         <input [(ngModel)]="actionEnd" [ngModelOptions]="{standalone: true}" id="endDate" type="date" class="datepicker">
       </div>
     </div>
@@ -258,17 +321,17 @@
 
 
     <div class="modal-footer">
-        <a *ngIf="modalstatus == 1" (click)="addAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
-        <a *ngIf="modalstatus == 2" (click)="editAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
-    
+      <a *ngIf="modalstatus == 1" (click)="addAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Maak aan</a>
+      <a *ngIf="modalstatus == 2" (click)="editAction()" class="modal-action modal-close waves-effect waves-green btn-flat ">Sla op</a>
 
-        <div class="left" *ngIf="modalstatus == 2">
-            <br>
-            <a (click)="moveToArchive('action')" class="btn left waves-effect orange">Verplaats naar Archief</a>
-            <br>
-            <a (click)="removeAction()" class="btn left waves-effect red">Verwijder actie</a>
-          </div>
+
+      <div class="left" *ngIf="modalstatus == 2">
+        <br>
+        <a (click)="moveToArchive('action')" class="btn left waves-effect orange">Verplaats naar Archief</a>
+        <br>
+        <a (click)="removeAction()" class="btn left waves-effect red">Verwijder actie</a>
       </div>
+    </div>
   </div>
 </div>
 
@@ -290,7 +353,7 @@
 
   <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-    <form class="col s12" method="post">
+    <form class="col s12">
       <div class='row'>
         <div class='col s12'>
         </div>
@@ -309,7 +372,7 @@
       <br />
 
       <div class='row'>
-        <button (click)="logIn()" type='submit' name='btn_login' class='center col s12 btn btn-large waves-effect indigo'>Login</button>
+        <button (click)="logIn()" type="button" name='btn_login' class='center col s12 btn btn-large waves-effect indigo'>Login</button>
       </div>
       <br>
       <br>

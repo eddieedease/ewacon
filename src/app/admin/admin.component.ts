@@ -53,6 +53,11 @@ export class AdminComponent implements OnInit {
 
   teams = [];
 
+  // arcadecabinetsID input
+  arcadeId;
+  arcadeIdNumber = 100;
+  arcadesIdPossible = [];
+
   // modalstatus for keeping in check what to do with modals
   // [1] = new item  [2] = edit
   // does account for the arcades modal + the action
@@ -60,9 +65,9 @@ export class AdminComponent implements OnInit {
 
   // vars for editing view
 
-    // Keeping track of curent selected/editted object Id & Name
-    currentId;
-    currentName;
+  // Keeping track of curent selected/editted object Id & Name
+  currentId;
+  currentName;
 
   arcadeName;
   arcadeStatus = 1;
@@ -73,13 +78,15 @@ export class AdminComponent implements OnInit {
   arcadeDateEnd;
 
   currentActionId;
-  currentcurrentActionName;
+  currentActionName;
   actionName;
   actionStart;
   actionEnd;
   actionStatus = 1;
 
-  arcadeLinkedAction ;
+  arcadeLinkedAction;
+
+  actionArcadeNamesArray = [];
 
 
   team1Name;
@@ -105,6 +112,18 @@ export class AdminComponent implements OnInit {
   constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
 
   ngOnInit() {
+
+
+    
+
+    for (let index = 1; index < this.arcadeIdNumber; index++) {
+      const obj = {
+        idNumber: index
+      };
+      this.arcadesIdPossible.push(obj);
+
+    }
+
 
     // check if loggedin is active for tabs
     if (this.serser.loggedin === true) {
@@ -137,18 +156,18 @@ export class AdminComponent implements OnInit {
 
   }
 
-    // below not more nessy
-/*     // toggle for arcade Online OffLine
-  setOnOff(id: any): void {
-    console.log(id);
-    this.arcadeStatus = id;
-  }
+  // below not more nessy
+  /*     // toggle for arcade Online OffLine
+    setOnOff(id: any): void {
+      console.log(id);
+      this.arcadeStatus = id;
+    }
 
-    // toggle for actions Active/Notactive
-  setActiveNotActive(id: any): void {
-    console.log(id);
-    this.actionStatus = id;
-  } */
+      // toggle for actions Active/Notactive
+    setActiveNotActive(id: any): void {
+      console.log(id);
+      this.actionStatus = id;
+    } */
 
 
   openAddModal() {
@@ -157,6 +176,7 @@ export class AdminComponent implements OnInit {
 
     this.arcadeName = '';
     this.arcadeStatus = 1;
+    this.arcadeId = 1;
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
@@ -164,6 +184,7 @@ export class AdminComponent implements OnInit {
 
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
+    
 
     this.modalTitle = 'Maak een nieuwe arcade aan';
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
@@ -187,7 +208,7 @@ export class AdminComponent implements OnInit {
 
     // asign teams
     for (let index = 0; index < this.teams.length; index++) {
-      if (this.teams[index].linkid === this.currentName ) {
+      if (this.teams[index].linkid === this.currentName) {
         this.serser.debugLog('Found teamnames!');
         this.team1Name = this.teams[index].team1name;
         this.team2Name = this.teams[index].team2name;
@@ -206,6 +227,7 @@ export class AdminComponent implements OnInit {
 
     for (let i = 0; i < this.rows.length; i++) {
       if (this.rows[i].id === _whichId) {
+        this.arcadeId = this.rows[i].arcadeid;
         this.arcadeName = this.rows[i].name;
         this.arcadeStatus = this.rows[i].status;
         this.arcadeLocation = this.rows[i].location;
@@ -213,7 +235,7 @@ export class AdminComponent implements OnInit {
         this.arcadeTeamsTot = this.rows[i].teamstot;
         this.arcadeDatePlaced = this.rows[i].dateplaced;
         this.arcadeDateEnd = this.rows[i].dateend;
-        this.arcadeLinkedAction =  this.rows[i].actionlink;
+        this.arcadeLinkedAction = this.rows[i].actionlink;
         this.serser.debugLog(this.arcadeLinkedAction);
       }
     }
@@ -234,7 +256,7 @@ export class AdminComponent implements OnInit {
     this.serser.debugLog(this.arcadeLinkedAction);
     if (this.arcadeName !== '') {
       // tslint:disable-next-line:max-line-length
-      this.serser.editExisting(this.currentId, this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+      this.serser.editExisting(this.currentId, this.arcadeId, this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
     }
@@ -255,10 +277,11 @@ export class AdminComponent implements OnInit {
   }
 
   openEditActionModal(_whichId, _whichname) {
+    this.actionArcadeNamesArray = [];
     this.modalstatus = 2;
     this.currentActionId = _whichId;
-    this.currentcurrentActionName = _whichname;
-    this.serser.debugLog('Edit  ' + _whichId  + '  ' +_whichname);
+    this.currentActionName = _whichname;
+    this.serser.debugLog('Edit  ' + _whichId + '  ' + _whichname);
     for (let i = 0; i < this.rowsActions.length; i++) {
       if (this.rowsActions[i].id === _whichId) {
         this.actionName = this.rowsActions[i].actionname;
@@ -266,6 +289,13 @@ export class AdminComponent implements OnInit {
         this.actionStart = this.rowsActions[i].datestart;
         this.actionEnd = this.rowsActions[i].dateend;
       }
+    }
+
+    for (let b = 0; b < this.rows.length; b++) {
+      if (this.rows[b].actionlink === this.currentActionId) {
+        this.actionArcadeNamesArray.push(this.rows[b].name);
+      }
+      
     }
 
     $('#modal3').modal('open');
@@ -305,7 +335,7 @@ export class AdminComponent implements OnInit {
     // name must not be empty
     if (this.arcadeName !== '') {
       // tslint:disable-next-line:max-line-length
-      this.serser.insertNew(this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
+      this.serser.insertNew(this.arcadeId, this.arcadeName, this.arcadeStatus, this.arcadeLinkedAction, this.arcadeLocation, this.arcadeLongLat, this.arcadeTeamsTot, this.arcadeDatePlaced, this.arcadeDateEnd).subscribe(value => this.arcadeCreated(value));
     } else {
       // TOAST: NAME MAY NOT BE EMPTY!
     }
@@ -322,7 +352,7 @@ export class AdminComponent implements OnInit {
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
-    this.toastr.success(' :) ', 'Arcade aangemaakt');
+    this.toastr.success(' :) ', 'Arcade verwerkt');
   }
 
 
@@ -338,9 +368,9 @@ export class AdminComponent implements OnInit {
   }
 
   gotDeleteCall(_event) {
-   this.serser.debugLog(_event);
-   this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
-   this.toastr.success(' :) ', 'Arcade is verwijderd');
+    this.serser.debugLog(_event);
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+    this.toastr.success(' :) ', 'Arcade is verwijderd');
   }
 
   removeAction() {
@@ -356,7 +386,7 @@ export class AdminComponent implements OnInit {
   changeTeamNames() {
     // tslint:disable-next-line:max-line-length
     const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name];
-    this.serser.editTeamNames(this.currentName, titleArray ).subscribe(value => this.teamNamesChanged(value));
+    this.serser.editTeamNames(this.currentName, titleArray).subscribe(value => this.teamNamesChanged(value));
   }
 
   teamNamesChanged(_event) {
@@ -371,9 +401,9 @@ export class AdminComponent implements OnInit {
   moveToArchive(_movewhat) {
     this.toastr.warning('', 'Archief werkt nog niet :(');
   }
-  
-   // Archiving functionality
-   debugActionChange(_movewhat) {
+
+  // Archiving functionality
+  debugActionChange(_movewhat) {
     this.serser.debugLog(_movewhat);
   }
 
