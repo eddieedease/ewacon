@@ -200,6 +200,8 @@ export class SiteComponent implements OnInit {
       if (this.teams[index].linkid === this.currentArcadeName){
         this.currentTeams = this.teams[index];
         this.serser.debugLog(this.currentTeams);
+        // Allright nice, now we have the teams... but... we need the right order, so sort on teamtot;
+        
       }
     }
 
@@ -207,15 +209,30 @@ export class SiteComponent implements OnInit {
       if (this.highScores[i].linkid === this.currentArcadeName) {
         this.currentHighScores = this.highScores[i];
         this.serser.debugLog(this.currentHighScores);
+
+        
+
+
       }
     }
+
+    
 
     this.serser.debugLog('Selected Arcade is ' + this.currentArcadeName + '  with ID: ' + this.currentArcadeId);
     $('#modal1').modal('open');
   }
 
 
-
+  // compare teamscores
+   compareTeams(a, b) {
+    if (a.last_nom < b.last_nom) {
+      return -1;
+    } else if (a.last_nom > b.last_nom){
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
 
 

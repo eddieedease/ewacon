@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 06, 2017 at 09:46 AM
+-- Generation Time: Dec 13, 2017 at 10:53 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -32,16 +32,7 @@ CREATE TABLE `actions` (
   `datestart` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `inuse` int(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `actions`
---
-
-INSERT INTO `actions` (`id`, `actionname`, `datestart`, `dateend`, `inuse`) VALUES
-(2, 'Actieee ', '', '', 1),
-(3, 'Actieee 2', '', '', 1),
-(4, 'asdfasw', '2017-12-29', '', 1);
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -51,8 +42,10 @@ INSERT INTO `actions` (`id`, `actionname`, `datestart`, `dateend`, `inuse`) VALU
 
 CREATE TABLE `arcades` (
 `id` int(100) NOT NULL,
+  `arcadeid` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `status` int(100) NOT NULL,
+  `actionlink` int(11) NOT NULL,
   `location` varchar(100) NOT NULL,
   `longlat` varchar(100) NOT NULL,
   `phonetot` int(100) NOT NULL,
@@ -61,20 +54,14 @@ CREATE TABLE `arcades` (
   `dateplaced` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `lastused` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `arcades`
 --
 
-INSERT INTO `arcades` (`id`, `name`, `status`, `location`, `longlat`, `phonetot`, `phonefailed`, `teamstot`, `dateplaced`, `dateend`, `lastused`) VALUES
-(11, 'Klokgebouw', 2, 'Klokgebouw', '51.448929, 5.457522', 12, 2, 2, '2017-12-08', '2017-12-28', '2017-12-05 09:31:40'),
-(13, 'Kast Yeihais', 2, 'error', '3', 0, 0, 2, '2017-12-08', '2017-12-04', '2017-12-05 09:36:27'),
-(15, 'sdfsdfsdfsdfsdfsfsdf', 2, 'sdfs', '', 0, 0, 0, '', '', '2017-12-05 09:36:38'),
-(17, 'Tanne', 2, 'test', 'undefined', 0, 0, 3, '2017-12-09', '2017-12-16', '2017-12-04 20:31:08'),
-(18, 'Kast Timmy', 2, 'Eindhovuhhh', '51.433100, 5.432181', 0, 0, 4, '2017-12-16', '2017-12-29', '2017-12-05 08:49:26'),
-(19, 'Afgebouwd 20-12 112', 1, 'sdfds', '3', 0, 0, 2, '2017-12-08', '2017-12-04', '2017-12-05 10:03:17'),
-(20, 'saf', 1, '', '', 0, 0, 0, '', '', '2017-12-06 08:36:59');
+INSERT INTO `arcades` (`id`, `arcadeid`, `name`, `status`, `actionlink`, `location`, `longlat`, `phonetot`, `phonefailed`, `teamstot`, `dateplaced`, `dateend`, `lastused`) VALUES
+(15, 4, 'Nieuwe kast', 2, 7, 'Station Eindhoven', '51.450748, 5.456750', 0, 0, 10, '2017-12-14', '2017-12-22', '2017-12-13 21:16:17');
 
 -- --------------------------------------------------------
 
@@ -123,13 +110,7 @@ CREATE TABLE `highscores` (
 --
 
 INSERT INTO `highscores` (`linkid`, `game1`, `game2`, `game3`, `game4`, `game5`, `game6`) VALUES
-('Kast Timmy', '', '', '', '', '', ''),
-('Kast Yeihais', '', '', '', '', '', ''),
-('Klokgebouw', '', '', '', '', '', ''),
-('saf', '', '', '', '', '', ''),
-('sdfs', '', '', '', '', '', ''),
-('Tanne', '', '', '', '', '', ''),
-('yoo', '', '', '', '', '', '');
+('Nieuwe kast', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -168,13 +149,7 @@ CREATE TABLE `teams` (
 --
 
 INSERT INTO `teams` (`linkid`, `team1name`, `team1tot`, `team2name`, `team2tot`, `team3name`, `team3tot`, `team4name`, `team4tot`, `team5name`, `team5tot`, `team6name`, `team6tot`, `team7name`, `team7tot`, `team8name`, `team8tot`, `team9name`, `team9tot`, `team10name`, `team10tot`, `team11name`, `team11tot`) VALUES
-('Kast Timmy', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('Kast Yeihais', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('Klokgebouw', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('saf', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('sdfs', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('Tanne', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0),
-('yoo', '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0, '', 0);
+('Nieuwe kast', 'team1naam', 50, 'team2naam', 4, 'team3naam', 45, 'team4naam', 4, 'asdfasfdawerwa', 34, 'asfwafewfwefawefw', 6, 'sdbfvbs', 5, '', 9, 'werwerw', 5, 'ertert', 85, '', 44);
 
 --
 -- Indexes for dumped tables
@@ -196,7 +171,7 @@ ALTER TABLE `arcades`
 -- Indexes for table `highscores`
 --
 ALTER TABLE `highscores`
- ADD PRIMARY KEY (`linkid`);
+ ADD PRIMARY KEY (`linkid`), ADD UNIQUE KEY `linkid` (`linkid`);
 
 --
 -- Indexes for table `teams`
@@ -212,12 +187,12 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `arcades`
 --
 ALTER TABLE `arcades`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

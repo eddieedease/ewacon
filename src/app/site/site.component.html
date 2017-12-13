@@ -1,122 +1,229 @@
 <!-- Modal for Arcade -->
-<div id="modal1" style="width:90% !important" class="modal">
+<div id="modal1" style="width:98% !important; max-height:80% !important; top:5% !important" class="modal">
   <div class="modal-content">
     <p>Arcade</p>
     <h4>{{currentArcadeName}}</h4>
 
-    <div class="row" >
+    <div class="row">
       <div class="divider"></div>
       <div class="section">
-        <p>Totaal ingezamelde telefoons: <b>{{currentphoneTot}}</b></p>
+        <p>Totaal ingezamelde telefoons:
+          <b>{{currentphoneTot}}</b>
+        </p>
       </div>
       <div class="divider"></div>
 
+      <div class="col s12 l4">
+        <ul class="collection">
 
-      <div class="col s12 l4"></div>
-      <div class="col s12 l4"><ul class="collection">
-          <li class="collection-item avatar">
-              <i class="material-icons circle amber">looks_one</i>
+          <li *ngIf="currentTeamTot > 0" class="collection-item avatar">
+            <i class="material-icons circle amber">looks_one</i>
             <span class="title">Team</span>
             <p>Ingezamelde telefoons:
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
           </li>
-          <li class="collection-item avatar">
+
+          <li *ngIf="currentTeamTot > 1" class="collection-item avatar">
             <i class="material-icons circle grey">looks_two</i>
             <span class="title">Team</span>
             <p>Ingezamelde telefoons:
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
           </li>
-          <li class="collection-item avatar">
-              <i class="material-icons circle brown lighten-3">looks_3</i>
+
+          <li *ngIf="currentTeamTot > 2" class="collection-item avatar">
+            <i class="material-icons circle lime darken-4">looks_3</i>
             <span class="title">Team</span>
             <p>Ingezamelde telefoons:
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
           </li>
-        </ul></div>
-      <div class="col s12 l4"></div>
+
+
+          <li *ngIf="currentTeamTot > 3" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-4">looks_4</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+          <li *ngIf="currentTeamTot > 4" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-4">looks_5</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+          <li *ngIf="currentTeamTot > 5" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+
+
+          <li *ngIf="currentTeamTot > 6" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+          <li *ngIf="currentTeamTot > 7" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+          <li *ngIf="currentTeamTot > 8" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+          <li *ngIf="currentTeamTot > 9" class="collection-item avatar">
+            <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
+            <span class="title">Team</span>
+            <p>Ingezamelde telefoons:
+            </p>
+            <a href="#!" class="secondary-content">
+              <i class="material-icons">grade</i>
+            </a>
+          </li>
+
+
+
+
+
+
+
+
+
+        </ul>
       </div>
+      <div class="col s12 l8">
+        <div class="row">
+          <div class="col s12 l6">
+            <div class="divider"></div>
+            <ul class="collection with-header">
+              <li class="collection-header">
+                <h4>Spel 1</h4>
+                <img class="responsive-img" src="assets/game1.jpg">
+              </li>
+              <li class="collection-item">
+                <b># 1:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 2:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 3:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 4:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 5:</b> Eddie</li>
+            </ul>
+          </div>
+          <div class="col s12 l6">
+            <ul class="collection with-header">
+              <li class="collection-header">
+                <h4>Spel 2</h4>
+                <img class="responsive-img" src="assets/game2.jpg">
+              </li>
+              <li class="collection-item">
+                <b># 1:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 2:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 3:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 4:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 5:</b> Eddie</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col s12 l6">
+            <ul class="collection with-header">
+              <li class="collection-header">
+                <h4>Spel 3</h4>
+                <img class="responsive-img" src="assets/game3.jpg">
+              </li>
+              <li class="collection-item">
+                <b># 1:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 2:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 3:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 4:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 5:</b> Eddie</li>
+            </ul>
+          </div>
+          <div class="col s12 l6">
+            <ul class="collection with-header">
+              <li class="collection-header">
+                <h4>Spel 4</h4>
+                <img class="responsive-img" src="assets/game4.jpg">
+              </li>
+              <li class="collection-item">
+                <b># 1:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 2:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 3:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 4:</b> Eddie</li>
+              <li class="collection-item">
+                <b># 5:</b> Eddie</li>
+            </ul>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="divider"></div>
+
+    <div class="row">
+
       
-
-        <div class="divider"></div>
-
-        <div class="row" >
-
-      <div class="col s12 l3">
-        <div class="divider"></div>
-        <ul class="collection with-header">
-          <li class="collection-header">
-            <h4>Spel 1</h4>
-            <img class="responsive-img" src="assets/game1.jpg">
-          </li>
-          <li class="collection-item">
-            <b># 1:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 2:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 3:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 4:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 5:</b> Eddie</li>
-        </ul>
-      </div>
-      <div class="col s12 l3">
-        <ul class="collection with-header">
-          <li class="collection-header">
-            <h4>Spel 2</h4>
-            <img class="responsive-img" src="assets/game2.jpg">
-          </li>
-          <li class="collection-item">
-            <b># 1:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 2:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 3:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 4:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 5:</b> Eddie</li>
-        </ul>
-      </div>
-      <div class="col s12 l3">
-        <ul class="collection with-header">
-          <li class="collection-header">
-            <h4>Spel 3</h4>
-            <img class="responsive-img" src="assets/game3.jpg">
-          </li>
-          <li class="collection-item">
-            <b># 1:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 2:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 3:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 4:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 5:</b> Eddie</li>
-        </ul>
-      </div>
-      <div class="col s12 l3">
-        <ul class="collection with-header">
-          <li class="collection-header">
-            <h4>Spel 4</h4>
-            <img class="responsive-img" src="assets/game4.jpg">
-          </li>
-          <li class="collection-item">
-            <b># 1:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 2:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 3:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 4:</b> Eddie</li>
-          <li class="collection-item">
-            <b># 5:</b> Eddie</li>
-        </ul>
-      </div>
 
 
     </div>
@@ -134,7 +241,7 @@
       <div class="col s12 m4">
         <div class="card blue-grey darken-1" style="border-radius: 15px 50px !important">
           <div class="card-content white-text">
-              <img class="responsive-img" style="border-radius: 25px;" src="assets/fillimg.png">
+            <img class="responsive-img" style="border-radius: 25px;" src="assets/fillimg.png">
             <span class="card-title">Totaal:</span>
             <i class="right material-icons small">smartphone</i>
             <h6>{{allPhones}}</h6>
@@ -186,7 +293,9 @@
 
       <div class="card teal">
         <div class="card-content">
-          <span class="card-title center white-text"><b>Arcades</b></span>
+          <span class="card-title center white-text">
+            <b>Arcades</b>
+          </span>
 
 
 
@@ -285,7 +394,7 @@
 
 
 
-   <!--  <div class="col s12 m12">
+    <!--  <div class="col s12 m12">
 
       <div class="card  teal accent-4">
         <div class="card-content">
@@ -341,7 +450,7 @@
 
   </div>
   <div class="col s12 m4 l4">
-    
+
     <h6>Op de kaart</h6>
     <div class="input-field">
       <select>
