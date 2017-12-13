@@ -63,12 +63,18 @@ export class SiteComponent implements OnInit {
   actions = [];
 
   highScores = [];
+
+
   teams = [];
 
   check = 'whut';
 
   currentArcadeId;
   currentArcadeName;
+  currentphoneTot;
+  currentTeams;
+  currentHighScores;
+  currentTeamTot;
 
   dataLoaded = false;
 
@@ -117,15 +123,14 @@ export class SiteComponent implements OnInit {
 
   gotgetAllCall(_value) {
     this.serser.debugLog(_value[1]);
-
     this.arcadess = _value[1];
-    //this.rows = _value[1];
+
+
     for (let a = 0; a < this.arcadess.length; a++) {
       if (this.arcadess[a].status === '2') {
         const activeArcade = this.arcadess[a];
         this.rows.push(activeArcade);
       }
-
     }
 
 
@@ -133,7 +138,7 @@ export class SiteComponent implements OnInit {
     this.dataLoaded = true;
 
     this.actionss = _value[0];
-    this.highScores = _value[1];
+    this.highScores = _value[3];
     this.teams = _value[4];
 
 
@@ -156,22 +161,54 @@ export class SiteComponent implements OnInit {
   }
 
   /**
-   * 
+   * The filter arcades when clicked on action
    */
-  filterOnRows(_filteraction) {
+  filterOnRows(_whichaction) {
+    this.serser.debugLog('Filtering rows for:  ' + _whichaction);
+    this.rows = [];
+    for (let a = 0; a < this.arcadess.length; a++) {
+      if (this.arcadess[a].status === '2' && this.arcadess[a].actionlink === _whichaction) {
+        this.serser.debugLog('arcade added');
+        const activeArcade = this.arcadess[a];
+        this.rows.push(activeArcade);
+      }
 
+    }
   }
 
 
 
-  // filter the arcades
-  // TODO: implement
+  /**
+   * Select event handler when clicking on an arcade from the list
+   *
+   */
   onSelect(_event) {
-    this.serser.debugLog(_event.selected[0]);
+    // this.serser.debugLog(_event.selected[0]);
 
     // set current arcadeid + name
     this.currentArcadeId = _event.selected[0].id;
     this.currentArcadeName = _event.selected[0].name;
+    this.currentphoneTot = _event.selected[0].phonetot;
+    this.currentTeamTot = _event.selected[0].teamstot;
+
+
+    // get current teams & current highscores
+    // look up by arcadename
+
+      // teams
+    for (let index = 0; index < this.teams.length; index++) {
+      if (this.teams[index].linkid === this.currentArcadeName){
+        this.currentTeams = this.teams[index];
+        this.serser.debugLog(this.currentTeams);
+      }
+    }
+
+    for (let i = 0; i < this.highScores.length; i++) {
+      if (this.highScores[i].linkid === this.currentArcadeName) {
+        this.currentHighScores = this.highScores[i];
+        this.serser.debugLog(this.currentHighScores);
+      }
+    }
 
     this.serser.debugLog('Selected Arcade is ' + this.currentArcadeName + '  with ID: ' + this.currentArcadeId);
     $('#modal1').modal('open');
@@ -192,7 +229,7 @@ export class SiteComponent implements OnInit {
     const whichDir = event.newValue;
     this.serser.debugLog('dir is' + whichDir);
     let magicw;
-
+    
     switch (event.column.name) {
       case 'Titel':
         magicw = 'name';
