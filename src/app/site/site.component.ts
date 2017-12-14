@@ -72,7 +72,12 @@ export class SiteComponent implements OnInit {
   currentArcadeId;
   currentArcadeName;
   currentphoneTot;
+  
+  // current teams, not sorted
+  currentTeamss;
+  // current teams, sorted
   currentTeams;
+  
   currentHighScores;
   currentTeamTot;
 
@@ -146,6 +151,21 @@ export class SiteComponent implements OnInit {
     for (let i = 0; i < this.actionss.length; i++) {
       if (this.actionss[i].inuse === '2') {
         const actionobject = this.actionss[i];
+        
+         // TODO: Need the sum of all active arcades within this action
+        let sumOfAction = 0;
+
+        // search in all the arcades with matching actionlink
+        this.arcadess.forEach(element => {
+          if (element.actionlink === this.actionss[i].id) {
+              console.log('YESSSSSSSSSS');
+              sumOfAction = sumOfAction + parseInt(element.phonetot, 10);
+          }
+        });
+
+        actionobject.sum = sumOfAction;
+
+         // after object is created --> do this
         this.actions.push(actionobject);
       }
     }
@@ -168,7 +188,6 @@ export class SiteComponent implements OnInit {
     this.rows = [];
     for (let a = 0; a < this.arcadess.length; a++) {
       if (this.arcadess[a].status === '2' && this.arcadess[a].actionlink === _whichaction) {
-        this.serser.debugLog('arcade added');
         const activeArcade = this.arcadess[a];
         this.rows.push(activeArcade);
       }
@@ -197,21 +216,53 @@ export class SiteComponent implements OnInit {
 
       // teams
     for (let index = 0; index < this.teams.length; index++) {
-      if (this.teams[index].linkid === this.currentArcadeName){
-        this.currentTeams = this.teams[index];
-        this.serser.debugLog(this.currentTeams);
-        // Allright nice, now we have the teams... but... we need the right order, so sort on teamtot;
-        
+      if (this.teams[index].linkid === this.currentArcadeName) {
+        this.currentTeamss = this.teams[index];
+        this.serser.debugLog(this.currentTeamss);
+        // Allright nice, now we have the teams... but... we need the right order
+
+
       }
     }
+
+    console.log(this.currentTeamss.team1name);
+    // sorting of the teams on phonetot
+    // first make array of objects, then SORT on phonetot, hella yea beautifull object
+    this.currentTeams = [
+      {name: this.currentTeamss.team1name , phonetot: this.currentTeamss.team1tot},
+      {name: this.currentTeamss.team2name , phonetot: this.currentTeamss.team2tot},
+      {name: this.currentTeamss.team3name , phonetot: this.currentTeamss.team3tot},
+      {name: this.currentTeamss.team4name , phonetot: this.currentTeamss.team4tot},
+      {name: this.currentTeamss.team5name , phonetot: this.currentTeamss.team5tot},
+      {name: this.currentTeamss.team6name , phonetot: this.currentTeamss.team6tot},
+      {name: this.currentTeamss.team7name , phonetot: this.currentTeamss.team7tot},
+      {name: this.currentTeamss.team8name , phonetot: this.currentTeamss.team8tot},
+      {name: this.currentTeamss.team9name , phonetot: this.currentTeamss.team9tot},
+      {name: this.currentTeamss.team10name , phonetot: this.currentTeamss.team10tot},
+    ]
+
+    // Actual sorting of highest score
+    this.currentTeams.sort(function(obj1, obj2) {
+      // Ascending: first age less than the previous
+      return obj1.phonetot - obj2.phonetot;
+    });
+
+    this.currentTeams.reverse();
+
+    // test it
+    this.serser.debugLog(this.currentTeams);
+
+    
+
+
+
+
+
 
     for (let i = 0; i < this.highScores.length; i++) {
       if (this.highScores[i].linkid === this.currentArcadeName) {
         this.currentHighScores = this.highScores[i];
         this.serser.debugLog(this.currentHighScores);
-
-        
-
 
       }
     }

@@ -62,8 +62,8 @@
             <p>
               <b>Aantal teams</b>
             </p>
-            <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" id="location" type="text" class="validate">
-            <label for="location"></label>
+            <input [(ngModel)]="arcadeTeamsTot" [ngModelOptions]="{standalone: true}" type="text" class="validate">
+            <label></label>
           </div>
         </div>
         <div class="row">
@@ -282,8 +282,8 @@
         <p>
           <b>Actie naam</b>
         </p>
-        <input [(ngModel)]="actionName" [ngModelOptions]="{standalone: true}" id="title" type="text" class="validate">
-        <label for="title"></label>
+        <input [(ngModel)]="actionName" [ngModelOptions]="{standalone: true}" id="title2" type="text" class="validate">
+        <label for="title2"></label>
       </div>
 
       <div class="col s6">
@@ -340,13 +340,6 @@
 
 
 
-
-
-
-<div class="section"></div>
-
-
-
 <div *ngIf="!loggedin" class="container center">
 
 
@@ -381,7 +374,7 @@
     </form>
   </div>
 </div>
-
+<div class="section"></div>
 <div *ngIf="loggedin" class="container-fluid">
 
   <div class="row">

@@ -16,107 +16,81 @@
       <div class="col s12 l4">
         <ul class="collection">
 
+            <nav *ngIf="currentTeamTot > 0">
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo center">Teams</a>
+                </div>
+              </nav>
+
           <li *ngIf="currentTeamTot > 0" class="collection-item avatar">
             <i class="material-icons circle amber">looks_one</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[0].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[0].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 1" class="collection-item avatar">
             <i class="material-icons circle grey">looks_two</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[1].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[1].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 2" class="collection-item avatar">
             <i class="material-icons circle lime darken-4">looks_3</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[2].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[2].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
 
           <li *ngIf="currentTeamTot > 3" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-4">looks_4</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[3].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[3].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 4" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-4">looks_5</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[4].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[4].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 5" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[5].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[5].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
-
-
 
           <li *ngIf="currentTeamTot > 6" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[6].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[6].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 7" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[7].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[7].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 8" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[8].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[8].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
           <li *ngIf="currentTeamTot > 9" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
-            <span class="title">Team</span>
-            <p>Ingezamelde telefoons:
+            <span class="title">{{currentTeams[9].name}}</span>
+            <p>Ingezamelde telefoons: <b>{{currentTeams[9].phonetot}}</b>
             </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
           </li>
 
 
@@ -223,7 +197,7 @@
 
     <div class="row">
 
-      
+
 
 
     </div>
@@ -261,9 +235,10 @@
 
       </div>
       <div class="col s12 m8">
-        <h6>Actieve races:</h6>
+        <div *ngIf="actions.length > 0">
+        <h5 >Actieve races:</h5>
+        <p>Klik op een racenaam om deze te filteren uit de lijst met arcades.</p>
         <ul class="collection">
-
           <li *ngFor="let action of actions" class="collection-item avatar">
             <a (click)="filterOnRows(action.id)" style="cursor:pointer">
               <i class="small material-icons circle  green">insert_chart</i>
@@ -271,18 +246,13 @@
                 <span class="title">{{action.actionname}}</span>
               </b>
             </a>
-            <p>Aantal telefoons: {{moetnog}}
+            <p>Aantal telefoons: {{action.sum}}
               <br>
               <a>Filter dit</a>
-            </p>1
-            <a class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
-
+            </p>
           </li>
-
-
         </ul>
+      </div>
       </div>
 
 
@@ -290,72 +260,47 @@
     </div>
 
     <div class="col s12 m12">
-
       <div class="card teal">
         <div class="card-content">
           <span class="card-title center white-text">
             <b>Arcades</b>
           </span>
-
-
-
           <div class="row">
-
-
-
-
-
-
-
-
-
 
             <ngx-datatable #table class='material striped' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
               [limit]="10" [rows]='rows' [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)">
 
-
-
               <ngx-datatable-column name="Titel" [sortable]="true">
-
                 <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
                   <span (click)="sort()" style="cursor:pointer">
                     {{column.name}}
                   </span>
                 </ng-template>
-
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   <div [innerHTML]="row['name']"></div>
                 </ng-template>
               </ngx-datatable-column>
 
               <ngx-datatable-column name="Aantal" [sortable]="true">
-
                 <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
                   <span (click)="sort()" style="cursor:pointer">
                     {{column.name}}
                   </span>
                 </ng-template>
-
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   {{row.phonetot}}
                 </ng-template>
-
               </ngx-datatable-column>
 
-
-
               <ngx-datatable-column name="Locatie">
-
                 <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
                   <span (click)="sort()" style="cursor:pointer">
                     {{column.name}}
                   </span>
                 </ng-template>
-
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   {{row.location}}
                 </ng-template>
-
               </ngx-datatable-column>
 
 
