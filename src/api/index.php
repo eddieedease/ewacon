@@ -20,10 +20,10 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 // Access-Control headers are received during OPTIONS requests
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-			        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+				        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 	
 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-			        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+				        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
 }
 
 
@@ -47,8 +47,8 @@ $app->get('/api/getall', function (Request $request, Response $response) {
 	include 'db.php';
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	// 	NOTE 5 pieces --> [0] actions [1] arcades [2] archive [3] highscores [4] teams
-	// 	a query get all the correct records from the gemeenten table
-	$sqlactions = 'SELECT * FROM actions';
+		// 	a query get all the correct records from the gemeenten table
+		$sqlactions = 'SELECT * FROM actions';
 	$stmtactions = $dbh->prepare($sqlactions);
 	$stmtactions->execute();
 	$resultactions = $stmtactions->fetchAll(PDO::FETCH_ASSOC);
@@ -74,11 +74,11 @@ $app->get('/api/getall', function (Request $request, Response $response) {
 	$resultteams = $stmtteams->fetchAll(PDO::FETCH_ASSOC);
 	
 	// 	NOTE colleting everything for converting
-	$result = array();
+		$result = array();
 	array_push($result, $resultactions, $resultarcades, $resultarchive, $resulthighscores, $resultteams);
 	
 	// 	convert it all to jSON TODO change result
-	$response = json_encode($result);
+		$response = json_encode($result);
 	return $response;
 }
 );
@@ -86,14 +86,15 @@ $app->get('/api/getall', function (Request $request, Response $response) {
 
 
 
+
 /**
- * Insert New Arcade 
+* Insert New Arcade 
  * NOTE: Tested and works
  */
 $app->get('/insert', function (Request $request, Response $response) {
 	include 'db.php';
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-
+	
 	$paramarcadeid= $request->getQueryParam('arcadeid', $default = null);
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
@@ -108,19 +109,19 @@ $app->get('/insert', function (Request $request, Response $response) {
 	$sql = "INSERT INTO arcades (arcadeid,name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramarcadeid','$paramname','$paramstatus','$paramactionlink','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
 	
 	// 	use prepared statements, even if not strictly required is good practice
-	$stmt = $dbh->prepare($sql);
+		$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
 	
 	// 	another call for making the teams database row
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql2 = "INSERT INTO teams (linkid) VALUES ('$paramname')";
 	$stmt2 = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmt2->execute();
 	
 	// 	another call for making the highscores database row
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
 	$stmt3 = $dbh->prepare($sql3);
 	$dbh = null;
@@ -138,8 +139,9 @@ $app->get('/insert', function (Request $request, Response $response) {
 
 
 
+
 /** 
- * Edit existing Arcade 
+* Edit existing Arcade 
  * NOTE: Not tested
 */
 $app->get('/edit/{id}', function (Request $request, Response $response) {
@@ -148,7 +150,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	
 	$id = $request->getAttribute('id');
-
+	
 	$paramarcadeid= $request->getQueryParam('arcadeid', $default = null);
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paramstatus= $request->getQueryParam('status', $default = null);
@@ -160,10 +162,10 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
 	// 	edit query
-	$sql = "UPDATE arcades SET arcadeid = '$paramarcadeid', name = '$paramname', status = '$paramstatus', actionlink = '$paramactionlink',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
+		$sql = "UPDATE arcades SET arcadeid = '$paramarcadeid', name = '$paramname', status = '$paramstatus', actionlink = '$paramactionlink',location ='$paramlocation',longlat ='$paramlonglat' ,teamstot ='$paramteamstot' ,dateplaced ='$paramdateplaced' ,dateend ='$paramdateend' WHERE id = '$id'";
 	$stmt = $dbh->prepare($sql);
 	// 	execute the query
-	$dbh = null;
+		$dbh = null;
 	$stmt->execute();
 	
 	$data = array('Jsonresponse' => 'Edit', 'success' => true);
@@ -175,18 +177,19 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 
 
 
+
 /** 
-* Delete  Arcade with ID
+Delete  Arcade with ID
  * NOTE: Not tested
 */
 $app->get('/delete/{id}/{name}', function (Request $request, Response $response) {
 	// 	set up the connection variables
-	include 'db.php';
+		include 'db.php';
 	
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$id = $request->getAttribute('id');
 	$name = $request->getAttribute('name');
-
+	
 	$sql = "DELETE FROM arcades WHERE id = '$id'";
 	$stmt = $dbh->prepare($sql);
 	$dbh = null;
@@ -213,8 +216,9 @@ $app->get('/delete/{id}/{name}', function (Request $request, Response $response)
 
 
 
+
 /** 
- * Delete  Arcade with ID
+* Delete  Arcade with ID
  * NOTE: Not tested
 */
 $app->get('/deleteaction/{id}', function (Request $request, Response $response) {
@@ -237,7 +241,7 @@ $app->get('/deleteaction/{id}', function (Request $request, Response $response) 
 $app->get('/insertaction', function (Request $request, Response $response) {
 	include 'db.php';
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-
+	
 	$paramname= $request->getQueryParam('name', $default = null);
 	$paraminuse= $request->getQueryParam('inuse', $default = null);
 	$paramdatestart = $request->getQueryParam('datestart', $default = null);
@@ -257,9 +261,9 @@ $app->get('/insertaction', function (Request $request, Response $response) {
 
 $app->get('/editaction/{id}', function (Request $request, Response $response) {
 	// 	set up the connection variables
-	include 'db.php';
+		include 'db.php';
 	// 	connect to the database
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	
 	$id = $request->getAttribute('id');
 	$paramname= $request->getQueryParam('name', $default = null);
@@ -268,11 +272,11 @@ $app->get('/editaction/{id}', function (Request $request, Response $response) {
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
 	$sql = "UPDATE actions SET actionname = '$paramname', datestart = '$paramdatestart',dateend ='$paramdateend', inuse ='$paraminuse' WHERE id = '$id'";
-
+	
 	$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
-
+	
 	$data = array('Jsonresponse' => 'Edit the action', 'success' => true);
 	$response = json_encode($data);
 	return $response;
@@ -283,9 +287,9 @@ $app->get('/editaction/{id}', function (Request $request, Response $response) {
 
 $app->get('/editteamnames/{idname}', function (Request $request, Response $response) {
 	// 	set up the connection variables
-	include 'db.php';
+		include 'db.php';
 	// 	connect to the database
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	
 	$id = $request->getAttribute('idname');
 	$team1 = $request->getQueryParam('team1', $default = null);
@@ -299,14 +303,14 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 	$team9 = $request->getQueryParam('team9', $default = null);
 	$team10 = $request->getQueryParam('team10', $default = null);
 	$team11 = $request->getQueryParam('team11', $default = null);
-
+	
 	
 	$sql = "UPDATE teams SET team1name = '$team1', team2name = '$team2',team3name ='$team3', team4name ='$team4', team5name ='$team5' , team6name ='$team6' , team7name ='$team7' , team8name ='$team8' , team9name ='$team9' , team10name = '$team10' , team11name = '$team11' WHERE linkid = '$id'";
-
+	
 	$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
-
+	
 	$data = array('Jsonresponse' => 'Edit the action', 'success' => true);
 	$response = json_encode($data);
 	return $response;
@@ -314,21 +318,104 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 );
 
 
+
 /** 
- * ARCADESSSS ACTION
+* ARCADESSSS ACTION
  * Addpphone, needs only id from the arcade cabinet + the chosen team id   Teamid = [0 - 10]
+ * Please note that not the actual arcadeid, but the arcadelink is given (which resembles an physical arcade)
+ * So first look up the arcadeID from the arcadelink, then assign points
+ * Note 2: if no team is selected the value 1 is given
 */
-$app->get('/arcade/addphone/{arcadeid}/{chosenteam}', function (Request $request, Response $response) {
-	$arcadeid = $request->getAttribute('arcadeid');
+$app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $request, Response $response) {
+	// 	set up the connection variables
+		include 'db.php';
+	// 	connect to the database
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	
+	$arcadelink = $request->getAttribute('arcadelink');
 	$chosenteam = $request->getAttribute('chosenteam');
-	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+	
+	//$	name = $mysqli->query("SELECT id FROM arcades WHERE actionlink = '$arcadelink'")->fetch_object()->name;
+	
+	$sql= "SELECT id,name,phonetot FROM `arcades` WHERE actionlink = '$arcadelink'";
+	
+	$stmtaddphone = $dbh->prepare($sql);
+	$dbh = null;
+	$stmtaddphone->execute();
+	$resultaddphone = $stmtaddphone->fetchAll(PDO::FETCH_ASSOC);
+	// 	so thats $resultaddphone[0]['name'] 
+		$phonetot = $resultaddphone[0]['phonetot'];
+	$phonetot++;
+	$aid = $resultaddphone[0]['id'];
+	$ain = $resultaddphone[0]['name'];
+	
+	// 	OK UPDATE ALL THE THINGS :)\
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql2 = "UPDATE arcades SET phonetot = $phonetot WHERE id = '$aid'";
+	$stmtaddphone2 = $dbh->prepare($sql2);
+	$dbh = null;
+	$stmtaddphone2->execute();
+	
+	// 	very nice, now just add the score to the current team
+		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	
+	
+	
+	//
+	switch ($chosenteam) {
+		case '1':
+		$sql3 = "UPDATE teams SET `team1tot`= `team1tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '2':
+		$sql3 = "UPDATE teams SET `team2tot`= `team2tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '3':
+		$sql3 = "UPDATE teams SET `team3tot`= `team3tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '4':
+		$sql3 = "UPDATE teams SET `team4tot`= `team4tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '5':
+		$sql3 = "UPDATE teams SET `team5tot`= `team5tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '6':
+		$sql3 = "UPDATE teams SET `team6tot`= `team6tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '7':
+		$sql3 = "UPDATE teams SET `team7tot`= `team7tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '8':
+		$sql3 = "UPDATE teams SET `team8tot`= `team8tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '9':
+		$sql3 = "UPDATE teams SET `team9tot`= `team9tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '10':
+		$sql3 = "UPDATE teams SET `team10tot`= `team10tot` + 1 WHERE linkid = '$ain'";
+		break;
+		case '11':
+		$sql3 = "UPDATE teams SET `team11tot`= `team11tot` + 1 WHERE linkid = '$ain'";
+		break;
+	}
+	
+	
+	
+	$stmtaddphone3 = $dbh->prepare($sql3);
+	$dbh = null;
+	$stmtaddphone3->execute();
+	
+	$tt = gettype($chosenteam);
+	
+	// 	ok we got the resultaddphone variable, now make the assigned
+		$data = array('Jsonresponse' => $sql2 , 'type' => $tt);
 	$response = json_encode($data);
 	return $response;
 }
 );
 
+
 /** 
- * ARCADESSSS ACTION
+* ARCADESSSS ACTION
  * addFailure, needs only id from the arcade cabinet.
 */
 $app->get('/arcade/addfailed/{arcadeid}', function (Request $request, Response $response) {
@@ -340,8 +427,9 @@ $app->get('/arcade/addfailed/{arcadeid}', function (Request $request, Response $
 );
 
 
+
 /** 
- * ARCADESSSS ACTION
+* ARCADESSSS ACTION
  * submitscore, need arcadeID + GameiD + teamnames + teamscores
  * Note: There are 4 minigames build in [1] Breakout [2] Throw stuff [3] Racer [4] 
 */
