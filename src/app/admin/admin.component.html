@@ -356,7 +356,7 @@
 
       <div class='row'>
         <div class='input-field col s12'>
-          <input [(ngModel)]="passw" type='password' name='password' id='password' />
+          <input [(ngModel)]="passw" (keyup.enter)="logIn()" type='password' name='password' id='password' />
           <label for='password'>Wachtwoord</label>
         </div>
 
@@ -369,7 +369,7 @@
       </div>
       <br>
       <br>
-      <code>ww: visgoud</code>
+     
 
     </form>
   </div>
@@ -647,7 +647,7 @@
             </ng-template>
 
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-              {{row.dateplaced}}
+              {{row.datestart}}
             </ng-template>
 
           </ngx-datatable-column>

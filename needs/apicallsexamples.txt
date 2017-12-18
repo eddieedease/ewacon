@@ -17,3 +17,8 @@ http://localhost:8888/ewacon/src/api/insert?rnd=34&name=hmzzdada&status=1&locati
 INSERT PHONE FROM [ARCADELINK] + [TEAM]
 
 http://localhost:8888/ewacon/src/api/arcade/addphone/1/11
+
+
+INSERT BAD PHONE FAILURE [ARCADELINK]
+
+http://localhost:8888/ewacon/src/api/arcade/addfailed/1

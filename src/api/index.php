@@ -358,9 +358,6 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 	
 	// 	very nice, now just add the score to the current team
 		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	
-	
-	
 	//
 	switch ($chosenteam) {
 		case '1':
@@ -407,7 +404,7 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 	$tt = gettype($chosenteam);
 	
 	// 	ok we got the resultaddphone variable, now make the assigned
-		$data = array('Jsonresponse' => $sql2 , 'type' => $tt);
+		$data = array('Jsonresponse' => $sql3 , 'type' => $tt);
 	$response = json_encode($data);
 	return $response;
 }
@@ -416,11 +413,34 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 
 /** 
 * ARCADESSSS ACTION
- * addFailure, needs only id from the arcade cabinet.
+ * addFailure (Not a mobile thrown in, needs only id from the arcade cabinet.
 */
-$app->get('/arcade/addfailed/{arcadeid}', function (Request $request, Response $response) {
-	$arcadeid = $request->getAttribute('arcadeid');
-	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+$app->get('/arcade/addfailed/{arcadelink}', function (Request $request, Response $response) {
+	
+	// 	set up the connection variables
+	include 'db.php';
+	// 	connect to the database
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$arcadelink = $request->getAttribute('arcadelink');
+	$sql= "SELECT id,name,phonefailed FROM `arcades` WHERE actionlink = '$arcadelink'";
+	$stmtaddfailed = $dbh->prepare($sql);
+	$dbh = null;
+	$stmtaddfailed->execute();
+	$resultaddfailed = $stmtaddfailed->fetchAll(PDO::FETCH_ASSOC);
+	
+	// 	so thats $resultaddphone[0]['name'] 
+	$phonetot = $resultaddfailed [0]['phonetot'];
+	$phonetot++;
+	$aid = $resultaddfailed [0]['id'];
+	$ain = $resultaddfailed [0]['name'];
+
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql2 = "UPDATE arcades SET `phonefailed`= `phonefailed` + 1 WHERE id = '$aid'";
+	$stmtaddfailed2 = $dbh->prepare($sql2);
+	$dbh = null;
+	$stmtaddfailed2->execute();
+
+	$data = array('Jsonresponse' => $sql2, 'type' => 'Bad Phone');
 	$response = json_encode($data);
 	return $response;
 }

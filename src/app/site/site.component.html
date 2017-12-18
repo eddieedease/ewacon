@@ -397,13 +397,13 @@
   <div class="col s12 m4 l4">
 
     <h6>Op de kaart</h6>
-    <div class="input-field">
+    <!-- <div class="input-field">
       <select>
         <option value="1" selected>Actieve Arcades</option>
         <option value="2">Archief Arcades</option>
       </select>
       <label>Toon:</label>
-    </div>
+    </div> -->
     <div *ngIf="dataLoaded">
       <app-map [(arcadeMarkers)]="rows" [(currentMode)]="mapMode"></app-map>
     </div>
