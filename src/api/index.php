@@ -8,11 +8,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 
 header("Content-Type: application/json");
-header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Origin: *');
 
 // Allow from any origin
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	// header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 	header('Access-Control-Allow-Credentials: true');
 	// 	header('Access-Control-Max-Age: 86400');
 	// 	cache for 1 day
@@ -337,7 +337,7 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 	
 	//$	name = $mysqli->query("SELECT id FROM arcades WHERE actionlink = '$arcadelink'")->fetch_object()->name;
 	
-	$sql= "SELECT id,name,phonetot FROM `arcades` WHERE actionlink = '$arcadelink'";
+	$sql= "SELECT id,name,phonetot FROM `arcades` WHERE arcadeid = '$arcadelink'";
 	
 	$stmtaddphone = $dbh->prepare($sql);
 	$dbh = null;
@@ -422,7 +422,7 @@ $app->get('/arcade/addfailed/{arcadelink}', function (Request $request, Response
 	// 	connect to the database
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$arcadelink = $request->getAttribute('arcadelink');
-	$sql= "SELECT id,name,phonefailed FROM `arcades` WHERE actionlink = '$arcadelink'";
+	$sql= "SELECT id,name,phonefailed FROM `arcades` WHERE arcadeid = '$arcadelink'";
 	$stmtaddfailed = $dbh->prepare($sql);
 	$dbh = null;
 	$stmtaddfailed->execute();

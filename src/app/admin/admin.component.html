@@ -407,7 +407,7 @@
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
           [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
 
-          <ngx-datatable-column name="Aantal" [sortable]="true">
+          <ngx-datatable-column name="Telefoons" [sortable]="true">
 
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
               <span (click)="sort()" style="cursor:pointer">
@@ -417,6 +417,20 @@
 
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{row.phonetot}}
+            </ng-template>
+
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="arcadeID" [sortable]="true">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              {{row.arcadeid}}
             </ng-template>
 
           </ngx-datatable-column>
