@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 13, 2017 at 10:53 PM
+-- Generation Time: Dec 19, 2017 at 02:43 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -31,8 +31,8 @@ CREATE TABLE `actions` (
   `actionname` varchar(100) NOT NULL,
   `datestart` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
-  `inuse` int(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+  `inuse` int(100) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,26 +42,19 @@ CREATE TABLE `actions` (
 
 CREATE TABLE `arcades` (
 `id` int(100) NOT NULL,
-  `arcadeid` int(11) NOT NULL,
+  `arcadeid` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
-  `status` int(100) NOT NULL,
-  `actionlink` int(11) NOT NULL,
+  `status` int(100) DEFAULT NULL,
+  `actionlink` int(11) DEFAULT NULL,
   `location` varchar(100) NOT NULL,
   `longlat` varchar(100) NOT NULL,
-  `phonetot` int(100) NOT NULL,
-  `phonefailed` int(100) NOT NULL,
-  `teamstot` int(100) NOT NULL,
+  `phonetot` int(100) NOT NULL DEFAULT '0',
+  `phonefailed` int(100) NOT NULL DEFAULT '0',
+  `teamstot` int(100) NOT NULL DEFAULT '0',
   `dateplaced` varchar(100) NOT NULL,
   `dateend` varchar(100) NOT NULL,
   `lastused` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `arcades`
---
-
-INSERT INTO `arcades` (`id`, `arcadeid`, `name`, `status`, `actionlink`, `location`, `longlat`, `phonetot`, `phonefailed`, `teamstot`, `dateplaced`, `dateend`, `lastused`) VALUES
-(15, 4, 'Nieuwe kast', 2, 7, 'Station Eindhoven', '51.450748, 5.456750', 0, 0, 10, '2017-12-14', '2017-12-22', '2017-12-13 21:16:17');
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -82,13 +75,6 @@ CREATE TABLE `archive` (
   `score` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `archive`
---
-
-INSERT INTO `archive` (`id`, `type`, `arcadeid`, `location`, `longlat`, `phonetot`, `phonefail`, `datestart`, `dateend`, `score`) VALUES
-(1, '', 1, 'Ergens', '0,0', 7, 6, '20173', '231233', '');
-
 -- --------------------------------------------------------
 
 --
@@ -96,13 +82,13 @@ INSERT INTO `archive` (`id`, `type`, `arcadeid`, `location`, `longlat`, `phoneto
 --
 
 CREATE TABLE `highscores` (
-  `linkid` varchar(100) NOT NULL,
-  `game1` varchar(500) NOT NULL,
-  `game2` varchar(500) NOT NULL,
-  `game3` varchar(500) NOT NULL,
-  `game4` varchar(500) NOT NULL,
-  `game5` varchar(500) NOT NULL,
-  `game6` varchar(500) NOT NULL
+  `linkid` varchar(100) NOT NULL DEFAULT '',
+  `game1` varchar(500) DEFAULT NULL,
+  `game2` varchar(500) DEFAULT NULL,
+  `game3` varchar(500) DEFAULT NULL,
+  `game4` varchar(500) DEFAULT NULL,
+  `game5` varchar(500) DEFAULT NULL,
+  `game6` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -110,7 +96,7 @@ CREATE TABLE `highscores` (
 --
 
 INSERT INTO `highscores` (`linkid`, `game1`, `game2`, `game3`, `game4`, `game5`, `game6`) VALUES
-('Nieuwe kast', '', '', '', '', '', '');
+('bahbla', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,37 +105,30 @@ INSERT INTO `highscores` (`linkid`, `game1`, `game2`, `game3`, `game4`, `game5`,
 --
 
 CREATE TABLE `teams` (
-  `linkid` varchar(100) NOT NULL,
-  `team1name` varchar(100) NOT NULL,
-  `team1tot` int(100) NOT NULL,
-  `team2name` varchar(100) NOT NULL,
-  `team2tot` int(100) NOT NULL,
-  `team3name` varchar(100) NOT NULL,
-  `team3tot` int(100) NOT NULL,
-  `team4name` varchar(100) NOT NULL,
-  `team4tot` int(100) NOT NULL,
-  `team5name` varchar(100) NOT NULL,
-  `team5tot` int(100) NOT NULL,
-  `team6name` varchar(100) NOT NULL,
-  `team6tot` int(100) NOT NULL,
-  `team7name` varchar(100) NOT NULL,
-  `team7tot` int(100) NOT NULL,
-  `team8name` varchar(100) NOT NULL,
-  `team8tot` int(100) NOT NULL,
-  `team9name` varchar(100) NOT NULL,
-  `team9tot` int(100) NOT NULL,
-  `team10name` varchar(100) NOT NULL,
-  `team10tot` int(100) NOT NULL,
-  `team11name` varchar(100) NOT NULL,
-  `team11tot` int(100) NOT NULL
+  `linkid` int(100) NOT NULL,
+  `team1name` varchar(100) NOT NULL DEFAULT 'team1',
+  `team1tot` int(100) NOT NULL DEFAULT '0',
+  `team2name` varchar(100) NOT NULL DEFAULT 'team2',
+  `team2tot` int(100) NOT NULL DEFAULT '0',
+  `team3name` varchar(100) NOT NULL DEFAULT 'team3',
+  `team3tot` int(100) NOT NULL DEFAULT '0',
+  `team4name` varchar(100) NOT NULL DEFAULT 'team4',
+  `team4tot` int(100) NOT NULL DEFAULT '0',
+  `team5name` varchar(100) NOT NULL DEFAULT 'team5',
+  `team5tot` int(100) NOT NULL DEFAULT '0',
+  `team6name` varchar(100) NOT NULL DEFAULT 'team6',
+  `team6tot` int(100) NOT NULL DEFAULT '0',
+  `team7name` varchar(100) NOT NULL DEFAULT 'team7',
+  `team7tot` int(100) NOT NULL DEFAULT '0',
+  `team8name` varchar(100) NOT NULL DEFAULT 'team8',
+  `team8tot` int(100) NOT NULL DEFAULT '0',
+  `team9name` varchar(100) NOT NULL DEFAULT 'team9',
+  `team9tot` int(100) NOT NULL DEFAULT '0',
+  `team10name` varchar(100) NOT NULL DEFAULT 'team10',
+  `team10tot` int(100) NOT NULL DEFAULT '0',
+  `team11name` varchar(100) NOT NULL DEFAULT 'team11',
+  `team11tot` int(100) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `teams`
---
-
-INSERT INTO `teams` (`linkid`, `team1name`, `team1tot`, `team2name`, `team2tot`, `team3name`, `team3tot`, `team4name`, `team4tot`, `team5name`, `team5tot`, `team6name`, `team6tot`, `team7name`, `team7tot`, `team8name`, `team8tot`, `team9name`, `team9tot`, `team10name`, `team10tot`, `team11name`, `team11tot`) VALUES
-('Nieuwe kast', 'team1naam', 50, 'team2naam', 4, 'team3naam', 45, 'team4naam', 4, 'asdfasfdawerwa', 34, 'asfwafewfwefawefw', 6, 'sdbfvbs', 5, '', 9, 'werwerw', 5, 'ertert', 85, '', 44);
 
 --
 -- Indexes for dumped tables
@@ -165,6 +144,12 @@ ALTER TABLE `actions`
 -- Indexes for table `arcades`
 --
 ALTER TABLE `arcades`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `archive`
+--
+ALTER TABLE `archive`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -187,12 +172,12 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `arcades`
 --
 ALTER TABLE `arcades`
-MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

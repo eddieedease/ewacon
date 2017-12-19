@@ -106,10 +106,10 @@ $app->get('/insert', function (Request $request, Response $response) {
 	$paramdateplaced = $request->getQueryParam('dateplaced', $default = null);
 	$paramdateend = $request->getQueryParam('dateend', $default = null);
 	
-	$sql = "INSERT INTO arcades (arcadeid,name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramarcadeid','$paramname','$paramstatus','$paramactionlink','$paramlocation','$paramlonglat','$paramteamstot','$paramdateplaced','$paramdateend')";
+	$sql = "INSERT INTO arcades (arcadeid,name,status,actionlink,location,longlat,teamstot,dateplaced,dateend) VALUES ('$paramarcadeid','$paramname','$paramstatus',$paramactionlink,'$paramlocation','$paramlonglat',0,'$paramdateplaced','$paramdateend')";
 	
 	// 	use prepared statements, even if not strictly required is good practice
-		$stmt = $dbh->prepare($sql);
+	$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
 	
@@ -127,7 +127,7 @@ $app->get('/insert', function (Request $request, Response $response) {
 	$dbh = null;
 	$stmt3->execute();
 	
-	$data = array('Jsonresponse' => 'addnew', 'success' => true);
+	$data = array('Jsonresponse' => $sql, 'success' => true);
 	$response = json_encode($data);
 	// 	$response = 'Added!!!';
 	return $response;
@@ -179,7 +179,6 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 
 
 /** 
-Delete  Arcade with ID
  * NOTE: Not tested
 */
 $app->get('/delete/{id}/{name}', function (Request $request, Response $response) {

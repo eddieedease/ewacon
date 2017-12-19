@@ -69,6 +69,8 @@ export class AdminComponent implements OnInit {
   currentId;
   currentName;
 
+  currentArcade;
+
   arcadeName;
   arcadeStatus = 1;
   arcadeLocation;
@@ -180,7 +182,7 @@ export class AdminComponent implements OnInit {
     this.arcadeLocation = '';
     this.arcadeLongLat = '';
     this.arcadeTeamsTot = '';
-    this.arcadeLinkedAction = 'select';
+    this.arcadeLinkedAction = '0';
 
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
@@ -342,6 +344,8 @@ export class AdminComponent implements OnInit {
   }
 
   arcadeCreated(event) {
+
+    
     // set defaults
     this.arcadeName = '';
     this.arcadeStatus = 1;
@@ -353,6 +357,7 @@ export class AdminComponent implements OnInit {
     this.arcadeDateEnd = '';
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     this.toastr.success(' :) ', 'Arcade verwerkt');
+    this.serser.debugLog(event);
   }
 
 
