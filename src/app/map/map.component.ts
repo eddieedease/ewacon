@@ -56,4 +56,6 @@ export class MapComponent implements OnInit {
     this.childEvent.emit('this is a test');
     }
 
+  
+
 }
