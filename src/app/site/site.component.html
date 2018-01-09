@@ -218,12 +218,12 @@
             <img class="responsive-img" style="border-radius: 25px;" src="assets/fillimg.png">
             <span class="card-title">Totaal:</span>
             <i class="right material-icons small">smartphone</i>
-            <h6>{{allPhones}}</h6>
+            <b><h6 style="font-size:1.5rem;font-weight:bold">{{allPhones}}</h6></b>
             <p>Telefoons ingezameld</p>
             <br>
             <i class="right material-icons small">thumb_up</i>
-            <h6>...</h6>
-            <p>Gram CO-2 bespaard</p>
+            <h6 style="font-size:1.5rem;font-weight:bold">{{allCo2}}</h6>
+            <p>gram CO-2 bespaard</p>
             <br>
             <!--  <i class="right material-icons small">games</i>
             <h6>205</h6>
@@ -236,16 +236,34 @@
       </div>
       <div class="col s12 m8">
         <div *ngIf="actions.length > 0">
-        <h5 >Actieve races:</h5>
+        
+        <h5>Actieve races:</h5>
         <p>Klik op een racenaam om deze te filteren uit de lijst met arcades.</p>
+
+        
         <ul class="collection">
-          <li *ngFor="let action of actions" class="collection-item avatar">
-            <a (click)="filterOnRows(action.id)" style="cursor:pointer">
+
+            <li (click)="filterOnRows('all')" style="cursor:pointer" class="collection-item avatar">
+           
+                <i class="small material-icons circle  green">insert_chart</i>
+                <b>
+                  <span class="title">Totaal</span>
+                </b>
+              
+              <p>Aantal telefoons: {{allPhones}}
+                <br>
+                <a>Filter dit</a>
+              </p>
+            </li>
+
+
+          <li *ngFor="let action of actions" (click)="filterOnRows(action.id)" style="cursor:pointer" class="collection-item avatar">
+           
               <i class="small material-icons circle  green">insert_chart</i>
               <b>
                 <span class="title">{{action.actionname}}</span>
               </b>
-            </a>
+            
             <p>Aantal telefoons: {{action.sum}}
               <br>
               <a>Filter dit</a>
@@ -266,9 +284,9 @@
             <b>Arcades</b>
           </span>
           <div class="row">
-
-            <ngx-datatable #table class='material striped' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-              [limit]="10" [rows]='rows' [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)">
+            <p style="color: white">Klik boven op een actie om onderstaande lijst te filteren</p>
+            <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+              [limit]="10" [rows]='rows' [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)">
 
               <ngx-datatable-column name="Titel" [sortable]="true">
                 <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">

@@ -217,7 +217,7 @@ $app->get('/delete/{id}/{name}', function (Request $request, Response $response)
 
 
 /** 
-* Delete  Arcade with ID
+* Delete  action  with ID
  * NOTE: Not tested
 */
 $app->get('/deleteaction/{id}', function (Request $request, Response $response) {
@@ -449,14 +449,71 @@ $app->get('/arcade/addfailed/{arcadelink}', function (Request $request, Response
 
 /** 
 * ARCADESSSS ACTION
- * submitscore, need arcadeID + GameiD + teamnames + teamscores
- * Note: There are 4 minigames build in [1] Breakout [2] Throw stuff [3] Racer [4] 
+ * submitscore, need arcadeID + GameiD + scores
+ * Note: There are 4 minigames build in [1] Breakout [2] Throw stuff [3] Racer [4] Platformer
 */
 $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request, Response $response) {
+	// set up con
+
+	// 	set up the connection variables
+	include 'db.php';
+	// 	connect to the database
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	// api vars
 	$arcadeid = $request->getAttribute('arcadeid');
 	$gameid = $request->getAttribute('gameid');
 	
-	$data = array('Jsonresponse' => 'item1', 'type' => '40X');
+	$score1 = $request->getQueryParam('score1', $default = null);
+	$name1 = $request->getQueryParam('name1', $default = null);
+	
+
+	$score2 = $request->getQueryParam('score2', $default = null);
+	$name2 = $request->getQueryParam('name2', $default = null);
+	
+
+	$score3 = $request->getQueryParam('score3', $default = null);
+	$name3 = $request->getQueryParam('name3', $default = null);
+	
+
+	$score4 = $request->getQueryParam('score4', $default = null);
+	$name4 = $request->getQueryParam('name4', $default = null);
+	
+
+	$score5 = $request->getQueryParam('score5', $default = null);
+	$name5 = $request->getQueryParam('name5', $default = null);
+	
+	
+	// making an stringify thingie
+	$data = array('name1' => $name1, 'score1' => $score1, 'name2' => $name2, 'score2' => $score2,'name3' => $name3, 'score3' => $score3,'name4' => $name4, 'score4' => $score4,'name5' => $name5, 'score5' => $score5);
+	$highscorestring = json_encode($data);
+	
+
+
+	switch ($gameid) {
+		case 1:
+			$currentgame = 'game1';
+			break;
+		case 2:
+		$currentgame = 'game2';
+			break;
+		case 3:
+		$currentgame = 'game3';
+			break;
+		case 4:
+		$currentgame = 'game4';
+			break;
+	}
+
+	
+	// update the highscores
+	$sql= "UPDATE highscores SET $currentgame = '$highscorestring' WHERE linkid = '$arcadeid'";
+	
+	$stmtaddscore = $dbh->prepare($sql);
+	$dbh = null;
+	$stmtaddscore->execute();
+	
+	
+	$data = array('Jsonresponse' => $sql, 'arraystringify' => $highscorestring);
 	$response = json_encode($data);
 	
 	return $response;

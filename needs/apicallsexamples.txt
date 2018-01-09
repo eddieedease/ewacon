@@ -22,3 +22,10 @@ http://localhost:8888/ewacon/src/api/arcade/addphone/1/11
 INSERT BAD PHONE FAILURE [ARCADELINK]
 
 http://localhost:8888/ewacon/src/api/arcade/addfailed/1
+
+
+
+// Submitting an score
+// watch that the name is given though correctly
+
+http://localhost:8888/ewacon/src/api/arcade/submitscore/basa/1?rnd=35&name1=iemand&score1=300&name2=iemand2&score2=200&name3=kees&score3=100&name4=joep&score4=60&name5=keesd&score5=20

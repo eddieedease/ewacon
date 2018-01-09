@@ -45,6 +45,7 @@ export class SiteComponent implements OnInit {
   notActiveArcades;
 
   allPhones = 0;
+  allCo2 = 0;
 
   mapMode = 2;
   // TODO: mapMode selection from component still has to be configured
@@ -69,15 +70,18 @@ export class SiteComponent implements OnInit {
 
   check = 'whut';
 
+  
+
   currentArcadeId;
   currentArcadeName;
   currentphoneTot;
   
+
   // current teams, not sorted
   currentTeamss;
   // current teams, sorted
   currentTeams;
-  
+
   currentHighScores;
   currentTeamTot;
 
@@ -151,21 +155,21 @@ export class SiteComponent implements OnInit {
     for (let i = 0; i < this.actionss.length; i++) {
       if (this.actionss[i].inuse === '2') {
         const actionobject = this.actionss[i];
-        
-         // TODO: Need the sum of all active arcades within this action
+
+        // TODO: Need the sum of all active arcades within this action
         let sumOfAction = 0;
 
         // search in all the arcades with matching actionlink
         this.arcadess.forEach(element => {
           if (element.actionlink === this.actionss[i].id) {
-              console.log('YESSSSSSSSSS');
-              sumOfAction = sumOfAction + parseInt(element.phonetot, 10);
+            console.log('YESSSSSSSSSS');
+            sumOfAction = sumOfAction + parseInt(element.phonetot, 10);
           }
         });
 
         actionobject.sum = sumOfAction;
 
-         // after object is created --> do this
+        // after object is created --> do this
         this.actions.push(actionobject);
       }
     }
@@ -176,6 +180,8 @@ export class SiteComponent implements OnInit {
       const x = this.arcadess[index].phonetot;
       const y = +x; // y: number
       this.allPhones = this.allPhones + y;
+
+      this.allCo2 = this.allPhones * 250;
     }
 
   }
@@ -184,14 +190,25 @@ export class SiteComponent implements OnInit {
    * The filter arcades when clicked on action
    */
   filterOnRows(_whichaction) {
-    this.serser.debugLog('Filtering rows for:  ' + _whichaction);
-    this.rows = [];
-    for (let a = 0; a < this.arcadess.length; a++) {
-      if (this.arcadess[a].status === '2' && this.arcadess[a].actionlink === _whichaction) {
-        const activeArcade = this.arcadess[a];
-        this.rows.push(activeArcade);
-      }
+    if (_whichaction === 'all') {
+      this.rows = [];
+      for (let a = 0; a < this.arcadess.length; a++) {
+        if (this.arcadess[a].status === '2') {
+          const activeArcade = this.arcadess[a];
+          this.rows.push(activeArcade);
+        }
 
+      }
+    } else {
+      this.serser.debugLog('Filtering rows for:  ' + _whichaction);
+      this.rows = [];
+      for (let a = 0; a < this.arcadess.length; a++) {
+        if (this.arcadess[a].status === '2' && this.arcadess[a].actionlink === _whichaction) {
+          const activeArcade = this.arcadess[a];
+          this.rows.push(activeArcade);
+        }
+
+      }
     }
   }
 
@@ -210,11 +227,12 @@ export class SiteComponent implements OnInit {
     this.currentphoneTot = _event.selected[0].phonetot;
     this.currentTeamTot = _event.selected[0].teamstot;
 
+    
 
     // get current teams & current highscores
     // look up by arcadename
 
-      // teams
+    // teams
     for (let index = 0; index < this.teams.length; index++) {
       if (this.teams[index].linkid === this.currentArcadeName) {
         this.currentTeamss = this.teams[index];
@@ -228,21 +246,50 @@ export class SiteComponent implements OnInit {
     console.log(this.currentTeamss.team1name);
     // sorting of the teams on phonetot
     // first make array of objects, then SORT on phonetot, hella yea beautifull object
-    this.currentTeams = [
-      {name: this.currentTeamss.team1name , phonetot: this.currentTeamss.team1tot},
-      {name: this.currentTeamss.team2name , phonetot: this.currentTeamss.team2tot},
-      {name: this.currentTeamss.team3name , phonetot: this.currentTeamss.team3tot},
-      {name: this.currentTeamss.team4name , phonetot: this.currentTeamss.team4tot},
-      {name: this.currentTeamss.team5name , phonetot: this.currentTeamss.team5tot},
-      {name: this.currentTeamss.team6name , phonetot: this.currentTeamss.team6tot},
-      {name: this.currentTeamss.team7name , phonetot: this.currentTeamss.team7tot},
-      {name: this.currentTeamss.team8name , phonetot: this.currentTeamss.team8tot},
-      {name: this.currentTeamss.team9name , phonetot: this.currentTeamss.team9tot},
-      {name: this.currentTeamss.team10name , phonetot: this.currentTeamss.team10tot},
+    this.currentTeams = [{
+        name: this.currentTeamss.team1name,
+        phonetot: this.currentTeamss.team1tot
+      },
+      {
+        name: this.currentTeamss.team2name,
+        phonetot: this.currentTeamss.team2tot
+      },
+      {
+        name: this.currentTeamss.team3name,
+        phonetot: this.currentTeamss.team3tot
+      },
+      {
+        name: this.currentTeamss.team4name,
+        phonetot: this.currentTeamss.team4tot
+      },
+      {
+        name: this.currentTeamss.team5name,
+        phonetot: this.currentTeamss.team5tot
+      },
+      {
+        name: this.currentTeamss.team6name,
+        phonetot: this.currentTeamss.team6tot
+      },
+      {
+        name: this.currentTeamss.team7name,
+        phonetot: this.currentTeamss.team7tot
+      },
+      {
+        name: this.currentTeamss.team8name,
+        phonetot: this.currentTeamss.team8tot
+      },
+      {
+        name: this.currentTeamss.team9name,
+        phonetot: this.currentTeamss.team9tot
+      },
+      {
+        name: this.currentTeamss.team10name,
+        phonetot: this.currentTeamss.team10tot
+      },
     ]
 
     // Actual sorting of highest score
-    this.currentTeams.sort(function(obj1, obj2) {
+    this.currentTeams.sort(function (obj1, obj2) {
       // Ascending: first age less than the previous
       return obj1.phonetot - obj2.phonetot;
     });
@@ -252,7 +299,7 @@ export class SiteComponent implements OnInit {
     // test it
     this.serser.debugLog(this.currentTeams);
 
-    
+
 
 
 
@@ -267,18 +314,19 @@ export class SiteComponent implements OnInit {
       }
     }
 
-    
+
 
     this.serser.debugLog('Selected Arcade is ' + this.currentArcadeName + '  with ID: ' + this.currentArcadeId);
     $('#modal1').modal('open');
+    
   }
 
 
   // compare teamscores
-   compareTeams(a, b) {
+  compareTeams(a, b) {
     if (a.last_nom < b.last_nom) {
       return -1;
-    } else if (a.last_nom > b.last_nom){
+    } else if (a.last_nom > b.last_nom) {
       return 1;
     } else {
       return 0;
@@ -297,7 +345,7 @@ export class SiteComponent implements OnInit {
     const whichDir = event.newValue;
     this.serser.debugLog('dir is' + whichDir);
     let magicw;
-    
+
     switch (event.column.name) {
       case 'Titel':
         magicw = 'name';
