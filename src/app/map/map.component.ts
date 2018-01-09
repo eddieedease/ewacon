@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -10,6 +10,9 @@ export class MapComponent implements OnInit {
 
   @Input() arcadeMarkers;
   @Input() currentMode;
+
+  // TODO: doesn't work
+  @Output() childEvent = new EventEmitter();
 
   
   markers = [];
@@ -45,5 +48,12 @@ export class MapComponent implements OnInit {
     // alright strip down the longlat values in for loop
     // let array = string.split(',');
   }
+
+  // communicate to parent
+  clickMarker() {
+    console.log('yesg');
+     // TODO: doesn't work
+    this.childEvent.emit('this is a test');
+    }
 
 }

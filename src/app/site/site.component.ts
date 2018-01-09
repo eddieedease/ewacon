@@ -65,12 +65,59 @@ export class SiteComponent implements OnInit {
 
   highScores = [];
 
+  decodedHighScores1;
+  decodedHighScores2;
+  decodedHighScores3;
+  decodedHighScores4;
+  decodedHighScores5;
+  decodedHighScores6;
+
+  // dirty highscoring fields
+  game1name1;
+  game1score1;
+  game1name2;
+  game1score2;
+  game1name3;
+  game1score3;
+  game1name4;
+  game1score4;
+  game1name5;
+  game1score5;
+  game2name1;
+  game2score1;
+  game2name2;
+  game2score2;
+  game2name3;
+  game2score3;
+  game2name4;
+  game2score4;
+  game2name5;
+  game2score5;
+  game3name1;
+  game3score1;
+  game3name2;
+  game3score2;
+  game3name3;
+  game3score3;
+  game3name4;
+  game3score4;
+  game3name5;
+  game3score5;
+  game4name1;
+  game4score1;
+  game4name2;
+  game4score2;
+  game4name3;
+  game4score3;
+  game4name4;
+  game4score4;
+  game4name5;
+  game4score5;
+
+
 
   teams = [];
-
   check = 'whut';
-
-  
 
   currentArcadeId;
   currentArcadeName;
@@ -186,6 +233,11 @@ export class SiteComponent implements OnInit {
 
   }
 
+    // TODO: Doesn't work
+  fromMap(_some) {
+    this.serser.debugLog(_some);
+  }
+
   /**
    * The filter arcades when clicked on action
    */
@@ -238,8 +290,6 @@ export class SiteComponent implements OnInit {
         this.currentTeamss = this.teams[index];
         this.serser.debugLog(this.currentTeamss);
         // Allright nice, now we have the teams... but... we need the right order
-
-
       }
     }
 
@@ -285,7 +335,7 @@ export class SiteComponent implements OnInit {
       {
         name: this.currentTeamss.team10name,
         phonetot: this.currentTeamss.team10tot
-      },
+      }
     ]
 
     // Actual sorting of highest score
@@ -309,8 +359,58 @@ export class SiteComponent implements OnInit {
     for (let i = 0; i < this.highScores.length; i++) {
       if (this.highScores[i].linkid === this.currentArcadeName) {
         this.currentHighScores = this.highScores[i];
-        this.serser.debugLog(this.currentHighScores);
 
+        // decode the jsonstrings
+        this.decodedHighScores1 = JSON.parse(this.currentHighScores.game1);
+
+        
+        this.decodedHighScores2 = JSON.parse(this.currentHighScores.game2);
+        this.decodedHighScores3 = JSON.parse(this.currentHighScores.game3);
+        this.decodedHighScores4 = JSON.parse(this.currentHighScores.game3);
+
+
+        this.serser.debugLog(this.decodedHighScores1.name1);
+        // now I know it aint pretty, but i had some weird bug
+        this.game1name1 = this.decodedHighScores1.name1;
+        this.game1score1 = this.decodedHighScores1.score1;
+        this.game1name2 = this.decodedHighScores1.name2;
+        this.game1score2 = this.decodedHighScores1.score2;
+        this.game1name3 = this.decodedHighScores1.name3;
+        this.game1score3 = this.decodedHighScores1.score3;
+        this.game1name4 = this.decodedHighScores1.name4;
+        this.game1score4 = this.decodedHighScores1.score4;
+        this.game1name5 = this.decodedHighScores1.name5;
+        this.game1score5 = this.decodedHighScores1.score5;
+        this.game2name1 = this.decodedHighScores2.name1;
+        this.game2score1 = this.decodedHighScores2.score1;
+        this.game2name2 = this.decodedHighScores2.name2;
+        this.game2score2 = this.decodedHighScores2.score2;
+        this.game2name3 = this.decodedHighScores2.name3;
+        this.game2score3 = this.decodedHighScores2.score3;
+        this.game2name4 = this.decodedHighScores2.name4;
+        this.game2score4 = this.decodedHighScores2.score4;
+        this.game2name5 = this.decodedHighScores2.name5;
+        this.game2score5 = this.decodedHighScores2.score5;
+        this.game3name1 = this.decodedHighScores3.name1;
+        this.game3score1 = this.decodedHighScores3.score1;
+        this.game3name2 = this.decodedHighScores3.name2;
+        this.game3score2 = this.decodedHighScores3.score2;
+        this.game3name3 = this.decodedHighScores3.name3;
+        this.game3score3 = this.decodedHighScores3.score3;
+        this.game3name4 = this.decodedHighScores3.name4;
+        this.game3score4 = this.decodedHighScores3.score4;
+        this.game3name5 = this.decodedHighScores3.name5;
+        this.game3score5 = this.decodedHighScores3.score5;
+        this.game4name1 = this.decodedHighScores4.name1;
+        this.game4score1 = this.decodedHighScores4.score1;
+        this.game4name2 = this.decodedHighScores4.name2;
+        this.game4score2 = this.decodedHighScores4.score2;
+        this.game4name3 = this.decodedHighScores4.name3;
+        this.game4score3 = this.decodedHighScores4.score3;
+        this.game4name4 = this.decodedHighScores4.name4;
+        this.game4score4 = this.decodedHighScores4.score4;
+        this.game4name5 = this.decodedHighScores4.name5;
+        this.game4score5 = this.decodedHighScores4.score5;
       }
     }
 
@@ -370,6 +470,7 @@ export class SiteComponent implements OnInit {
 
   /**
    * Datables descending, ascending sorting with clicking on top column
+   * TODO: only works correctly with 
    */
   sortWhat(sortwhat, _dir) {
     if (_dir === 'desc') {

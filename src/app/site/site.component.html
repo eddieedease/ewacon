@@ -16,90 +16,92 @@
       <div class="col s12 l4">
         <ul class="collection">
 
-            <nav *ngIf="currentTeamTot > 0">
-                <div class="nav-wrapper">
-                  <a href="#" class="brand-logo center">Teams</a>
-                </div>
-              </nav>
+          <nav *ngIf="currentTeamTot > 0">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo center">Teams</a>
+            </div>
+          </nav>
 
-          <li *ngIf="currentTeamTot > 0" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 0 && currentTeams[0].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle amber">looks_one</i>
             <span class="title">{{currentTeams[0].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[0].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[0].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 1" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 1 && currentTeams[1].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle grey">looks_two</i>
             <span class="title">{{currentTeams[1].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[1].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[1].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 2" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 2 && currentTeams[2].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle lime darken-4">looks_3</i>
             <span class="title">{{currentTeams[2].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[2].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[2].phonetot}}</b>
             </p>
           </li>
 
 
-          <li *ngIf="currentTeamTot > 3" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 3 && currentTeams[3].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-4">looks_4</i>
             <span class="title">{{currentTeams[3].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[3].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[3].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 4" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 4 && currentTeams[4].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-4">looks_5</i>
             <span class="title">{{currentTeams[4].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[4].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[4].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 5" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 5 && currentTeams[5].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
             <span class="title">{{currentTeams[5].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[5].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[5].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 6" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 6 && currentTeams[6].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
             <span class="title">{{currentTeams[6].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[6].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[6].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 7" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 7 && currentTeams[7].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
             <span class="title">{{currentTeams[7].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[7].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[7].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 8" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 8 && currentTeams[8].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
             <span class="title">{{currentTeams[8].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[8].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[8].phonetot}}</b>
             </p>
           </li>
 
-          <li *ngIf="currentTeamTot > 9" class="collection-item avatar">
+          <li *ngIf="currentTeamTot > 9 && currentTeams[9].phonetot > 0" class="collection-item avatar">
             <i class="material-icons circle indigo lighten-3">filter_tilt_shift</i>
             <span class="title">{{currentTeams[9].name}}</span>
-            <p>Ingezamelde telefoons: <b>{{currentTeams[9].phonetot}}</b>
+            <p>Ingezamelde telefoons:
+              <b>{{currentTeams[9].phonetot}}</b>
             </p>
           </li>
-
-
-
-
-
-
-
-
 
         </ul>
       </div>
@@ -113,15 +115,20 @@
                 <img class="responsive-img" src="assets/game1.jpg">
               </li>
               <li class="collection-item">
-                <b># 1:</b> Eddie</li>
+                #1:
+                <b>{{game1score1}} - </b>{{game1name1}}</li>
               <li class="collection-item">
-                <b># 2:</b> Eddie</li>
+                #2:
+                <b>{{game1score2}} - </b>{{game1name2}}</li>
               <li class="collection-item">
-                <b># 3:</b> Eddie</li>
+                #3:
+                <b>{{game1score3}} - </b>{{game1name3}}</li>
               <li class="collection-item">
-                <b># 4:</b> Eddie</li>
+                #4:
+                <b>{{game1score4}} - </b>{{game1name4}}</li>
               <li class="collection-item">
-                <b># 5:</b> Eddie</li>
+                #5:
+                <b>{{game1score5}} - </b>{{game1name5}}</li>
             </ul>
           </div>
           <div class="col s12 l6">
@@ -131,15 +138,20 @@
                 <img class="responsive-img" src="assets/game2.jpg">
               </li>
               <li class="collection-item">
-                <b># 1:</b> Eddie</li>
+                #1:
+                <b>{{game2score1}} - </b>{{game2name1}}</li>
               <li class="collection-item">
-                <b># 2:</b> Eddie</li>
+                #2:
+                <b>{{game2score2}} - </b>{{game2name2}}</li>
               <li class="collection-item">
-                <b># 3:</b> Eddie</li>
+                #3:
+                <b>{{game2score3}} - </b>{{game2name3}}</li>
               <li class="collection-item">
-                <b># 4:</b> Eddie</li>
+                #4:
+                <b>{{game2score4}} - </b>{{game2name4}}</li>
               <li class="collection-item">
-                <b># 5:</b> Eddie</li>
+                #5:
+                <b>{{game2score5}} - </b>{{game2name5}}</li>
             </ul>
           </div>
         </div>
@@ -153,15 +165,20 @@
                 <img class="responsive-img" src="assets/game3.jpg">
               </li>
               <li class="collection-item">
-                <b># 1:</b> Eddie</li>
+                #1:
+                <b>{{game3score1}} - </b>{{game3name1}}</li>
               <li class="collection-item">
-                <b># 2:</b> Eddie</li>
+                #2:
+                <b>{{game3score2}} - </b>{{game3name2}}</li>
               <li class="collection-item">
-                <b># 3:</b> Eddie</li>
+                #3:
+                <b>{{game3score3}} - </b>{{game3name3}}</li>
               <li class="collection-item">
-                <b># 4:</b> Eddie</li>
+                #4:
+                <b>{{game3score4}} - </b>{{game3name4}}</li>
               <li class="collection-item">
-                <b># 5:</b> Eddie</li>
+                #5:
+                <b>{{game3score5}} - </b>{{game3name5}}</li>
             </ul>
           </div>
           <div class="col s12 l6">
@@ -171,15 +188,20 @@
                 <img class="responsive-img" src="assets/game4.jpg">
               </li>
               <li class="collection-item">
-                <b># 1:</b> Eddie</li>
+                #1:
+                <b>{{game4score1}} - </b>{{game4name1}}</li>
               <li class="collection-item">
-                <b># 2:</b> Eddie</li>
+                #2:
+                <b>{{game4score2}} - </b>{{game4name2}}</li>
               <li class="collection-item">
-                <b># 3:</b> Eddie</li>
+                #2:
+                <b>{{game4score3}} - </b>{{game4name3}}</li>
               <li class="collection-item">
-                <b># 4:</b> Eddie</li>
+                #2:
+                <b>{{game4score4}} - </b>{{game4name4}}</li>
               <li class="collection-item">
-                <b># 5:</b> Eddie</li>
+                #2:
+                <b>{{game4score5}} - </b>{{game4name5}}</li>
             </ul>
           </div>
         </div>
@@ -218,7 +240,9 @@
             <img class="responsive-img" style="border-radius: 25px;" src="assets/fillimg.png">
             <span class="card-title">Totaal:</span>
             <i class="right material-icons small">smartphone</i>
-            <b><h6 style="font-size:1.5rem;font-weight:bold">{{allPhones}}</h6></b>
+            <b>
+              <h6 style="font-size:1.5rem;font-weight:bold">{{allPhones}}</h6>
+            </b>
             <p>Telefoons ingezameld</p>
             <br>
             <i class="right material-icons small">thumb_up</i>
@@ -236,20 +260,20 @@
       </div>
       <div class="col s12 m8">
         <div *ngIf="actions.length > 0">
-        
-        <h5>Actieve races:</h5>
-        <p>Klik op een racenaam om deze te filteren uit de lijst met arcades.</p>
 
-        
-        <ul class="collection">
+          <h5>Actieve races:</h5>
+          <p>Klik op een racenaam om deze te filteren uit de lijst met arcades.</p>
+
+
+          <ul class="collection">
 
             <li (click)="filterOnRows('all')" style="cursor:pointer" class="collection-item avatar">
-           
-                <i class="small material-icons circle  green">insert_chart</i>
-                <b>
-                  <span class="title">Totaal</span>
-                </b>
-              
+
+              <i class="small material-icons circle  green">insert_chart</i>
+              <b>
+                <span class="title">Totaal</span>
+              </b>
+
               <p>Aantal telefoons: {{allPhones}}
                 <br>
                 <a>Filter dit</a>
@@ -257,20 +281,20 @@
             </li>
 
 
-          <li *ngFor="let action of actions" (click)="filterOnRows(action.id)" style="cursor:pointer" class="collection-item avatar">
-           
+            <li *ngFor="let action of actions" (click)="filterOnRows(action.id)" style="cursor:pointer" class="collection-item avatar">
+
               <i class="small material-icons circle  green">insert_chart</i>
               <b>
                 <span class="title">{{action.actionname}}</span>
               </b>
-            
-            <p>Aantal telefoons: {{action.sum}}
-              <br>
-              <a>Filter dit</a>
-            </p>
-          </li>
-        </ul>
-      </div>
+
+              <p>Aantal telefoons: {{action.sum}}
+                <br>
+                <a>Filter dit</a>
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
 
 
@@ -286,7 +310,8 @@
           <div class="row">
             <p style="color: white">Klik boven op een actie om onderstaande lijst te filteren</p>
             <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-              [limit]="10" [rows]='rows' [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)">
+              [limit]="10" [rows]='rows' [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)' (sort)="onSort($event)"
+              [sortType]="'multi'">
 
               <ngx-datatable-column name="Titel" [sortable]="true">
                 <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
