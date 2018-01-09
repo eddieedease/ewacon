@@ -433,6 +433,8 @@ $app->get('/arcade/addfailed/{arcadelink}', function (Request $request, Response
 	$aid = $resultaddfailed [0]['id'];
 	$ain = $resultaddfailed [0]['name'];
 
+
+
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql2 = "UPDATE arcades SET `phonefailed`= `phonefailed` + 1 WHERE id = '$aid'";
 	$stmtaddfailed2 = $dbh->prepare($sql2);
@@ -455,13 +457,35 @@ $app->get('/arcade/addfailed/{arcadelink}', function (Request $request, Response
 $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request, Response $response) {
 	// set up con
 
+
 	// 	set up the connection variables
 	include 'db.php';
 	// 	connect to the database
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	// api vars
 	$arcadeid = $request->getAttribute('arcadeid');
 	$gameid = $request->getAttribute('gameid');
+
+
+	$sql= "SELECT id,name,phonefailed FROM `arcades` WHERE arcadeid = '$arcadeid'";
+	$dbh = null;
+	$stmtaddfailed = $dbh->prepare($sql);
+	$dbh = null;
+	$stmtaddfailed->execute();
+	$resultaddfailed = $stmtaddfailed->fetchAll(PDO::FETCH_ASSOC);
+	
+	// 	so thats $resultaddphone[0]['name'] 
+	$phonetot = $resultaddfailed [0]['phonetot'];
+	$phonetot++;
+	$aid = $resultaddfailed [0]['id'];
+	$ain = $resultaddfailed [0]['name'];
+
+
+
+	// 	connect to the database
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	// api vars
+
+	
 	
 	$score1 = $request->getQueryParam('score1', $default = null);
 	$name1 = $request->getQueryParam('name1', $default = null);
@@ -506,9 +530,9 @@ $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request,
 
 	
 	// update the highscores
-	$sql= "UPDATE highscores SET $currentgame = '$highscorestring' WHERE linkid = '$arcadeid'";
+	$sql2= "UPDATE highscores SET $currentgame = '$highscorestring'  WHERE linkid = '$ain'";
 	
-	$stmtaddscore = $dbh->prepare($sql);
+	$stmtaddscore = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmtaddscore->execute();
 	
