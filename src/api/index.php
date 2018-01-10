@@ -466,10 +466,8 @@ $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request,
 	$gameid = $request->getAttribute('gameid');
 
 
-	$sql= "SELECT id,name,phonefailed FROM `arcades` WHERE arcadeid = '$arcadeid'";
-	$dbh = null;
+	$sql= "SELECT id,name,phonefailed FROM arcades WHERE arcadeid = '$arcadeid'";
 	$stmtaddfailed = $dbh->prepare($sql);
-	$dbh = null;
 	$stmtaddfailed->execute();
 	$resultaddfailed = $stmtaddfailed->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -486,36 +484,28 @@ $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request,
 	// api vars
 
 	
-	
 	$score1 = $request->getQueryParam('score1', $default = null);
 	$name1 = $request->getQueryParam('name1', $default = null);
 	
-
 	$score2 = $request->getQueryParam('score2', $default = null);
 	$name2 = $request->getQueryParam('name2', $default = null);
-	
 
 	$score3 = $request->getQueryParam('score3', $default = null);
 	$name3 = $request->getQueryParam('name3', $default = null);
-	
 
 	$score4 = $request->getQueryParam('score4', $default = null);
 	$name4 = $request->getQueryParam('name4', $default = null);
 	
-
 	$score5 = $request->getQueryParam('score5', $default = null);
 	$name5 = $request->getQueryParam('name5', $default = null);
-	
 	
 	// making an stringify thingie
 	$data = array('name1' => $name1, 'score1' => $score1, 'name2' => $name2, 'score2' => $score2,'name3' => $name3, 'score3' => $score3,'name4' => $name4, 'score4' => $score4,'name5' => $name5, 'score5' => $score5);
 	$highscorestring = json_encode($data);
 	
-
-
 	switch ($gameid) {
 		case 1:
-			$currentgame = 'game1';
+		$currentgame = 'game1';
 			break;
 		case 2:
 		$currentgame = 'game2';
@@ -536,10 +526,8 @@ $app->get('/arcade/submitscore/{arcadeid}/{gameid}', function (Request $request,
 	$dbh = null;
 	$stmtaddscore->execute();
 	
-	
 	$data = array('Jsonresponse' => $sql, 'arraystringify' => $highscorestring);
 	$response = json_encode($data);
-	
 	return $response;
 }
 );
