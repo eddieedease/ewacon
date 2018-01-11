@@ -366,7 +366,7 @@ export class SiteComponent implements OnInit {
         
         this.decodedHighScores2 = JSON.parse(this.currentHighScores.game2);
         this.decodedHighScores3 = JSON.parse(this.currentHighScores.game3);
-        this.decodedHighScores4 = JSON.parse(this.currentHighScores.game3);
+        this.decodedHighScores4 = JSON.parse(this.currentHighScores.game4);
 
 
         this.serser.debugLog(this.decodedHighScores1.name1);
