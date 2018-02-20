@@ -102,6 +102,10 @@ export class AdminComponent implements OnInit {
   team9Name;
   team10Name;
   team11Name;
+  team12Name;
+  team13Name;
+  team14Name;
+  team15Name;
 
 
 
@@ -223,6 +227,10 @@ export class AdminComponent implements OnInit {
         this.team9Name = this.teams[index].team9name;
         this.team10Name = this.teams[index].team10name;
         this.team11Name = this.teams[index].team11name;
+        this.team12Name = this.teams[index].team12name;
+        this.team13Name = this.teams[index].team13name;
+        this.team14Name = this.teams[index].team14name;
+        this.team15Name = this.teams[index].team15name;
       }
     }
 
@@ -390,7 +398,7 @@ export class AdminComponent implements OnInit {
 
   changeTeamNames() {
     // tslint:disable-next-line:max-line-length
-    const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name];
+    const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name,this.team12Name,this.team13Name,this.team14Name,this.team15Name];
     this.serser.editTeamNames(this.currentName, titleArray).subscribe(value => this.teamNamesChanged(value));
   }
 

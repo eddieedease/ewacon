@@ -192,7 +192,7 @@ export class EwasteServiceService {
 
     // teamnames is array of strings
     // tslint:disable-next-line:max-line-length
-    const url = this.apiUrl + 'editteamnames/'  + _idname + '?rnd=' + new Date().getTime() + '&team1=' + _teamnames[0] + '&team2=' + _teamnames[1] +'&team3=' + _teamnames[2] +'&team4=' + _teamnames[3] + '&team5=' + _teamnames[4] + '&team6=' + _teamnames[5] +'&team7=' + _teamnames[6] +'&team8=' + _teamnames[7] + '&team9=' + _teamnames[8] + '&team10=' + _teamnames[9] + '&team11=' + _teamnames[10];
+    const url = this.apiUrl + 'editteamnames/'  + _idname + '?rnd=' + new Date().getTime() + '&team1=' + _teamnames[0] + '&team2=' + _teamnames[1] +'&team3=' + _teamnames[2] +'&team4=' + _teamnames[3] + '&team5=' + _teamnames[4] + '&team6=' + _teamnames[5] +'&team7=' + _teamnames[6] +'&team8=' + _teamnames[7] + '&team9=' + _teamnames[8] + '&team10=' + _teamnames[9] + '&team11=' + _teamnames[10] +'&team12=' + _teamnames[11] + '&team13=' + _teamnames[12] + '&team14=' + _teamnames[13] +'&team15=' + _teamnames[14];
     // tslint:disable-next-line:prefer-const
     const headers = new Headers({
       'Content-Type': 'application/json'

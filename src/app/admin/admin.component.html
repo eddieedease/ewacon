@@ -257,6 +257,50 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="arcadeTeamsTot > 11" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <b>Team 12: </b>
+          </p>
+          <input [(ngModel)]="team12Name" placeholder="Teamnaam" id="team12" type="text" class="validate">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="arcadeTeamsTot > 12" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <b>Team 13: </b>
+          </p>
+          <input [(ngModel)]="team13Name" placeholder="Teamnaam" id="team13" type="text" class="validate">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="arcadeTeamsTot > 13" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <b>Team 14: </b>
+          </p>
+          <input [(ngModel)]="team14Name" placeholder="Teamnaam" id="team14" type="text" class="validate">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="arcadeTeamsTot > 14" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <b>Team 15: </b>
+          </p>
+          <input [(ngModel)]="team15Name" placeholder="Teamnaam" id="team15" type="text" class="validate">
+        </div>
+      </div>
+    </div>
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat">Annuleren</a>
       <a (click)="changeTeamNames()" class="modal-action modal-close waves-effect waves-green btn-flat">Opslaan</a>

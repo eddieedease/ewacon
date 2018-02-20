@@ -302,6 +302,10 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 	$team9 = $request->getQueryParam('team9', $default = null);
 	$team10 = $request->getQueryParam('team10', $default = null);
 	$team11 = $request->getQueryParam('team11', $default = null);
+	$team12 = $request->getQueryParam('team12', $default = null);
+	$team13 = $request->getQueryParam('team13', $default = null);
+	$team14 = $request->getQueryParam('team14', $default = null);
+	$team15 = $request->getQueryParam('team15', $default = null);
 	
 	
 	$sql = "UPDATE teams SET team1name = '$team1', team2name = '$team2',team3name ='$team3', team4name ='$team4', team5name ='$team5' , team6name ='$team6' , team7name ='$team7' , team8name ='$team8' , team9name ='$team9' , team10name = '$team10' , team11name = '$team11' WHERE linkid = '$id'";
@@ -325,14 +329,16 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
  * So first look up the arcadeID from the arcadelink, then assign points
  * Note 2: if no team is selected the value 1 is given
 */
-$app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $request, Response $response) {
+$app->get('/arcade/addphone/{arcadelink}/{phonescore}/{chosenteam}/{teamscore}', function (Request $request, Response $response) {
 	// 	set up the connection variables
 		include 'db.php';
 	// 	connect to the database
 		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	
 	$arcadelink = $request->getAttribute('arcadelink');
+	$phonescore = $request->getAttribute('phonescore');
 	$chosenteam = $request->getAttribute('chosenteam');
+	$teamscore = $request->getAttribute('teamscore');
 	
 	//$	name = $mysqli->query("SELECT id FROM arcades WHERE actionlink = '$arcadelink'")->fetch_object()->name;
 	
@@ -342,55 +348,65 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 	$dbh = null;
 	$stmtaddphone->execute();
 	$resultaddphone = $stmtaddphone->fetchAll(PDO::FETCH_ASSOC);
-	// 	so thats $resultaddphone[0]['name'] 
-		$phonetot = $resultaddphone[0]['phonetot'];
-	$phonetot++;
+
 	$aid = $resultaddphone[0]['id'];
 	$ain = $resultaddphone[0]['name'];
 	
 	// 	OK UPDATE ALL THE THINGS :)\
 		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$sql2 = "UPDATE arcades SET phonetot = $phonetot WHERE id = '$aid'";
+	$sql2 = "UPDATE arcades SET phonetot = $phonescore WHERE id = '$aid'";
 	$stmtaddphone2 = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmtaddphone2->execute();
 	
 	// 	very nice, now just add the score to the current team
-		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	//
 	switch ($chosenteam) {
 		case '1':
-		$sql3 = "UPDATE teams SET `team1tot`= `team1tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team1tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '2':
-		$sql3 = "UPDATE teams SET `team2tot`= `team2tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team2tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '3':
-		$sql3 = "UPDATE teams SET `team3tot`= `team3tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team3tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '4':
-		$sql3 = "UPDATE teams SET `team4tot`= `team4tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team4tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '5':
-		$sql3 = "UPDATE teams SET `team5tot`= `team5tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team5tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '6':
-		$sql3 = "UPDATE teams SET `team6tot`= `team6tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team6tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '7':
-		$sql3 = "UPDATE teams SET `team7tot`= `team7tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team7tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '8':
-		$sql3 = "UPDATE teams SET `team8tot`= `team8tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team8tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '9':
-		$sql3 = "UPDATE teams SET `team9tot`= `team9tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team9tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '10':
-		$sql3 = "UPDATE teams SET `team10tot`= `team10tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team10tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 		case '11':
-		$sql3 = "UPDATE teams SET `team11tot`= `team11tot` + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team11tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		break;
+		case '12':
+		$sql3 = "UPDATE teams SET `team12tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		break;
+		case '13':
+		$sql3 = "UPDATE teams SET `team13tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		break;
+		case '14':
+		$sql3 = "UPDATE teams SET `team14tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		break;
+		case '15':
+		$sql3 = "UPDATE teams SET `team15tot`= $teamscore + 1 WHERE linkid = '$ain'";
 		break;
 	}
 	
@@ -403,7 +419,7 @@ $app->get('/arcade/addphone/{arcadelink}/{chosenteam}', function (Request $reque
 	$tt = gettype($chosenteam);
 	
 	// 	ok we got the resultaddphone variable, now make the assigned
-		$data = array('Jsonresponse' => $sql3 , 'type' => $tt);
+	$data = array('Jsonresponse' => $sql3 , 'type' => $tt);
 	$response = json_encode($data);
 	return $response;
 }

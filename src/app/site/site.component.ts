@@ -186,10 +186,9 @@ export class SiteComponent implements OnInit {
       if (this.arcadess[a].status === '2') {
         const activeArcade = this.arcadess[a];
         this.rows.push(activeArcade);
+        this.serser.debugLog('rowsssss');
       }
     }
-
-
 
     this.dataLoaded = true;
 
@@ -466,6 +465,7 @@ export class SiteComponent implements OnInit {
     // Sorting call
     rows.sort(this.sortWhat(magicw, whichDir));
     this.rows = rows;
+    
   }
 
   /**
