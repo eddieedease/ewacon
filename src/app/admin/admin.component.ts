@@ -321,9 +321,9 @@ export class AdminComponent implements OnInit {
   }
 
   editAction() {
-    console.log('checksome');
+   
     if (this.actionName !== '') {
-      console.log('yeass');
+      
       // tslint:disable-next-line:max-line-length
       this.serser.editAction(this.currentActionId, this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
     } else {
@@ -335,7 +335,7 @@ export class AdminComponent implements OnInit {
 
   actionCreated(_event) {
     // call is success, get everything from API
-    console.log(_event);
+    
     this.toastr.success(' :) ', ' Actie verwerkt');
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }

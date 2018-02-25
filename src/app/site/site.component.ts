@@ -208,7 +208,7 @@ export class SiteComponent implements OnInit {
         // search in all the arcades with matching actionlink
         this.arcadess.forEach(element => {
           if (element.actionlink === this.actionss[i].id) {
-            console.log('YESSSSSSSSSS');
+           
             sumOfAction = sumOfAction + parseInt(element.phonetot, 10);
           }
         });
@@ -229,6 +229,8 @@ export class SiteComponent implements OnInit {
 
       this.allCo2 = this.allPhones * 250;
     }
+
+    this.filterOnRows('all');
 
   }
 
@@ -292,7 +294,7 @@ export class SiteComponent implements OnInit {
       }
     }
 
-    console.log(this.currentTeamss.team1name);
+  
     // sorting of the teams on phonetot
     // first make array of objects, then SORT on phonetot, hella yea beautifull object
     this.currentTeams = [{
@@ -334,6 +336,30 @@ export class SiteComponent implements OnInit {
       {
         name: this.currentTeamss.team10name,
         phonetot: this.currentTeamss.team10tot
+      },
+      {
+        name: this.currentTeamss.team11name,
+        phonetot: this.currentTeamss.team11tot
+      },
+      {
+        name: this.currentTeamss.team12name,
+        phonetot: this.currentTeamss.team12tot
+      },
+      {
+        name: this.currentTeamss.team13name,
+        phonetot: this.currentTeamss.team13tot
+      },
+      {
+        name: this.currentTeamss.team14name,
+        phonetot: this.currentTeamss.team14tot
+      },
+      {
+        name: this.currentTeamss.team15name,
+        phonetot: this.currentTeamss.team15tot
+      },
+      {
+        name: this.currentTeamss.team16name,
+        phonetot: this.currentTeamss.team16tot
       }
     ]
 
@@ -450,7 +476,8 @@ export class SiteComponent implements OnInit {
         magicw = 'name';
         break;
       case 'Aantal':
-        magicw = 'phonetot';
+        magicw = + 'phonetot';
+     
         break;
       case 'Locatie':
         magicw = 'location';
