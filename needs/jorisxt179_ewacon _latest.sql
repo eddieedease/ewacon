@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 20 feb 2018 om 10:18
+-- Gegenereerd op: 25 feb 2018 om 12:04
 -- Serverversie: 10.2.7-MariaDB
 -- PHP-versie: 5.5.38
 
@@ -76,7 +76,9 @@ INSERT INTO `arcades` (`id`, `arcadeid`, `name`, `status`, `actionlink`, `locati
 (28, 3, 'Universiteit Leiden', 2, 10, 'Leiden', '52.160603, 4.485379', 251, 96, 1, '2018-01-15', '2018-02-08', '2018-02-08 17:08:53'),
 (29, 2, 'Avans Hogeschool', 2, 10, 'Breda', '51.588044, 4.796566', 55, 53, 1, '2018-01-15', '2018-02-08', '2018-02-08 17:10:07'),
 (30, 6, 'HAN - Hogeschool Arnhem Nijmegen', 2, 10, 'Arnhem', '51.993452, 5.950441', 5, 72, 1, '2018-01-15', '2018-02-08', '2018-01-29 16:04:31'),
-(31, 7, 'TU/e Green Office', 2, 0, 'Eindhoven', '51.451691, 5.492258', 1, 6, 10, '2018-02-19', '2018-04-20', '2018-02-20 08:37:50');
+(31, 7, 'TUe Green Office_b', 1, 0, 'Eindhoven', '51.451691, 5.492258', 1, 7, 10, '2018-02-19', '2018-04-20', '2018-02-25 11:03:22'),
+(33, 8, 'TUe Green Office', 2, 0, 'Eindhoven', '51.447837, 5.487626', 2, 4, 12, '2018-02-19', '2018-04-20', '2018-02-25 11:03:31'),
+(34, 98, 'Testkast', 1, 0, 'Somewhere...', '51.439746, 5.439161', 19, 2, 8, '2018-02-13', '2018-02-23', '2018-02-25 09:09:48');
 
 -- --------------------------------------------------------
 
@@ -123,7 +125,8 @@ INSERT INTO `highscores` (`linkid`, `game1`, `game2`, `game3`, `game4`, `game5`,
 ('HAN - Hogeschool Arnhem Nijmegen', '{\"name1\":\"baas\",\"score1\":\"890\",\"name2\":\".....\",\"score2\":\"0\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"a\",\"score1\":\"165\",\"name2\":\".....\",\"score2\":\"0\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"a\",\"score1\":\"90\",\"name2\":\"b\",\"score2\":\"70\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
 ('Hogeschool Leiden', '{\"name1\":\"caca\",\"score1\":\"4130\",\"name2\":\"ba\",\"score2\":\"2600\",\"name3\":\"a\",\"score3\":\"2030\",\"name4\":\"y\",\"score4\":\"1980\",\"name5\":\"mop\",\"score5\":\"1390\"}', '{\"name1\":\"merel\",\"score1\":\"795\",\"name2\":\"xyz\",\"score2\":\"630\",\"name3\":\"a\",\"score3\":\"585\",\"name4\":\"a\",\"score4\":\"465\",\"name5\":\"lucho\",\"score5\":\"330\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"@mare\",\"score1\":\"660\",\"name2\":\"tin\",\"score2\":\"510\",\"name3\":\"im\",\"score3\":\"600\",\"name4\":\"a\",\"score4\":\"370\",\"name5\":\"pop\",\"score5\":\"300\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
 ('StartupMix @ Radboud Universiteit', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"vos\",\"score1\":\"220\",\"name2\":\"nelis\",\"score2\":\"630\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
-('TU/e Green Office', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"jip\",\"score1\":\"990\",\"name2\":\"jip\",\"score2\":\"985\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"erwin\",\"score1\":\"310\",\"name2\":\".....\",\"score2\":\"0\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
+('Testkast', '{\"name1\":\"a\",\"score1\":\"530\",\"name2\":\"a\",\"score2\":\"400\",\"name3\":\"a\",\"score3\":\"260\",\"name4\":\"a\",\"score4\":\"210\",\"name5\":\"a\",\"score5\":\"190\"}', '{\"name1\":\"fm\",\"score1\":\"1260\",\"name2\":\"a\",\"score2\":\"165\",\"name3\":\"aba\",\"score3\":\"150\",\"name4\":\"abc\",\"score4\":\"195\",\"name5\":\"a\",\"score5\":\"90\"}', '{\"name1\":\"abz\",\"score1\":\"695\",\"name2\":\"a\",\"score2\":\"670\",\"name3\":\"a\",\"score3\":\"270\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"ctg\",\"score1\":\"710\",\"name2\":\"a\",\"score2\":\"110\",\"name3\":\"befg\",\"score3\":\"80\",\"name4\":\"a\",\"score4\":\"40\",\"name5\":\"a\",\"score5\":\"30\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
+('TUe Green Office', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"jurry\",\"score1\":\"15955\",\"name2\":\"basan\",\"score2\":\"1540\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"d\",\"score1\":\"380\",\"name2\":\"bert\",\"score2\":\"310\",\"name3\":\".....\",\"score3\":\"0\",\"name4\":\".....\",\"score4\":\"0\",\"name5\":\".....\",\"score5\":\"0\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}'),
 ('Universiteit Leiden', '{\"name1\":\"p\",\"score1\":\"4170\",\"name2\":\"grkey\",\"score2\":\"3570\",\"name3\":\"nemo\",\"score3\":\"2990\",\"name4\":\"y\",\"score4\":\"2510\",\"name5\":\"anaal\",\"score5\":\"2460\"}', '{\"name1\":\"mike\",\"score1\":\"1110\",\"name2\":\"kippi\",\"score2\":\"1095\",\"name3\":\"br@m@\",\"score3\":\"810\",\"name4\":\"amm\",\"score4\":\"780\",\"name5\":\"a\",\"score5\":\"765\"}', '{\"name1\":\"esly\",\"score1\":\"2470\",\"name2\":\"vosco\",\"score2\":\"1950\",\"name3\":\"amm\",\"score3\":\"1425\",\"name4\":\"bcc\",\"score4\":\"1420\",\"name5\":\"mike\",\"score5\":\"1175\"}', '{\"name1\":\"aoife\",\"score1\":\"1700\",\"name2\":\"lies\",\"score2\":\"1640\",\"name3\":\"kippi\",\"score3\":\"1430\",\"name4\":\"lyonn\",\"score4\":\"1330\",\"name5\":\"kippi\",\"score5\":\"1240\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}', '{\"name1\":\"\",\"score1\":\"\",\"name2\":\"\",\"score2\":\"\",\"name3\":\"\",\"score3\":\"\",\"name4\":\"\",\"score4\":\"\",\"name5\":\"\",\"score5\":\"\"}');
 
 -- --------------------------------------------------------
@@ -155,21 +158,30 @@ CREATE TABLE `teams` (
   `team10name` varchar(100) NOT NULL DEFAULT 'team10',
   `team10tot` int(100) NOT NULL DEFAULT 0,
   `team11name` varchar(100) NOT NULL DEFAULT 'team11',
-  `team11tot` int(100) NOT NULL DEFAULT 0
+  `team11tot` int(100) NOT NULL DEFAULT 0,
+  `team12name` varchar(100) NOT NULL DEFAULT 'team12',
+  `team12tot` int(100) NOT NULL DEFAULT 0,
+  `team13name` varchar(100) NOT NULL DEFAULT 'team13',
+  `team13tot` int(100) NOT NULL DEFAULT 0,
+  `team14name` varchar(100) NOT NULL DEFAULT 'team14',
+  `team14tot` int(100) NOT NULL DEFAULT 0,
+  `team15name` varchar(100) NOT NULL DEFAULT 'team15',
+  `team15tot` int(100) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `teams`
 --
 
-INSERT INTO `teams` (`linkid`, `team1name`, `team1tot`, `team2name`, `team2tot`, `team3name`, `team3tot`, `team4name`, `team4tot`, `team5name`, `team5tot`, `team6name`, `team6tot`, `team7name`, `team7tot`, `team8name`, `team8tot`, `team9name`, `team9tot`, `team10name`, `team10tot`, `team11name`, `team11tot`) VALUES
-('Avans Hogeschool', 'team1', 55, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0),
-('Funky Phone One - EA Office', 'Geen Voorkeur', 12, 'team1', 2, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0),
-('HAN - Hogeschool Arnhem Nijmegen', 'team1', 5, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0),
-('Hogeschool Leiden', 'team1', 50, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0),
-('StartupMix @ Radboud Universiteit', 'team1', 114, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0),
-('TU/e Green Office', 'team1', 0, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 1, 'team9', 0, 'team10', 0, 'team11', 0),
-('Universiteit Leiden', 'team1', 251, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0);
+INSERT INTO `teams` (`linkid`, `team1name`, `team1tot`, `team2name`, `team2tot`, `team3name`, `team3tot`, `team4name`, `team4tot`, `team5name`, `team5tot`, `team6name`, `team6tot`, `team7name`, `team7tot`, `team8name`, `team8tot`, `team9name`, `team9tot`, `team10name`, `team10tot`, `team11name`, `team11tot`, `team12name`, `team12tot`, `team13name`, `team13tot`, `team14name`, `team14tot`, `team15name`, `team15tot`) VALUES
+('Avans Hogeschool', 'team1', 55, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0, 'team12', 0, 'team13', 0, 'team14', 0, 'team15', 0),
+('Funky Phone One - EA Office', 'Geen Voorkeur', 12, 'team1', 2, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, '', 0, '', 0, '', 0, '', 0),
+('HAN - Hogeschool Arnhem Nijmegen', 'team1', 5, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0, '', 0, '', 0, '', 0, '', 0),
+('Hogeschool Leiden', 'team1', 50, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0, '', 0, '', 0, '', 0, '', 0),
+('StartupMix @ Radboud Universiteit', 'team1', 114, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0, '', 0, '', 0, '', 0, '', 0),
+('Testkast', 'Geen sdfsdfdsfds', 51, 'team2', 4, 'team 3', 0, 'team 4', 0, 'team 5', 0, 'team 6', 2, 'team 7', 0, 'team 8', 0, 'team 9', 0, 'team 10', 0, 'team 11', 0, 'team12', 2, 'team13', 0, 'team14', 0, 'team15', 0),
+('TUe Green Office', 'team1', 0, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 1, 'team9', 4, 'team10', 0, 'team11', 0, 'team12', 0, 'team13', 0, 'team14', 0, 'team15', 0),
+('Universiteit Leiden', 'team1', 251, 'team2', 0, 'team3', 0, 'team4', 0, 'team5', 0, 'team6', 0, 'team7', 0, 'team8', 0, 'team9', 0, 'team10', 0, 'team11', 0, '', 0, '', 0, '', 0, '', 0);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -221,7 +233,7 @@ ALTER TABLE `actions`
 -- AUTO_INCREMENT voor een tabel `arcades`
 --
 ALTER TABLE `arcades`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

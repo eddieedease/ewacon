@@ -38,7 +38,10 @@ export class EwasteServiceService {
 
 
   debugLog(toDebug: any) {
-    console.log(toDebug);
+    if (environment.production === false){
+      console.log(toDebug);
+    }
+    
   }
 
 

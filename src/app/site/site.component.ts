@@ -272,14 +272,19 @@ export class SiteComponent implements OnInit {
    *
    */
   onSelect(_event) {
+
+    console.log(_event);
     // this.serser.debugLog(_event.selected[0]);
 
     // set current arcadeid + name
     this.currentArcadeId = _event.selected[0].id;
     this.currentArcadeName = _event.selected[0].name;
     this.currentphoneTot = _event.selected[0].phonetot;
-    this.currentTeamTot = _event.selected[0].teamstot;
+    this.currentTeamTot = + _event.selected[0].teamstot;
 
+    
+    this.serser.debugLog(this.currentTeamTot);
+    this.serser.debugLog("typoe offfffff" + typeof(this.currentTeamTot))
     
 
     // get current teams & current highscores
@@ -287,14 +292,17 @@ export class SiteComponent implements OnInit {
 
     // teams
     for (let index = 0; index < this.teams.length; index++) {
+      this.serser.debugLog(this.currentArcadeName);
+      this.serser.debugLog(this.teams[index].linkid);
       if (this.teams[index].linkid === this.currentArcadeName) {
+        this.serser.debugLog('got it');
         this.currentTeamss = this.teams[index];
-        this.serser.debugLog(this.currentTeamss);
         // Allright nice, now we have the teams... but... we need the right order
       }
     }
 
-  
+    this.serser.debugLog("Before this");
+    this.serser.debugLog(this.currentTeamss);
     // sorting of the teams on phonetot
     // first make array of objects, then SORT on phonetot, hella yea beautifull object
     this.currentTeams = [{
@@ -356,12 +364,9 @@ export class SiteComponent implements OnInit {
       {
         name: this.currentTeamss.team15name,
         phonetot: this.currentTeamss.team15tot
-      },
-      {
-        name: this.currentTeamss.team16name,
-        phonetot: this.currentTeamss.team16tot
       }
     ]
+    
 
     // Actual sorting of highest score
     this.currentTeams.sort(function (obj1, obj2) {
@@ -371,6 +376,7 @@ export class SiteComponent implements OnInit {
 
     this.currentTeams.reverse();
 
+   
     // test it
     this.serser.debugLog(this.currentTeams);
 
@@ -394,7 +400,6 @@ export class SiteComponent implements OnInit {
         this.decodedHighScores4 = JSON.parse(this.currentHighScores.game4);
 
 
-        this.serser.debugLog(this.decodedHighScores1.name1);
         // now I know it aint pretty, but i had some weird bug
         this.game1name1 = this.decodedHighScores1.name1;
         this.game1score1 = this.decodedHighScores1.score1;
