@@ -364,49 +364,49 @@ $app->get('/arcade/addphone/{arcadelink}/{phonescore}/{chosenteam}/{teamscore}',
 	//
 	switch ($chosenteam) {
 		case '1':
-		$sql3 = "UPDATE teams SET `team1tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team1tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '2':
-		$sql3 = "UPDATE teams SET `team2tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team2tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '3':
-		$sql3 = "UPDATE teams SET `team3tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team3tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '4':
-		$sql3 = "UPDATE teams SET `team4tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team4tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '5':
-		$sql3 = "UPDATE teams SET `team5tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team5tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '6':
-		$sql3 = "UPDATE teams SET `team6tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team6tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '7':
-		$sql3 = "UPDATE teams SET `team7tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team7tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '8':
-		$sql3 = "UPDATE teams SET `team8tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team8tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '9':
-		$sql3 = "UPDATE teams SET `team9tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team9tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '10':
-		$sql3 = "UPDATE teams SET `team10tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team10tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '11':
-		$sql3 = "UPDATE teams SET `team11tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team11tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '12':
-		$sql3 = "UPDATE teams SET `team12tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team12tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '13':
-		$sql3 = "UPDATE teams SET `team13tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team13tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '14':
-		$sql3 = "UPDATE teams SET `team14tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team14tot`= $teamscore WHERE linkid = '$ain'";
 		break;
 		case '15':
-		$sql3 = "UPDATE teams SET `team15tot`= $teamscore + 1 WHERE linkid = '$ain'";
+		$sql3 = "UPDATE teams SET `team15tot`= $teamscore  WHERE linkid = '$ain'";
 		break;
 	}
 	
