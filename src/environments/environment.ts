@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:80/ewacon/src/api/'
+  apiUrl: 'http://localhost:8888/ewacon/src/api/'
 }
