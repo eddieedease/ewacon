@@ -21,6 +21,9 @@ import {
   DatatableComponent
 } from '@swimlane/ngx-datatable';
 
+// make use of cookie service
+import { CookieService } from 'ngx-cookie';
+
 
 // toaster thing
 import {
@@ -107,6 +110,9 @@ export class AdminComponent implements OnInit {
   team14Name;
   team15Name;
 
+  // filter vars
+  filterId;
+  filterAction;
 
 
 
@@ -115,40 +121,58 @@ export class AdminComponent implements OnInit {
 
   passw = '';
   // tslint:disable-next-line:max-line-length
-  constructor(private serser: EwasteServiceService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
+  constructor(private serser: EwasteServiceService, private _cookieService:CookieService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
 
   ngOnInit() {
 
-
-    
 
     for (let index = 1; index < this.arcadeIdNumber; index++) {
       const obj = {
         idNumber: index
       };
       this.arcadesIdPossible.push(obj);
-
     }
 
+    
+
+    // Are we already logged in?
+    const checkC = this.getCookie('usr');
+    console.log(checkC);
+    if (checkC === "gdvs"){
+      this.serser.debugLog("LOGGED IN ALREADY");
+      this.serser.debugLog('Ingelogd');
+      this.serser.loggedin = true;
+      this.loggedin = true;
+      // example call
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+      $(document).ready(function () {
+        $('ul.tabs').tabs();
+      });
+
+    } else {
+      this.serser.debugLog("NEED 2 LOG in");
+    }
 
     // check if loggedin is active for tabs
     if (this.serser.loggedin === true) {
-      this.loggedin = true;
       $(document).ready(function () {
         $('ul.tabs').tabs();
         $('.modal').modal();
       });
     }
+  }
 
-    // modal
-    $(document).ready(function () {
-      $('.modal').modal();
-    });
+  // we want a cookie, 
+  getCookie(key: string){
+    return this._cookieService.getObject(key);
+  }
 
+  forgetUser(){
+    this._cookieService.removeAll();
+    location.reload();
+  }
 
-
-
-    // example call
+  getAll(){
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
 
@@ -256,6 +280,7 @@ export class AdminComponent implements OnInit {
     $(document).ready(function () {
       $('select').material_select();
     });
+    
   }
 
 
@@ -411,8 +436,12 @@ export class AdminComponent implements OnInit {
 
 
   // Archiving functionality
-  moveToArchive(_movewhat) {
+  arcadeToArchive() {
+
     this.toastr.warning('', 'Archief werkt nog niet :(');
+
+    // needs 1) arcadeid & 2) arcadelink
+    this.serser.moveToArchive(this.arcadeId, this.currentActionId).subscribe(value => this.gotgetAllCall(value));
   }
 
   // Archiving functionality
@@ -529,6 +558,10 @@ export class AdminComponent implements OnInit {
       this.serser.debugLog('Ingelogd');
       this.serser.loggedin = true;
       this.loggedin = true;
+      // set cookie
+      this._cookieService.putObject("usr", "gdvs");
+      // example call
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
       $(document).ready(function () {
         $('ul.tabs').tabs();
       });

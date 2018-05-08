@@ -179,7 +179,7 @@ $app->get('/edit/{id}', function (Request $request, Response $response) {
 
 
 /** 
- * NOTE: Not tested
+ * NOTE: DELETE ARCADE
 */
 $app->get('/delete/{id}/{name}', function (Request $request, Response $response) {
 	// 	set up the connection variables
@@ -319,6 +319,94 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 	return $response;
 }
 );
+
+
+// MOVE TO ARCHIVE, the key is here. An arcade gets removed from the arcades and scores, but will be added to the Archive table
+// The ArcadeID is important (which cabinet was it?) Also the linked ACTIONNAME (if there is one, otherwise 0)
+// The rest can be copied straight from arcades tables (type === action)
+
+/** 
+ * NOTE: Not tested
+*/
+$app->get('/archive/{arcadeid}/{actionname}', function (Request $request, Response $response) {
+	// 	set up the connection variables
+		include 'db.php';
+	
+	
+	$id = $request->getAttribute('arcadeid');
+	$name = $request->getAttribute('actionname');
+
+
+	// 1 GET ARCADE INFO
+	// 	set up the connection variables
+	include 'db.php';
+	// 	connect to the database
+	$dbhq = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+
+	$sql0= "SELECT * FROM `arcades` WHERE arcadeid = '$arcadelink'";
+	$stmtarcadeget = $dbhq->prepare($sql0);
+	$dbhq = null;
+	$stmtarcadeget->execute();
+	$resultarcadeget = $stmtarcadeget->fetchAll(PDO::FETCH_ASSOC);
+	
+	// 	so thats $resultaddphone[0]['name'] 
+	$legacyid = $resultarcadeget[0]['id'];
+	$legacyarcadeid = $resultarcadeget[0]['arcadeid'];
+	$legacyname = $resultarcadeget[0]['name'];
+	$legacystatus = $resultarcadeget[0]['status'];
+	$legacyactionlink = $resultarcadeget[0]['actionlink'];
+	$legacylocation = $resultarcadeget[0]['location'];
+	$legacylonglat = $resultarcadeget[0]['longlat'];
+	$legacyphonetot = $resultarcadeget[0]['phonetot'];
+	$legacyphonefailed = $resultarcadeget[0]['phonefailed'];
+	$legacyteamstot = $resultarcadeget[0]['teamstot'];
+	$legacydateplaced = $resultarcadeget[0]['dateplaced'];
+	$legacydateend = $resultarcadeget[0]['dateend'];
+	$legacylastused = $resultarcadeget[0]['lastused'];
+
+
+
+	// 2 INSERT INTO ARCHIVE
+
+
+
+	// CLEAN UP LEGACY
+	
+	// delete from ARCADES Table
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql = "DELETE FROM arcades WHERE id = '$id'";
+	$stmt = $dbh->prepare($sql);
+	$dbh = null;
+	$stmt->execute();
+	
+	// delete from TEAMS Table
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql2 = "DELETE FROM teams WHERE linkid = '$name'";
+	$stmt2 = $dbh->prepare($sql2);
+	$dbh = null;
+	$stmt2->execute();
+	
+	// delete from HIGHSCORES Table
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql3 = "DELETE FROM highscores WHERE linkid = '$name'";
+	$stmt3 = $dbh->prepare($sql3);
+	$dbh = null;
+	$stmt3 -> execute();
+
+
+
+
+	
+	$data = array('Jsonresponse' => 'Move to Archive', 'success' => true);
+	$response = json_encode($data);
+	return $response;
+}
+);
+
+
+
+
+
 
 
 

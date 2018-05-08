@@ -1,8 +1,5 @@
 <!-- Modal Trigger -->
 <!-- Modal Structure -->
-
-
-
 <div id="modal1" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>{{modalTitle}}</h4>
@@ -46,10 +43,6 @@
                 {{arcadeid.idNumber}}
               </option>
             </select>
-
-
-
-
           </div>
 
 
@@ -120,7 +113,7 @@
       <br>
       <a (click)="openTeamModal()" class="btn left waves-effect blue">Bewerk teams</a>
       <br>
-      <a (click)="moveToArchive('arcade')" class="btn left waves-effect orange">Verplaats naar Archief</a>
+      <a (click)="arcadeToArchive()" class="btn left waves-effect orange">Verplaats naar Archief</a>
       <br>
       <a (click)="removeArcade()" class="btn left waves-effect red">Verwijder arcade</a>
     </div>
@@ -385,6 +378,7 @@
 
 
 <div *ngIf="!loggedin" class="container center">
+   
 
 
 
@@ -420,18 +414,22 @@
 </div>
 <div class="section"></div>
 <div *ngIf="loggedin" class="container-fluid">
-
+    <div class="row center-align">
+        <a (click)="forgetUser()" class="waves-effect waves-light btn" style="border-radius: 20px"><i class="material-icons left ">lock_outline
+          </i>Uitloggen</a>
+    </div>
   <div class="row">
+
     <div class="col s12">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3 green ">
-          <a href="#test1" class="white-text">Arcades</a>
+          <a href="#test1" (click)="getAll()" class="white-text">Arcades</a>
         </li>
         <li class="tab col s3 blue">
-          <a href="#test3" class="white-text">Acties</a>
+          <a href="#test3" (click)="getAll()" class="white-text">Acties</a>
         </li>
         <li class="tab col s3 purple ">
-          <a href="#test4" class="white-text">Archief</a>
+          <a href="#test4" (click)="getAll()" class="white-text">Archief</a>
         </li>
 
       </ul>
@@ -443,13 +441,26 @@
           <div class="card-content center white-text">
             <i class="large material-icons">place</i>
             <span class="card-title ">Arcades</span>
-            <p>Informatie over de arcades en blabla...</p>
+            <p>Informatie over de arcades</p>
           </div>
         </div>
       </div>
       <div class="col s12 m12">
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="'auto'" [limit]="10" [rows]='rows' (sort)="onSort($event)">
+          [rowHeight]="'auto'" [limit]="100" [rows]='rows' (sort)="onSort($event)">
+
+          <ngx-datatable-column name="Titel" [sortable]="true">
+
+              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                <span (click)="sort()" style="cursor:pointer">
+                  {{column.name}}
+                </span>
+              </ng-template>
+  
+              <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+                <div [innerHTML]="row['name']"></div>
+              </ng-template>
+            </ngx-datatable-column>
 
           <ngx-datatable-column name="Telefoons" [sortable]="true">
 
@@ -465,6 +476,22 @@
 
           </ngx-datatable-column>
 
+          <ngx-datatable-column name="Bewerk" [sortable]="true">
+
+              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                <span (click)="sort()" style="cursor:pointer">
+                  {{column.name}}
+                </span>
+              </ng-template>
+  
+              <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+                <a (click)="openEditModal(row.id, row.name)" class="btn-floating btn-large waves-effect waves-light blue">
+                  <i class="material-icons">edit</i>
+                </a>
+              </ng-template>
+  
+            </ngx-datatable-column>
+
           <ngx-datatable-column name="arcadeID" [sortable]="true">
 
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
@@ -479,18 +506,7 @@
 
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Titel" [sortable]="true">
-
-            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-              <span (click)="sort()" style="cursor:pointer">
-                {{column.name}}
-              </span>
-            </ng-template>
-
-            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-              <div [innerHTML]="row['name']"></div>
-            </ng-template>
-          </ngx-datatable-column>
+          
 
           <ngx-datatable-column name="Locatie">
 
@@ -602,21 +618,7 @@
           </ngx-datatable-column>
 
 
-          <ngx-datatable-column name="Bewerk" [sortable]="true">
-
-            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-              <span (click)="sort()" style="cursor:pointer">
-                {{column.name}}
-              </span>
-            </ng-template>
-
-            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-              <a (click)="openEditModal(row.id, row.name)" class="btn-floating btn-large waves-effect waves-light blue">
-                <i class="material-icons">edit</i>
-              </a>
-            </ng-template>
-
-          </ngx-datatable-column>
+         
 
 
 
@@ -652,7 +654,7 @@
           <div class="card-content white-text center">
             <i class="large material-icons">local_play</i>
             <span class="card-title">Acties</span>
-            <p>Informatie over blabla</p>
+            <p>Informatie over acties</p>
 
           </div>
         </div>
@@ -663,7 +665,7 @@
 
 
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="'auto'" [limit]="10" [rows]='rowsActions' (sort)="onSort($event)">
+          [rowHeight]="'auto'" [limit]="100" [rows]='rowsActions' (sort)="onSort($event)">
 
 
 
@@ -723,70 +725,29 @@
             </ng-template>
 
           </ngx-datatable-column>
-
-
-
-
-
-
-
-
-
           <!-- <ngx-datatable-column name="Teams" [sortable]="true">
-
           <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
             <span (click)="sort()" style="cursor:pointer">
               {{column.name}}
             </span>
           </ng-template>
-
           <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
             {{row.teamstot}}
           </ng-template>
-
         </ngx-datatable-column> -->
-
-
-
           <ngx-datatable-column name="Bewerk" [sortable]="true">
-
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
               <span (click)="sort()" style="cursor:pointer">
                 {{column.name}}
               </span>
             </ng-template>
-
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
               <a (click)="openEditActionModal(row.id, row.actionname)" class="btn-floating btn-large waves-effect waves-light blue">
                 <i class="material-icons">edit</i>
               </a>
             </ng-template>
-
           </ngx-datatable-column>
-
-
-
-
-
-
-          <!-- <ngx-datatable-column name="Verwijder">
-
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <a (click)="deleteEPSS(row.Code, row.Published)" class="btn-floating waves-effect waves-light red">
-            <i class="material-icons">delete</i>
-          </a>
-
-
-        </ng-template>
-
-      </ngx-datatable-column> -->
-
-
         </ngx-datatable>
-
-
-
-
         <br>
         <a (click)="openActionModal()" class="waves-effect waves-light btn">
           <i class="material-icons left">add</i>Voeg actie toe</a>
@@ -797,14 +758,159 @@
       <div class="col s12 m12">
         <div class="card purple darken-1">
           <div class="card-content white-text center">
+              <i class="large material-icons">archive</i>
             <span class="card-title">Archief</span>
-            <i class="large material-icons">archive</i>
-            <p>Informatie over blabla</p>
+            <p>Arcadekasten in het archief</p>
           </div>
         </div>
       </div>
       <div class="col s12 m12">
+          <form>
+              <div class="row">
+                  <div class="input-field col s6">
+                      <input id="askmeSN" [(ngModel)]="filterId" [ngModelOptions]="{standalone: true}" name="askmeSN" placeholder='Filteren op id' (keyup)='updateFilter(filterownname)' type="text">
 
+                  </div>
+                  <div class="input-field col s6">
+                      <input id="askmeSL"  [(ngModel)]="filterAction" [ngModelOptions]="{standalone: true}" name="askmeSL" placeholder='Filteren op actie' (keyup)='updateFilterLib(filterownlib)' type="text">
+                  </div><br>
+              </div>
+          </form>
+
+
+          <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="'auto'" [limit]="100" [rows]='rows' (sort)="onSort($event)">
+
+          <ngx-datatable-column name="Telefoons" [sortable]="true">
+              <ngx-datatable-column name="arcadeID" [sortable]="true">
+                  <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                    <span (click)="sort()" style="cursor:pointer">
+                      {{column.name}}
+                    </span>
+                  </ng-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{row.arcadeid}}
+                  </ng-template>
+                </ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              {{row.phonetot}}
+            </ng-template>
+
+          </ngx-datatable-column>
+
+        
+
+          <ngx-datatable-column name="Titel" [sortable]="true">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              <div [innerHTML]="row['name']"></div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Locatie">
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.location}}
+            </ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="Begindatum">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.dateplaced}}
+            </ng-template>
+
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Einddatum">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.dateend}}
+            </ng-template>
+
+          </ngx-datatable-column>
+
+
+
+
+
+
+
+          <ngx-datatable-column name="Foutsignaal" [sortable]="true">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.phonefailed}}
+            </ng-template>
+
+          </ngx-datatable-column>
+
+
+
+
+          <!-- <ngx-datatable-column name="Teams" [sortable]="true">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.teamstot}}
+            </ng-template>
+
+          </ngx-datatable-column> -->
+<!-- 
+          <ngx-datatable-column name="Laatst actief" [sortable]="true">
+
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              {{row.lastused}}
+            </ng-template>
+
+          </ngx-datatable-column> -->
+
+
+
+
+        </ngx-datatable>
 
       </div>
 

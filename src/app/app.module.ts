@@ -47,6 +47,9 @@ import {
   ToastrModule
 } from 'ngx-toastr';
 
+// We love ourself some cookies
+import { CookieModule } from 'ngx-cookie';
+
 // Angular Google Maps
 import {
   AgmCoreModule
@@ -95,6 +98,7 @@ const appRoutes: Routes = [{
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    BrowserModule, CookieModule.forRoot(),
     JsonpModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
     AgmCoreModule.forRoot({
