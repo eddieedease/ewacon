@@ -328,13 +328,11 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 /** 
  * NOTE: Not tested
 */
-$app->get('/archive/{arcadeid}/{actionname}', function (Request $request, Response $response) {
+$app->get('/archive/{arcadeid}', function (Request $request, Response $response) {
 	// 	set up the connection variables
-		include 'db.php';
-	
-	
+	include 'db.php';
 	$id = $request->getAttribute('arcadeid');
-	$name = $request->getAttribute('actionname');
+	
 
 
 	// 1 GET ARCADE INFO
@@ -343,7 +341,7 @@ $app->get('/archive/{arcadeid}/{actionname}', function (Request $request, Respon
 	// 	connect to the database
 	$dbhq = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 
-	$sql0= "SELECT * FROM `arcades` WHERE arcadeid = '$arcadelink'";
+	$sql0= "SELECT * FROM arcades WHERE id = '$id'";
 	$stmtarcadeget = $dbhq->prepare($sql0);
 	$dbhq = null;
 	$stmtarcadeget->execute();
@@ -368,27 +366,31 @@ $app->get('/archive/{arcadeid}/{actionname}', function (Request $request, Respon
 
 	// 2 INSERT INTO ARCHIVE
 
+	$dbhq01 = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sql01 = "INSERT INTO archive (name,actionlink,arcadeid,location, longlat, phonetot, phonefail, datestart, dateend) VALUES ('$legacyname','$legacyactionlink','$legacyarcadeid','$legacylocation','$legacylonglat', '$legacyphonetot','$legacyphonefailed','$legacydateplaced','$legacydateend')";
+	$stmtinsert = $dbhq01->prepare($sql01);
+	$dbhq01 = null;
+	$stmtinsert->execute();
 
 
-	// CLEAN UP LEGACY
-	
+	// CLEAN UP LEGACY CONTENT
 	// delete from ARCADES Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$sql = "DELETE FROM arcades WHERE id = '$id'";
+	$sql = "DELETE FROM arcades WHERE id = '$legacyid'";
 	$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
 	
 	// delete from TEAMS Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$sql2 = "DELETE FROM teams WHERE linkid = '$name'";
+	$sql2 = "DELETE FROM teams WHERE linkid = '$legacyname'";
 	$stmt2 = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmt2->execute();
 	
 	// delete from HIGHSCORES Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$sql3 = "DELETE FROM highscores WHERE linkid = '$name'";
+	$sql3 = "DELETE FROM highscores WHERE linkid = '$legacyname'";
 	$stmt3 = $dbh->prepare($sql3);
 	$dbh = null;
 	$stmt3 -> execute();
@@ -397,7 +399,7 @@ $app->get('/archive/{arcadeid}/{actionname}', function (Request $request, Respon
 
 
 	
-	$data = array('Jsonresponse' => 'Move to Archive', 'success' => true);
+	$data = array('Jsonresponse' => $resultarcadeget, 'success' => $sql01);
 	$response = json_encode($data);
 	return $response;
 }

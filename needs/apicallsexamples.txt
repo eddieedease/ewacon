@@ -2,13 +2,15 @@
 Example calls:
 
 // get all 
-http://localhost:8888/ewacon/src/api/api/getall
+http://localhost/ewacon/src/api/api/getall
 
 
 // insert new arcade
-http://localhost:8888/ewacon/src/api/insert?rnd=34&name=hmzzdada&status=1&location=somewhereRainbow&longlat=5,6&teamstot=8&dateplaced=17234&dateend=34234
+http://localhost/ewacon/src/api/insert?rnd=34&name=hmzzdada&status=1&location=somewhereRainbow&longlat=5,6&teamstot=8&dateplaced=17234&dateend=34234
 
 
+// Store to ARCHIVE
+http://localhost/ewacon/src/api/archive/35
 
 
 

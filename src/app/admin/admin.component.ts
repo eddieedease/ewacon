@@ -47,6 +47,7 @@ export class AdminComponent implements OnInit {
   // datatable vars
   rows = [];
   rowsActions = [];
+  rowsArchive = [];
   columns = [];
   temp = [];
   selected = [];
@@ -116,6 +117,8 @@ export class AdminComponent implements OnInit {
 
 
 
+
+
   // boolean view
   loggedin = false;
 
@@ -182,6 +185,8 @@ export class AdminComponent implements OnInit {
     this.rows = _value[1];
     this.rowsActions = _value[0];
 
+    this.rowsArchive = _value[2];
+    console.log(this.rowsArchive);
     this.teams = _value[4];
 
   }
@@ -261,6 +266,7 @@ export class AdminComponent implements OnInit {
 
     for (let i = 0; i < this.rows.length; i++) {
       if (this.rows[i].id === _whichId) {
+
         this.arcadeId = this.rows[i].arcadeid;
         this.arcadeName = this.rows[i].name;
         this.arcadeStatus = this.rows[i].status;
@@ -348,7 +354,6 @@ export class AdminComponent implements OnInit {
   editAction() {
    
     if (this.actionName !== '') {
-      
       // tslint:disable-next-line:max-line-length
       this.serser.editAction(this.currentActionId, this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
     } else {
@@ -360,7 +365,6 @@ export class AdminComponent implements OnInit {
 
   actionCreated(_event) {
     // call is success, get everything from API
-    
     this.toastr.success(' :) ', ' Actie verwerkt');
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
@@ -377,8 +381,6 @@ export class AdminComponent implements OnInit {
   }
 
   arcadeCreated(event) {
-
-    
     // set defaults
     this.arcadeName = '';
     this.arcadeStatus = 1;
@@ -437,19 +439,22 @@ export class AdminComponent implements OnInit {
 
   // Archiving functionality
   arcadeToArchive() {
-
-    this.toastr.warning('', 'Archief werkt nog niet :(');
-
+    this.toastr.warning('', 'Archiveren...');
     // needs 1) arcadeid & 2) arcadelink
-    this.serser.moveToArchive(this.arcadeId, this.currentActionId).subscribe(value => this.gotgetAllCall(value));
+    this.serser.moveToArchive(this.currentId).subscribe(value => this.isArchived(value));
   }
+
+  isArchived(_val){
+    this.toastr.success(':)', 'Gearchiveerd');
+    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+  }
+
+
 
   // Archiving functionality
   debugActionChange(_movewhat) {
     this.serser.debugLog(_movewhat);
   }
-
-
 
   /**
    *  Arcades datatable

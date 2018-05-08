@@ -213,11 +213,11 @@ export class EwasteServiceService {
 
 
    // Move to arcade API CALL
-   moveToArchive(_idname, _actionlink ): Observable < any > {
+   moveToArchive(_idname ): Observable < any > {
 
     // teamnames is array of strings
     // tslint:disable-next-line:max-line-length
-    const url = this.apiUrl + 'archive/'  + _idname + '/' + _actionlink + '?rnd=' + new Date().getTime() ;
+    const url = this.apiUrl + 'archive/'  + _idname + '?rnd=' + new Date().getTime() ;
     // tslint:disable-next-line:prefer-const
     const headers = new Headers({
       'Content-Type': 'application/json'
