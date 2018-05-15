@@ -175,11 +175,58 @@ export class AdminComponent implements OnInit {
     location.reload();
   }
 
-  getAll(){
-    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+  getAll(_numb){
+   
+    if (_numb !== 3){
+      this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+    } else {
+      console.log("yeazzz");
+      this.serser.getAllCall().subscribe(value => this.gotgetAllndConvertActions(value));
+    }
+    
+  }
+
+  // thisone we get from the get archive, we need some converting
+  gotgetAllndConvertActions(_value){
+    // convert the number of actions into the names
+    $('#modal1').modal('close');
+    $('#modal2').modal('close');
+    $('#modal3').modal('close');
+    this.rowsArchive = [];
+    const tempArch = _value[2];
+    const tempActions = _value[0];
+
+
+    // Loop through actionlink
+    
+    for (let index = 0; index < tempArch.length; index++) {
+      let obj = tempArch[index];
+      
+      // loop again to find actionName
+      for (let index2 = 0; index2 < tempActions.length; index2++) {
+        if (tempActions[index2].id === obj.actionlink){
+          obj.actionlink = tempActions[index2].actionname;
+        }
+      }
+      
+      
+      // finally push through to the object
+      this.rowsArchive.push(obj);
+    }
+    
+    // GOAL
+    //this.rowsArchive =
+
+
+
+
+
   }
 
   gotgetAllCall(_value) {
+    $('#modal1').modal('close');
+    $('#modal2').modal('close');
+    $('#modal3').modal('close');
     // [0] Actions [1] Arcades  [2] Archive   [3]Highscores   [4]teams
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
