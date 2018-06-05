@@ -189,9 +189,7 @@ export class AdminComponent implements OnInit {
   // thisone we get from the get archive, we need some converting
   gotgetAllndConvertActions(_value){
     // convert the number of actions into the names
-    $('#modal1').modal('close');
-    $('#modal2').modal('close');
-    $('#modal3').modal('close');
+
     this.rowsArchive = [];
     const tempArch = _value[2];
     const tempActions = _value[0];
@@ -224,9 +222,7 @@ export class AdminComponent implements OnInit {
   }
 
   gotgetAllCall(_value) {
-    $('#modal1').modal('close');
-    $('#modal2').modal('close');
-    $('#modal3').modal('close');
+  
     // [0] Actions [1] Arcades  [2] Archive   [3]Highscores   [4]teams
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];

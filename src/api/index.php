@@ -30,7 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 
 // Start SLim API
-$app = new \Slim\App;
+//$app = new \Slim\App;
+
+// enable debugging
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
 
 
 // Basic call
@@ -47,8 +54,8 @@ $app->get('/api/getall', function (Request $request, Response $response) {
 	include 'db.php';
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	// 	NOTE 5 pieces --> [0] actions [1] arcades [2] archive [3] highscores [4] teams
-		// 	a query get all the correct records from the gemeenten table
-		$sqlactions = 'SELECT * FROM actions';
+	// 	a query get all the correct records from the gemeenten table
+	$sqlactions = 'SELECT * FROM actions';
 	$stmtactions = $dbh->prepare($sqlactions);
 	$stmtactions->execute();
 	$resultactions = $stmtactions->fetchAll(PDO::FETCH_ASSOC);
@@ -114,14 +121,14 @@ $app->get('/insert', function (Request $request, Response $response) {
 	$stmt->execute();
 	
 	// 	another call for making the teams database row
-		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql2 = "INSERT INTO teams (linkid) VALUES ('$paramname')";
 	$stmt2 = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmt2->execute();
 	
 	// 	another call for making the highscores database row
-		$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql3 = "INSERT INTO highscores (linkid) VALUES ('$paramname')";
 	$stmt3 = $dbh->prepare($sql3);
 	$dbh = null;
@@ -326,27 +333,21 @@ $app->get('/editteamnames/{idname}', function (Request $request, Response $respo
 // The rest can be copied straight from arcades tables (type === action)
 
 /** 
- * NOTE: Not tested
+ * NOTE: Needs 2 be Bigger
 */
 $app->get('/archive/{arcadeid}', function (Request $request, Response $response) {
 	// 	set up the connection variables
-	include 'db.php';
 	$id = $request->getAttribute('arcadeid');
-	
-
-
 	// 1 GET ARCADE INFO
 	// 	set up the connection variables
 	include 'db.php';
 	// 	connect to the database
 	$dbhq = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-
 	$sql0= "SELECT * FROM arcades WHERE id = '$id'";
 	$stmtarcadeget = $dbhq->prepare($sql0);
 	$dbhq = null;
 	$stmtarcadeget->execute();
 	$resultarcadeget = $stmtarcadeget->fetchAll(PDO::FETCH_ASSOC);
-	
 	// 	so thats $resultaddphone[0]['name'] 
 	$legacyid = $resultarcadeget[0]['id'];
 	$legacyarcadeid = $resultarcadeget[0]['arcadeid'];
@@ -361,45 +362,111 @@ $app->get('/archive/{arcadeid}', function (Request $request, Response $response)
 	$legacydateplaced = $resultarcadeget[0]['dateplaced'];
 	$legacydateend = $resultarcadeget[0]['dateend'];
 	$legacylastused = $resultarcadeget[0]['lastused'];
+	// 2 GET THE TEAMS SCORE INFO
+	// connect to the database
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sqlteams= "SELECT * FROM teams WHERE linkid = '$legacyname'";
+	$stmtteams = $dbh->prepare($sqlteams);
+	$dbh = null;
+	$stmtteams->execute();
+	$resultteams = $stmtteams->fetchAll(PDO::FETCH_ASSOC);
+	$legacyteam1name = $resultteams[0]['team1name'];
+	$legacyteam1tot = $resultteams[0]['team1tot'];
+	$legacyteam2name = $resultteams[0]['team2name'];
+	$legacyteam2tot = $resultteams[0]['team2tot'];
+	$legacyteam3name = $resultteams[0]['team3name'];
+	$legacyteam3tot = $resultteams[0]['team3tot'];
+	$legacyteam4name = $resultteams[0]['team4name'];
+	$legacyteam4tot = $resultteams[0]['team4tot'];
+	$legacyteam5name = $resultteams[0]['team5name'];
+	$legacyteam5tot = $resultteams[0]['team5tot'];
+	$legacyteam6name = $resultteams[0]['team6name'];
+	$legacyteam6tot = $resultteams[0]['team6tot'];
+	$legacyteam7name = $resultteams[0]['team7name'];
+	$legacyteam7tot = $resultteams[0]['team7tot'];
+	$legacyteam8name = $resultteams[0]['team8name'];
+	$legacyteam8tot = $resultteams[0]['team8tot'];
+	$legacyteam9name = $resultteams[0]['team9name'];
+	$legacyteam9tot = $resultteams[0]['team9tot'];
+	$legacyteam10name = $resultteams[0]['team10name'];
+	$legacyteam10tot = $resultteams[0]['team10tot'];
+	$legacyteam11name = $resultteams[0]['team11name'];
+	$legacyteam11tot = $resultteams[0]['team11tot'];
+	$legacyteam12name = $resultteams[0]['team12name'];
+	$legacyteam12tot = $resultteams[0]['team12tot'];
+	$legacyteam13name = $resultteams[0]['team13name'];
+	$legacyteam13tot = $resultteams[0]['team13tot'];
+	$legacyteam14name = $resultteams[0]['team14name'];
+	$legacyteam14tot = $resultteams[0]['team14tot'];
+	$legacyteam15name = $resultteams[0]['team15name'];
+	$legacyteam15tot = $resultteams[0]['team15tot'];
+	// Get Highscores & pass it to archive
+	$legacyTeamScoreArray = array (
+		"team1"  => array("name" => $legacyteam1name, "scoretot" => $legacyteam1tot),
+		"team2"  => array("name" => $legacyteam2name, "scoretot" => $legacyteam2tot),
+		"team3"  => array("name" => $legacyteam3name, "scoretot" => $legacyteam3tot),
+		"team4"  => array("name" => $legacyteam4name, "scoretot" => $legacyteam4tot),
+		"team5"  => array("name" => $legacyteam5name, "scoretot" => $legacyteam5tot),
+		"team6"  => array("name" => $legacyteam6name, "scoretot" => $legacyteam6tot),
+		"team7"  => array("name" => $legacyteam7name, "scoretot" => $legacyteam7tot),
+		"team8"  => array("name" => $legacyteam8name, "scoretot" => $legacyteam8tot),
+		"team9"  => array("name" => $legacyteam9name, "scoretot" => $legacyteam9tot),
+		"team10"  => array("name" => $legacyteam10name, "scoretot" => $legacyteam10tot),
+		"team11"  => array("name" => $legacyteam11name, "scoretot" => $legacyteam11tot),
+		"team12"  => array("name" => $legacyteam12name, "scoretot" => $legacyteam12tot),
+		"team13"  => array("name" => $legacyteam13name, "scoretot" => $legacyteam13tot),
+		"team14"  => array("name" => $legacyteam14name, "scoretot" => $legacyteam14tot),
+		"team15"  => array("name" => $legacyteam15name, "scoretot" => $legacyteam15tot)
+	);
+	// Encode for putting in database
+	$legacyTeamScores = json_encode($legacyTeamScoreArray);
+	// 3 GET THE HIGHSCORES SCORE INFO
+	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$sqlhs= "SELECT * FROM highscores WHERE linkid = '$id'";
+	$stmths = $dbh->prepare($sqlhs);
+	$dbh = null;
+	$stmths->execute();
 
+	$resultscores = $stmths->fetchAll(PDO::FETCH_ASSOC);
+	$legacygame1score = $resultscores[0]['game1'];
+	$legacygame2score = $resultscores[0]['game2'];
+	$legacygame3score = $resultscores[0]['game3'];
+	$legacygame4score = $resultscores[0]['game4'];
+	$legacyHighScoresArray = array (
+		"game1"  => $legacygame1score,
+		"game2"  => $legacygame2score,
+		"game3"  => $legacygame3score,
+		"game4"  => $legacygame4score,
+	);
+	// Encode for putting in database
+	$legacyHighScores = json_encode($legacyHighScoresArray);
 
-
-	// 2 INSERT INTO ARCHIVE
-
+	// 4 INSERT INTO ARCHIVE
 	$dbhq01 = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-	$sql01 = "INSERT INTO archive (name,actionlink,arcadeid,location, longlat, phonetot, phonefail, datestart, dateend) VALUES ('$legacyname','$legacyactionlink','$legacyarcadeid','$legacylocation','$legacylonglat', '$legacyphonetot','$legacyphonefailed','$legacydateplaced','$legacydateend')";
+	$sql01 = "INSERT INTO archive (name,actionlink,arcadeid,location, longlat, phonetot, phonefail, datestart, dateend, teamscores, highscores) VALUES ('$legacyname','$legacyactionlink','$legacyarcadeid','$legacylocation','$legacylonglat', '$legacyphonetot','$legacyphonefailed','$legacydateplaced','$legacydateend', '$legacyTeamScores', '$legacyHighScores')";
 	$stmtinsert = $dbhq01->prepare($sql01);
 	$dbhq01 = null;
 	$stmtinsert->execute();
-
-
-	// CLEAN UP LEGACY CONTENT
+	// 5  CLEAN UP LEGACY CONTENT
 	// delete from ARCADES Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql = "DELETE FROM arcades WHERE id = '$legacyid'";
 	$stmt = $dbh->prepare($sql);
 	$dbh = null;
 	$stmt->execute();
-	
 	// delete from TEAMS Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql2 = "DELETE FROM teams WHERE linkid = '$legacyname'";
 	$stmt2 = $dbh->prepare($sql2);
 	$dbh = null;
 	$stmt2->execute();
-	
 	// delete from HIGHSCORES Table
 	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
 	$sql3 = "DELETE FROM highscores WHERE linkid = '$legacyname'";
 	$stmt3 = $dbh->prepare($sql3);
 	$dbh = null;
 	$stmt3 -> execute();
-
-
-
-
-	
-	$data = array('Jsonresponse' => $resultarcadeget, 'success' => $sql01);
+	$data = array('Jsonresponse' => "uhmz", 'success' => "uhmz");
 	$response = json_encode($data);
 	return $response;
 }
@@ -654,3 +721,5 @@ $app->get('/api/{name}', function (Request $request, Response $response) {
 );
 
 $app->run();
+
+?>
