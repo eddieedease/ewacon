@@ -374,6 +374,90 @@
 
 
 
+<div id="modal4" class="modal">
+  <div class="modal-content" *ngIf="archiveModalActive">
+    <h4>Scores </h4>
+    <br>
+
+    <br>
+    <div class="row">
+      <h5>Teamscores</h5>
+      <div class="col s6">
+        <ul>
+          <li *ngIf="archiveTeamScores.team1.name != ''"><b>{{archiveTeamScores.team1.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team1.name}} </li>
+          <li *ngIf="archiveTeamScores.team2.name != ''"><b>{{archiveTeamScores.team2.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team2.name}} </li>
+          <li *ngIf="archiveTeamScores.team3.name != ''"><b>{{archiveTeamScores.team3.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team3.name}} </li>
+          <li *ngIf="archiveTeamScores.team4.name != ''"><b>{{archiveTeamScores.team4.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team4.name}} </li>
+          <li *ngIf="archiveTeamScores.team5.name != ''"><b>{{archiveTeamScores.team5.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team5.name}} </li>
+          <li *ngIf="archiveTeamScores.team6.name != ''"><b>{{archiveTeamScores.team6.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team6.name}} </li>
+          <li *ngIf="archiveTeamScores.team7.name != ''"><b>{{archiveTeamScores.team7.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team7.name}} </li>
+          <li *ngIf="archiveTeamScores.team8.name != ''"><b>{{archiveTeamScores.team8.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team8.name}} </li>
+          <li *ngIf="archiveTeamScores.team9.name != ''"><b>{{archiveTeamScores.team9.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team9.name}} </li>
+          <li *ngIf="archiveTeamScores.team10.name != ''"><b>{{archiveTeamScores.team10.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team10.name}} </li>
+          <li *ngIf="archiveTeamScores.team11.name != ''"><b>{{archiveTeamScores.team11.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team11.name}} </li>
+          <li *ngIf="archiveTeamScores.team12.name != ''"><b>{{archiveTeamScores.team12.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team12.name}} </li>
+          <li *ngIf="archiveTeamScores.team13.name != ''"><b>{{archiveTeamScores.team13.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team13.name}} </li>
+          <li *ngIf="archiveTeamScores.team14.name  != ''"><b>{{archiveTeamScores.team14.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team14.name}} </li>
+          <li *ngIf="archiveTeamScores.team15.name != ''"><b>{{archiveTeamScores.team15.scoretot}}. </b>&nbsp;&nbsp; {{archiveTeamScores.team15.name}} </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <h5>Gamescores</h5>
+      <div class="col s6">
+          <h6>Raak 'm vaak</h6>
+          <ul>
+           <b>1:&nbsp;</b>{{archiveHighScores.game1.name1}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game1.score1}}<br>
+           <b>2:&nbsp;</b>{{archiveHighScores.game1.name2}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game1.score2}}<br>
+           <b>3:&nbsp;</b>{{archiveHighScores.game1.name3}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game1.score3}}<br>
+           <b>4:&nbsp;</b>{{archiveHighScores.game1.name4}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game1.score4}}<br>
+           <b>5:&nbsp;</b>{{archiveHighScores.game1.name5}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game1.score5}}<br>
+          </ul>
+      </div>
+      <div class="col s6">
+          <h6>Gooi je zooi</h6>
+          <ul>
+            <b>1:&nbsp;</b>{{archiveHighScores.game2.name1}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game2.score1}}<br>
+            <b>2:&nbsp;</b>{{archiveHighScores.game2.name2}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game2.score2}}<br>
+            <b>3:&nbsp;</b>{{archiveHighScores.game2.name3}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game2.score3}}<br>
+            <b>4:&nbsp;</b>{{archiveHighScores.game2.name4}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game2.score4}}<br>
+            <b>5:&nbsp;</b>{{archiveHighScores.game2.name5}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game2.score5}}<br>
+           </ul>
+      </div>
+      <div class="col s6">
+          <h6>Race 'm rond</h6>
+          <ul>
+            <b>1:&nbsp;</b>{{archiveHighScores.game3.name1}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game3.score1}}<br>
+            <b>2:&nbsp;</b>{{archiveHighScores.game3.name2}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game3.score2}}<br>
+            <b>3:&nbsp;</b>{{archiveHighScores.game3.name3}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game3.score3}}<br>
+            <b>4:&nbsp;</b>{{archiveHighScores.game3.name4}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game3.score4}}<br>
+            <b>5:&nbsp;</b>{{archiveHighScores.game3.name5}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game3.score5}}<br>
+           </ul>
+      </div>
+      <div class="col s6">
+          <h6>Prullebak bullenbak</h6>
+          <ul>
+            <b>1:&nbsp;</b>{{archiveHighScores.game4.name1}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game4.score1}}<br>
+            <b>2:&nbsp;</b>{{archiveHighScores.game4.name2}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game4.score2}}<br>
+            <b>3:&nbsp;</b>{{archiveHighScores.game4.name3}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game4.score3}}<br>
+            <b>4:&nbsp;</b>{{archiveHighScores.game4.name4}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game4.score4}}<br>
+            <b>5:&nbsp;</b>{{archiveHighScores.game4.name5}}&nbsp;&nbsp;-&nbsp;&nbsp;{{archiveHighScores.game4.score5}}<br>
+           </ul>
+      </div>
+
+    </div>
+
+
+
+    <div class="modal-footer">
+
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -487,7 +571,7 @@
 
             <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
               <a (click)="openEditModal(row.id, row.name)" class="btn-floating btn-large waves-effect waves-light blue">
-                <i class="material-icons">edit</i>
+                <i class="material-icons green">edit</i>
               </a>
             </ng-template>
 
@@ -766,7 +850,7 @@
         </div>
       </div>
       <div class="col s12 m12">
-        <form>
+        <!-- <form>
           <div class="row">
             <div class="input-field col s6">
               <input id="askmeSN" [(ngModel)]="filterId" [ngModelOptions]="{standalone: true}" name="askmeSN" placeholder='Filteren op id'
@@ -779,23 +863,23 @@
             </div>
             <br>
           </div>
-        </form>
+        </form> -->
 
 
         <ngx-datatable #table class='material striped' [scrollbarH]="true" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-          [rowHeight]="'auto'" [limit]="100" [rows]='rowsArchive' (sort)="onSort($event)">
+          [rowHeight]="'auto'" [limit]="1000" [rows]='rowsArchive' (sort)="onSort($event)">
 
 
           <ngx-datatable-column name="Titel" [sortable]="true">
-              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                <span (click)="sort()" style="cursor:pointer">
-                  {{column.name}}
-                </span>
-              </ng-template>
-              <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
-                <div [innerHTML]="row['name']"></div>
-              </ng-template>
-            </ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+            <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+              <div [innerHTML]="row['name']"></div>
+            </ng-template>
+          </ngx-datatable-column>
 
           <ngx-datatable-column name="Telefoons" [sortable]="true">
             <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
@@ -816,26 +900,42 @@
               </span>
             </ng-template>
 
+            <ngx-datatable-column name="Scores" [sortable]="true">
+
+              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+                <span (click)="sort()" style="cursor:pointer">
+                  {{column.name}}
+                </span>
+              </ng-template>
+
+              <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value" ngx-datatable-cell-template>
+                <a (click)="openScoreModal(row.teamscores, row.highscores)" class="btn-floating btn-large waves-effect waves-light blue">
+                  <i class="material-icons purple">filter_1</i>
+                </a>
+              </ng-template>
+
+            </ngx-datatable-column>
+
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{row.arcadeid}}
             </ng-template>
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Actie" [sortable]="true">
-              <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-                <span (click)="sort()" style="cursor:pointer">
-                  {{column.name}}
-                </span>
-              </ng-template>
-  
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                {{row.actionlink}}
-              </ng-template>
-            </ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+              <span (click)="sort()" style="cursor:pointer">
+                {{column.name}}
+              </span>
+            </ng-template>
+
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              {{row.actionlink}}
+            </ng-template>
+          </ngx-datatable-column>
 
 
 
-         
+
 
 
 

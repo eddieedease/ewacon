@@ -57,6 +57,7 @@ export class AdminComponent implements OnInit {
 
   teams = [];
 
+
   // arcadecabinetsID input
   arcadeId;
   arcadeIdNumber = 100;
@@ -74,6 +75,10 @@ export class AdminComponent implements OnInit {
   currentName;
 
   currentArcade;
+
+  // the objects for holding current scoring in Archive
+  archiveTeamScores = {};
+  archiveHighScores = {};
 
   arcadeName;
   arcadeStatus = 1;
@@ -115,7 +120,7 @@ export class AdminComponent implements OnInit {
   filterId;
   filterAction;
 
-
+  archiveModalActive = false;
 
 
 
@@ -141,8 +146,8 @@ export class AdminComponent implements OnInit {
     // Are we already logged in?
     const checkC = this.getCookie('usr');
     console.log(checkC);
-    if (checkC === "gdvs"){
-      this.serser.debugLog("LOGGED IN ALREADY");
+    if (checkC === 'gdvs'){
+      this.serser.debugLog('LOGGED IN ALREADY');
       this.serser.debugLog('Ingelogd');
       this.serser.loggedin = true;
       this.loggedin = true;
@@ -153,7 +158,7 @@ export class AdminComponent implements OnInit {
       });
 
     } else {
-      this.serser.debugLog("NEED 2 LOG in");
+      this.serser.debugLog('NEED 2 LOG in');
     }
 
     // check if loggedin is active for tabs
@@ -180,7 +185,7 @@ export class AdminComponent implements OnInit {
     if (_numb !== 3){
       this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     } else {
-      console.log("yeazzz");
+      console.log('yeazzz');
       this.serser.getAllCall().subscribe(value => this.gotgetAllndConvertActions(value));
     }
     
@@ -379,7 +384,6 @@ export class AdminComponent implements OnInit {
       if (this.rows[b].actionlink === this.currentActionId) {
         this.actionArcadeNamesArray.push(this.rows[b].name);
       }
-      
     }
 
     $('#modal3').modal('open');
@@ -595,6 +599,27 @@ export class AdminComponent implements OnInit {
 
 
 
+  openScoreModal(_teamscores, _highscores){
+   
+    $('#modal4').modal('open');
+    this.archiveTeamScores = {};
+    this.archiveHighScores = {};
+    this.archiveModalActive = false;
+    if (_teamscores !== null){
+      this.archiveModalActive = true;
+      this.archiveTeamScores = JSON.parse(_teamscores);
+      this.serser.debugLog(this.archiveTeamScores);
+    }
+
+    if (_highscores !== null){
+      this.archiveHighScores = JSON.parse(_highscores);
+      this.serser.debugLog(this.archiveHighScores);
+    }
+
+  }
+
+
+
 
 
 
@@ -607,7 +632,7 @@ export class AdminComponent implements OnInit {
       this.serser.loggedin = true;
       this.loggedin = true;
       // set cookie
-      this._cookieService.putObject("usr", "gdvs");
+      this._cookieService.putObject('usr', 'gdvs');
       // example call
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
       $(document).ready(function () {
