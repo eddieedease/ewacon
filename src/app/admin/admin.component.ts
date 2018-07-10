@@ -22,7 +22,9 @@ import {
 } from '@swimlane/ngx-datatable';
 
 // make use of cookie service
-import { CookieService } from 'ngx-cookie';
+import {
+  CookieService
+} from 'ngx-cookie';
 
 
 // toaster thing
@@ -123,13 +125,14 @@ export class AdminComponent implements OnInit {
   archiveModalActive = false;
 
 
+  currentSure = '';
 
   // boolean view
   loggedin = false;
 
   passw = '';
   // tslint:disable-next-line:max-line-length
-  constructor(private serser: EwasteServiceService, private _cookieService:CookieService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
+  constructor(private serser: EwasteServiceService, private _cookieService: CookieService, private router: Router, private route: ActivatedRoute, private _sanitizer: DomSanitizer, private toastr: ToastrService) {}
 
   ngOnInit() {
 
@@ -141,18 +144,18 @@ export class AdminComponent implements OnInit {
       this.arcadesIdPossible.push(obj);
     }
 
-    
+
 
     // Are we already logged in?
     const checkC = this.getCookie('usr');
     console.log(checkC);
-    if (checkC === 'gdvs'){
+    if (checkC === 'gdvs') {
       this.serser.debugLog('LOGGED IN ALREADY');
       this.serser.debugLog('Ingelogd');
       this.serser.loggedin = true;
       this.loggedin = true;
       // example call
-    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+      this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
       $(document).ready(function () {
         $('ul.tabs').tabs();
       });
@@ -171,28 +174,28 @@ export class AdminComponent implements OnInit {
   }
 
   // we want a cookie, 
-  getCookie(key: string){
+  getCookie(key: string) {
     return this._cookieService.getObject(key);
   }
 
-  forgetUser(){
+  forgetUser() {
     this._cookieService.removeAll();
     location.reload();
   }
 
-  getAll(_numb){
-   
-    if (_numb !== 3){
+  getAll(_numb) {
+
+    if (_numb !== 3) {
       this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
     } else {
       console.log('yeazzz');
       this.serser.getAllCall().subscribe(value => this.gotgetAllndConvertActions(value));
     }
-    
+
   }
 
   // thisone we get from the get archive, we need some converting
-  gotgetAllndConvertActions(_value){
+  gotgetAllndConvertActions(_value) {
     // convert the number of actions into the names
 
     this.rowsArchive = [];
@@ -201,22 +204,22 @@ export class AdminComponent implements OnInit {
 
 
     // Loop through actionlink
-    
+
     for (let index = 0; index < tempArch.length; index++) {
       let obj = tempArch[index];
-      
+
       // loop again to find actionName
       for (let index2 = 0; index2 < tempActions.length; index2++) {
-        if (tempActions[index2].id === obj.actionlink){
+        if (tempActions[index2].id === obj.actionlink) {
           obj.actionlink = tempActions[index2].actionname;
         }
       }
-      
-      
+
+
       // finally push through to the object
       this.rowsArchive.push(obj);
     }
-    
+
     // GOAL
     //this.rowsArchive =
 
@@ -227,7 +230,7 @@ export class AdminComponent implements OnInit {
   }
 
   gotgetAllCall(_value) {
-  
+
     // [0] Actions [1] Arcades  [2] Archive   [3]Highscores   [4]teams
     this.serser.debugLog(_value[1]);
     this.rows = _value[1];
@@ -267,7 +270,7 @@ export class AdminComponent implements OnInit {
 
     this.arcadeDatePlaced = '';
     this.arcadeDateEnd = '';
-    
+
 
     this.modalTitle = 'Maak een nieuwe arcade aan';
     this.modalInfo = 'Vul hier de info in van de nieuwe arcade:';
@@ -334,7 +337,7 @@ export class AdminComponent implements OnInit {
     $(document).ready(function () {
       $('select').material_select();
     });
-    
+
   }
 
 
@@ -399,7 +402,7 @@ export class AdminComponent implements OnInit {
   }
 
   editAction() {
-   
+
     if (this.actionName !== '') {
       // tslint:disable-next-line:max-line-length
       this.serser.editAction(this.currentActionId, this.actionName, this.actionStatus, this.actionStart, this.actionEnd).subscribe(value => this.actionCreated(value));
@@ -461,8 +464,9 @@ export class AdminComponent implements OnInit {
   }
 
   removeAction() {
-    this.serser.debugLog('deletion of : ' + this.currentId + ' with name ' + this.currentName);
-    this.serser.deleteAction(this.currentActionId).subscribe(value => this.gotDeleteActionCall(value));
+
+    $('#areusureprovider').modal('open');
+    this.currentSure = 'removeAction';
   }
 
   gotDeleteActionCall(_event) {
@@ -472,7 +476,7 @@ export class AdminComponent implements OnInit {
 
   changeTeamNames() {
     // tslint:disable-next-line:max-line-length
-    const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name,this.team12Name,this.team13Name,this.team14Name,this.team15Name];
+    const titleArray = [this.team1Name, this.team2Name, this.team3Name, this.team4Name, this.team5Name, this.team6Name, this.team7Name, this.team8Name, this.team9Name, this.team10Name, this.team11Name, this.team12Name, this.team13Name, this.team14Name, this.team15Name];
     this.serser.editTeamNames(this.currentName, titleArray).subscribe(value => this.teamNamesChanged(value));
   }
 
@@ -486,12 +490,38 @@ export class AdminComponent implements OnInit {
 
   // Archiving functionality
   arcadeToArchive() {
-    this.toastr.warning('', 'Archiveren...');
-    // needs 1) arcadeid & 2) arcadelink
-    this.serser.moveToArchive(this.currentId).subscribe(value => this.isArchived(value));
+    this.currentSure = 'archiveAracde';
+    $('#areusureprovider').modal('open');
   }
 
-  isArchived(_val){
+
+
+  userIsSure() {
+    switch (this.currentSure) {
+      case 'removeAction':
+        this.serser.debugLog('deletion of : ' + this.currentId + ' with name ' + this.currentName);
+        this.serser.deleteAction(this.currentActionId).subscribe(value => this.gotDeleteActionCall(value));
+        $('#modal3').modal('close');
+        $('#areusureprovider').modal('close');
+        break;
+      case 'archiveAracde':
+        this.toastr.warning('', 'Archiveren...');
+        // needs 1) arcadeid & 2) arcadelink
+        this.serser.moveToArchive(this.currentId).subscribe(value => this.isArchived(value));
+        $('#modal1').modal('close');
+        $('#areusureprovider').modal('close');
+        break;
+
+
+
+    }
+  }
+
+  userIsNotSure() {
+    $('#areusureprovider').modal('close');
+  }
+
+  isArchived(_val) {
     this.toastr.success(':)', 'Gearchiveerd');
     this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
   }
@@ -599,19 +629,19 @@ export class AdminComponent implements OnInit {
 
 
 
-  openScoreModal(_teamscores, _highscores){
-   
+  openScoreModal(_teamscores, _highscores) {
+
     $('#modal4').modal('open');
     this.archiveTeamScores = {};
     this.archiveHighScores = {};
     this.archiveModalActive = false;
-    if (_teamscores !== null){
+    if (_teamscores !== null) {
       this.archiveModalActive = true;
       this.archiveTeamScores = JSON.parse(_teamscores);
       this.serser.debugLog(this.archiveTeamScores);
     }
 
-    if (_highscores !== null){
+    if (_highscores !== null) {
       this.archiveHighScores = JSON.parse(_highscores);
       this.serser.debugLog(this.archiveHighScores);
     }
@@ -634,7 +664,7 @@ export class AdminComponent implements OnInit {
       // set cookie
       this._cookieService.putObject('usr', 'gdvs');
       // example call
-    this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
+      this.serser.getAllCall().subscribe(value => this.gotgetAllCall(value));
       $(document).ready(function () {
         $('ul.tabs').tabs();
       });

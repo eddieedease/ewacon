@@ -364,8 +364,6 @@
 
       <div class="left" *ngIf="modalstatus == 2">
         <br>
-        <a (click)="moveToArchive('action')" class="btn left waves-effect orange">Verplaats naar Archief</a>
-        <br>
         <a (click)="removeAction()" class="btn left waves-effect red">Verwijder actie</a>
       </div>
     </div>
@@ -458,7 +456,14 @@
 </div>
 
 
+<!-- weet je het zeker delete modal provider -->
+<div id="areusureprovider" class="modal bottom-sheet" style="width: 100% !important">
+  <div class="modal-content">
+      <h4>Weet je het zeker?</h4>
+      <a (click)="userIsNotSure()" class="center waves-effect waves-light btn red">Nee</a> <a (click)="userIsSure()" class=" centerwaves-effect waves-light btn green">Ja</a>
+  </div>
 
+</div>
 
 
 <div *ngIf="!loggedin" class="container center">
